@@ -90,5 +90,19 @@ const menuBtn=document.getElementById('menuBtn'),mobile=document.getElementById(
 document.querySelectorAll('.faq-btn').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
 let timer;function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),3300)}document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-</body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const SUPABASE_URL = "PASTE_YOUR_PROJECT_URL_HERE";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+        "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+    console.log("Commerce Passport connected to Supabase");
+</script> </body>
 </html>
