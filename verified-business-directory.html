@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find businesses with an active Commerce Passport verification status.">
+  <title>Verified Business Directory — Commerce Passport</title>
+  <style>
+    :root{color-scheme:dark;--bg:#070c16;--panel:#101a2b;--panel2:#0b1423;--line:#263650;--text:#f1f6ff;--muted:#9caec7;--blue:#8cc8ff;--blue2:#5489ff;--green:#82e0c0;--gold:#ebd18c;--radius:20px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#153055 0,transparent 35%),radial-gradient(ellipse at 93% 22%,#11253a 0,transparent 28%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}a{color:var(--blue)}button,input,select{font:inherit}.wrap{width:min(1120px,calc(100% - 36px));margin:0 auto}.top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 0}.brand{display:flex;gap:11px;align-items:center;text-decoration:none;color:var(--text);font-weight:850;letter-spacing:-.035em}.logo{width:40px;height:40px;display:grid;place-items:center;border-radius:13px;color:#071326;background:linear-gradient(135deg,#a1e3ff,#6e8bff);font-size:14px;font-weight:950;box-shadow:0 8px 28px #5489ff35}.nav{display:flex;gap:17px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--muted);font-size:13px}.nav a:hover{color:var(--text)}.hero{padding:52px 0 25px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.17em;font-weight:850;color:var(--blue)}h1{font-size:clamp(34px,6vw,62px);letter-spacing:-.06em;line-height:1.02;margin:13px 0 17px;max-width:850px}.hero p{max-width:700px;color:var(--muted);font-size:16px;margin:0}.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:23px}.tag{border:1px solid #314664;background:#0d1929;border-radius:999px;padding:7px 11px;color:#cfddf0;font-size:12px}.tag b{color:var(--green);margin-right:5px}.search-panel{border:1px solid var(--line);background:linear-gradient(150deg,rgba(18,30,50,.97),rgba(10,18,32,.97));padding:22px;border-radius:var(--radius);box-shadow:0 24px 75px #0003;margin:17px 0 24px}.search-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:17px}.search-head h2{font-size:19px;letter-spacing:-.03em;margin:0 0 3px}.muted{color:var(--muted);font-size:13px;margin:0}.filters{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(190px,.8fr) auto;gap:10px;align-items:end}.field{display:grid;gap:6px}label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#c4d4e9;font-weight:800}input,select{width:100%;min-width:0;padding:12px 13px;background:#081220;color:var(--text);border:1px solid #354764;border-radius:11px;outline:none}input::placeholder{color:#7185a2}input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #8cc8ff1c}button,.btn{border:0;border-radius:11px;padding:12px 16px;background:linear-gradient(135deg,#9adaff,#688cff);color:#071326;font-weight:850;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}button:hover,.btn:hover{filter:brightness(1.06)}button:disabled{opacity:.55;cursor:not-allowed}.btn-secondary{border:1px solid #344560;background:#111e31;color:var(--text)}.results-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:29px 0 15px}.results-head h2{font-size:22px;letter-spacing:-.035em;margin:0 0 4px}.result-count{font-size:12px;color:var(--muted);border:1px solid var(--line);background:#0c1525;border-radius:999px;padding:6px 10px;white-space:nowrap}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.business-card{position:relative;min-width:0;border:1px solid #283a55;border-radius:17px;padding:19px;background:linear-gradient(160deg,#111d30,#0a1322);overflow:hidden;min-height:190px}.business-card:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,#7de0bf,#8cc8ff,transparent)}.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.category{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:800}.verified{display:inline-flex;align-items:center;gap:5px;background:#0d2c29;color:var(--green);border:1px solid #23584d;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:850;white-space:nowrap}.verified svg{width:13px;height:13px;flex:none}.business-card h3{font-size:20px;line-height:1.22;letter-spacing:-.035em;margin:15px 0 15px;overflow-wrap:anywhere}.card-bottom{border-top:1px solid #25344a;padding-top:12px;display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px}.date{color:#d5e3f5;text-align:right}.empty,.notice{border:1px dashed #354763;background:#0c1524;color:var(--muted);border-radius:14px;padding:24px;text-align:center}.notice{margin-top:12px;white-space:pre-wrap;text-align:left;border-style:solid}.notice.error{border-color:#824955;background:#2a1720;color:#ffc2c8}.notice.success{border-color:#286b5a;background:#0b2925;color:#b6f5e0}.hidden{display:none!important}.pagination{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;padding:23px 0 45px}.page-note{font-size:12px;color:var(--muted)}.disclaimer{border:1px solid #2e405b;background:#0c1626;border-radius:14px;padding:15px 17px;color:var(--muted);font-size:12px;margin:5px 0 38px}.disclaimer strong{color:#d6e5f8}.footer{border-top:1px solid #1b2a40;padding:20px 0 30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+    @media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:1fr 1fr}.filters button{grid-column:1/-1}.hero{padding-top:35px}}
+    @media(max-width:560px){.wrap{width:min(100% - 24px,1120px)}.top{align-items:flex-start}.nav{gap:11px;justify-content:flex-end}.nav a{font-size:12px}.cards{grid-template-columns:1fr}.search-panel{padding:16px}.filters{grid-template-columns:1fr}.filters button{grid-column:auto;width:100%}.hero{padding-top:22px}.hero p{font-size:14px}.results-head{align-items:flex-start}.business-card{min-height:0}}
+  </style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="index.html"><span class="logo">CP</span><span>Commerce Passport</span></a>
+  <nav class="nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="business-verification.html">Apply to verify</a></nav>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Commerce Passport · Business network</div>
+    <h1>Find a business.<br><span style="color:var(--blue)">Know it's verified.</span></h1>
+    <p>Explore businesses with an active Commerce Passport verification status. Search by business name or narrow the results by category.</p>
+    <div class="hero-meta"><span class="tag"><b>✓</b> Active approval only</span><span class="tag">Public directory</span><span class="tag">Privacy-conscious results</span></div>
+  </section>
+
+  <section class="search-panel" aria-labelledby="searchTitle">
+    <div class="search-head"><div><h2 id="searchTitle">Search the directory</h2><p class="muted">Search names or enter a business category. Leave both blank to browse all available results.</p></div></div>
+    <form id="searchForm" class="filters">
+      <div class="field"><label for="searchInput">Business name</label><input id="searchInput" maxlength="100" type="search" placeholder="e.g. City Electronics" autocomplete="off"></div>
+      <div class="field"><label for="categoryInput">Exact category</label><input id="categoryInput" maxlength="100" list="categorySuggestions" placeholder="Any category"><datalist id="categorySuggestions"><option value="Electronics"><option value="Home appliances"><option value="Mobile phones"><option value="Grocery / retail"><option value="Fashion"><option value="Furniture"><option value="Automotive"><option value="Repair / service provider"><option value="Distributor / wholesaler"><option value="Other"></datalist></div>
+      <button id="searchButton" type="submit"><span>Search</span><span aria-hidden="true">→</span></button>
+    </form>
+    <div id="statusMessage" class="notice hidden" role="status" aria-live="polite"></div>
+  </section>
+
+  <section aria-labelledby="resultsTitle">
+    <div class="results-head"><div><h2 id="resultsTitle">Verified businesses</h2><p id="resultsSubtitle" class="muted">Loading current directory results…</p></div><span id="resultCount" class="result-count">Loading…</span></div>
+    <div id="businessCards" class="cards"><div class="empty" style="grid-column:1/-1">Connecting to the verified directory…</div></div>
+    <div class="pagination"><button id="loadMoreButton" type="button" class="btn-secondary hidden">Load more businesses</button><span id="pageNote" class="page-note"></span></div>
+  </section>
+
+  <aside class="disclaimer"><strong>What “verified” means:</strong> The business has an active approval recorded in Commerce Passport. This is not a government certification, guarantee of product quality, or endorsement of every transaction. Verify important details independently before purchasing or sharing sensitive information.</aside>
+</main>
+<footer class="wrap footer"><span>Commerce Passport · Verified Business Directory</span><span>Only public directory fields are displayed.</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Copy these from your working Commerce Passport page. Use only the public anon/publishable key.
+  // Never place a service_role key or secret key in public HTML.
+  const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+  const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+
+  const $ = id => document.getElementById(id);
+  const PAGE_SIZE = 20;
+  let supabaseClient = null;
+  let currentOffset = 0;
+  let currentSearch = "";
+  let currentCategory = "";
+  let isLoading = false;
+  let hasMore = true;
+  let currentRows = 0;
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+  }
+  function dateLabel(value) {
+    if (!value) return "Date unavailable";
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return "Date unavailable";
+    return d.toLocaleDateString(undefined, {year:"numeric",month:"short",day:"numeric"});
+  }
+  function showMessage(message, kind="") {
+    const el = $("statusMessage");
+    el.textContent = message;
+    el.className = "notice" + (kind ? " " + kind : "");
+    el.classList.remove("hidden");
+  }
+  function hideMessage() {
+    $("statusMessage").textContent = "";
+    $("statusMessage").className = "notice hidden";
+  }
+  function setBusy(busy) {
+    isLoading = busy;
+    $("searchButton").disabled = busy;
+    $("searchButton").innerHTML = busy ? "Searching…" : '<span>Search</span><span aria-hidden="true">→</span>';
+    $("loadMoreButton").disabled = busy;
+  }
+  function cardHtml(row) {
+    return `<article class="business-card">
+      <div class="card-top"><span class="category">${escapeHtml(row.business_category || "Business")}</span><span class="verified"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.5 10 2.4l2.2.1.7 2.1 1.6 1.5-.7 2.1.2 2.2-1.9 1.1-1.1 1.9-2.2-.2-2.1.7-1.5-1.6-2.1-.7-.1-2.2L2.1 8l.9-2-.1-2.2 2.1-.7L6.5 1.5 8 1.5Z" stroke="currentColor" stroke-width=".7"/><path d="m4.8 8 2 2 4.2-4.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> VERIFIED</span></div>
+      <h3>${escapeHtml(row.business_name || "Unnamed business")}</h3>
+      <div class="card-bottom"><span>Verified on</span><span class="date">${escapeHtml(dateLabel(row.verified_at))}</span></div>
+    </article>`;
+  }
+  async function fetchBusinesses({reset=false}={}) {
+    if (!supabaseClient || isLoading) return;
+    if (reset) {
+      currentOffset = 0;
+      hasMore = true;
+      currentRows = 0;
+      $("businessCards").innerHTML = '<div class="empty" style="grid-column:1/-1">Searching verified businesses…</div>';
+    }
+    if (!hasMore && !reset) return;
+    hideMessage();
+    setBusy(true);
+    try {
+      const {data,error} = await supabaseClient.rpc("cp_list_verified_business_directory", {
+        p_search: currentSearch || null,
+        p_category: currentCategory || null,
+        p_limit: PAGE_SIZE,
+        p_offset: currentOffset
+      });
+      if (error) throw error;
+      const rows = Array.isArray(data) ? data : (data ? [data] : []);
+      if (reset) $("businessCards").replaceChildren();
+      if (!rows.length && currentOffset === 0) {
+        $("businessCards").innerHTML = '<div class="empty" style="grid-column:1/-1"><strong style="color:var(--text);display:block;margin-bottom:5px">No verified businesses found</strong>Try another search or clear the category filter. New results appear after a business is approved.</div>';
+        $("resultsSubtitle").textContent = "No businesses match the current filters.";
+      } else if (rows.length) {
+        $("businessCards").insertAdjacentHTML("beforeend", rows.map(cardHtml).join(""));
+        $("resultsSubtitle").textContent = currentSearch || currentCategory ? "Results matching your search filters." : "Businesses with an active Commerce Passport approval.";
+      }
+      currentRows += rows.length;
+      currentOffset += rows.length;
+      hasMore = rows.length === PAGE_SIZE;
+      $("resultCount").textContent = currentRows + (hasMore ? "+ results" : " results");
+      $("loadMoreButton").classList.toggle("hidden", !hasMore || rows.length === 0);
+      $("pageNote").textContent = hasMore ? "Showing the first " + currentRows + " results" : "Showing all " + currentRows + " matching result" + (currentRows === 1 ? "" : "s");
+    } catch (error) {
+      console.error("Verified business directory request failed:", error);
+      showMessage("Could not load the verified directory. Check the Supabase URL/key and confirm Stage 21 SQL was installed. Details: " + (error?.message || "Unknown error"), "error");
+      if (reset) $("businessCards").innerHTML = '<div class="empty" style="grid-column:1/-1">Directory unavailable right now. Please try again.</div>';
+      $("resultCount").textContent = "Unavailable";
+      $("resultsSubtitle").textContent = "We couldn't retrieve directory results.";
+      $("loadMoreButton").classList.add("hidden");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  const configured = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && SUPABASE_PUBLIC_KEY.length > 10 && !SUPABASE_PUBLIC_KEY.includes("PASTE_");
+  if (!configured) {
+    $("businessCards").innerHTML = '<div class="empty" style="grid-column:1/-1">Setup required: add your existing Supabase project URL and public anon/publishable key to this file.</div>';
+    $("resultCount").textContent = "Setup required";
+    $("resultsSubtitle").textContent = "The public directory has not been connected yet.";
+    showMessage("Copy the Supabase URL and public key from a working Commerce Passport page into this file, then commit the change. Never use a service-role or secret key.", "error");
+    $("searchButton").disabled = true;
+  } else {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY, {
+      auth: {persistSession:false, autoRefreshToken:false, detectSessionInUrl:false}
+    });
+    fetchBusinesses({reset:true});
+  }
+
+  $("searchForm").addEventListener("submit", event => {
+    event.preventDefault();
+    currentSearch = $("searchInput").value.trim().slice(0,100);
+    currentCategory = $("categoryInput").value.trim().slice(0,100);
+    fetchBusinesses({reset:true});
+  });
+  $("loadMoreButton").addEventListener("click", () => fetchBusinesses());
+</script>
+</body>
+</html>
