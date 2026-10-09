@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notifications | Commerce Passport</title>
+<meta name="description" content="View Commerce Passport notifications and mark updates as read.">
+<style>
+:root{--ink:#17211d;--muted:#637169;--line:#dfe7e1;--green:#087f5b;--green-dark:#066347;--bg:#f4f7f4;--white:#fff;--soft:#edf6f0;--amber:#fff5df;--red:#fff0f0}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top left,#e5f5eb 0,transparent 43%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+header{height:72px;border-bottom:1px solid rgba(20,50,35,.09);background:rgba(255,255,255,.9);display:flex;align-items:center}.nav{width:min(1080px,calc(100% - 32px));margin:auto;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:900;font-size:18px;letter-spacing:-.045em;color:var(--ink);text-decoration:none}.brand span{color:var(--green)}.links{display:flex;gap:16px;align-items:center}.links a{font-size:12px;font-weight:750;color:var(--muted);text-decoration:none}
+main{width:min(920px,calc(100% - 32px));margin:42px auto 64px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}h1{font-size:clamp(32px,5vw,46px);letter-spacing:-.055em;line-height:1.06;margin:9px 0 10px}.intro{color:var(--muted);line-height:1.6;margin:0;max-width:650px}.top{display:flex;justify-content:space-between;align-items:end;gap:22px;margin-bottom:24px}.authstate{font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 12px;white-space:nowrap}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 14px 38px rgba(27,56,39,.045);margin-bottom:18px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:17px}h2{font-size:18px;letter-spacing:-.025em;margin:0}.sub{font-size:12px;color:var(--muted);margin-top:5px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}.stat{padding:17px;border:1px solid var(--line);border-radius:13px;background:#fff}.statlabel{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.07em}.statnum{font-size:27px;font-weight:900;letter-spacing:-.05em;margin-top:5px;font-variant-numeric:tabular-nums}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{min-width:0}.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:800;margin:0 0 7px}input{width:100%;height:45px;padding:0 12px;border:1px solid #d6e0d9;border-radius:10px;font:inherit;font-size:14px;outline:none}input:focus{border-color:var(--green);box-shadow:0 0 0 3px #087f5b1a}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px}button{border:0;border-radius:10px;padding:11px 15px;background:var(--green);color:#fff;font-size:12px;font-weight:850;cursor:pointer}button:hover{background:var(--green-dark)}button.secondary{background:#edf3ef;color:var(--ink)}button.secondary:hover{background:#dfe9e2}button:disabled{opacity:.55;cursor:wait}.hidden{display:none!important}
+.notice{padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#f6f8f6;color:var(--muted);font-size:13px;line-height:1.5;margin-top:13px;overflow-wrap:anywhere}.notice.error{background:var(--red);border-color:#efc8c8;color:#882c2c}.notice.success{background:#effaf2;border-color:#b9e3c7;color:#17643b}.notification-list{display:grid;gap:11px}.notification{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:start;border:1px solid var(--line);border-radius:13px;padding:15px;background:#fff}.notification.unread{border-color:#b9d9c5;background:#fbfefc}.dot{width:9px;height:9px;border-radius:50%;background:#b8c4bd;margin-top:5px}.unread .dot{background:var(--green);box-shadow:0 0 0 4px #087f5b14}.ntitle{font-size:14px;font-weight:850;line-height:1.4}.nmessage{font-size:13px;color:#4f5d54;line-height:1.55;margin-top:5px;overflow-wrap:anywhere}.nmeta{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.45;overflow-wrap:anywhere}.tag{display:inline-block;border-radius:999px;padding:5px 8px;font-size:10px;text-transform:uppercase;font-weight:900;letter-spacing:.05em;background:#edf3ef;color:#536057;white-space:nowrap}.tag.unreadtag{background:#e4f8eb;color:#17643b}.nright{display:flex;align-items:end;flex-direction:column;gap:8px}.nright button{font-size:11px;padding:8px 10px}.empty{padding:28px 16px;border:1px dashed #cad7ce;border-radius:13px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6}.loading{opacity:.65}.foot{text-align:center;color:#7a867e;font-size:11px;margin-top:25px}
+@media(max-width:620px){.top{align-items:start;flex-direction:column}.panel{padding:16px}.panelhead{align-items:start}.notification{grid-template-columns:9px minmax(0,1fr)}.nright{grid-column:2;align-items:start;flex-direction:row;flex-wrap:wrap}.links{gap:9px}.links a{font-size:11px}.stats{gap:9px}.stat{padding:13px}form{grid-template-columns:1fr}.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<header><nav class="nav"><a class="brand" href="./index.html">COMMERCE<span>PASSPORT</span></a><div class="links"><a href="./digital-passport.html">Digital Passport</a><a href="./reports.html">Reports</a><a href="./index.html">Home</a></div></nav></header>
+<main>
+ <div class="top"><div><div class="eyebrow">Your activity inbox</div><h1>Notifications</h1><p class="intro">Keep track of warranty decisions, service approvals, ownership transfers and authenticity report updates—all in one place.</p></div><div id="authState" class="authstate">Checking sign-in…</div></div>
+ <section id="setupPanel" class="panel hidden"><h2>Supabase setup required</h2><p class="sub">Edit this file and replace both Supabase placeholders with your existing project URL and public/anon key. Never put a service-role or secret key in browser code.</p></section>
+ <section id="loginPanel" class="panel hidden"><div class="panelhead"><div><h2>Sign in to your account</h2><div class="sub">Use the same Commerce Passport account where notifications are recorded.</div></div></div><form id="loginForm"><div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><div class="full actions"><button id="loginButton" type="submit">Sign in</button></div></form><div id="loginMessage" class="notice hidden"></div></section>
+ <section id="app" class="hidden">
+  <div class="stats"><div class="stat"><div class="statlabel">Unread notifications</div><div id="unreadCount" class="statnum">—</div></div><div class="stat"><div class="statlabel">Notifications loaded</div><div id="totalCount" class="statnum">—</div></div></div>
+  <section class="panel"><div class="panelhead"><div><h2>Your inbox</h2><div class="sub">Newest updates appear first.</div></div><div class="actions"><button id="refreshButton" class="secondary" type="button">Refresh</button><button id="markAllButton" type="button">Mark all read</button></div></div><div id="notificationList" class="notification-list"><div class="empty">Loading notifications…</div></div><div id="listMessage" class="notice hidden"></div></section>
+ </section>
+ <div class="foot">Commerce Passport · Private notifications for your account</div>
+</main>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+// Use the same project URL and publishable/anon key as your working pages.
+const SUPABASE_URL = 'https://glzpkrgchzbayztsnkwu.supabase.co';
+const SUPABASE_PUBLIC_KEY = 'sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7';
+const $ = id => document.getElementById(id);
+let supabase = null;
+let currentUser = null;
+let loading = false;
+
+function message(id, text, kind='') {
+ const el=$(id); el.textContent=text; el.className='notice'+(kind?' '+kind:''); el.classList.remove('hidden');
+}
+function hideMessage(id){$(id).classList.add('hidden');}
+function dateTime(value){
+ if(!value)return 'Date unavailable'; const d=new Date(value); if(Number.isNaN(d.getTime()))return String(value);
+ return d.toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+}
+function niceEvent(value){return String(value||'notification').replaceAll('_',' ');}
+function make(tag, cls='', text=''){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;}
+function configure(){
+ if(SUPABASE_URL.includes('PASTE_YOUR_')||SUPABASE_PUBLIC_KEY.includes('PASTE_YOUR_')){
+  $('authState').textContent='Setup required';$('setupPanel').classList.remove('hidden');return false;
+ }
+ try{supabase=createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY);return true;}
+ catch(e){$('authState').textContent='Setup error';$('loginPanel').classList.remove('hidden');message('loginMessage','Could not initialise Supabase. Check the project URL and public/anon key.','error');return false;}
+}
+async function setSession(session){
+ currentUser=session?.user||null;
+ if(!currentUser){$('authState').textContent='Not signed in';$('loginPanel').classList.remove('hidden');$('app').classList.add('hidden');return;}
+ $('authState').textContent='Signed in · '+(currentUser.email||'account');$('loginPanel').classList.add('hidden');$('app').classList.remove('hidden');
+ await loadNotifications();
+}
+async function loadNotifications(){
+ if(!currentUser||loading)return;loading=true;
+ $('notificationList').classList.add('loading');$('notificationList').replaceChildren(make('div','empty','Loading notifications…'));hideMessage('listMessage');
+ try{
+  const [listResult,countResult]=await Promise.all([
+   supabase.rpc('cp_list_my_notifications',{p_limit:100}),
+   supabase.rpc('cp_count_my_unread_notifications')
+  ]);
+  if(listResult.error)throw new Error('Unable to load notifications: '+listResult.error.message);
+  if(countResult.error)throw new Error('Unable to load unread count: '+countResult.error.message);
+  const items=listResult.data||[];
+  $('unreadCount').textContent=String(countResult.data??0);
+  $('totalCount').textContent=String(items.length);
+  const host=$('notificationList');host.replaceChildren();
+  if(items.length===0){host.append(make('div','empty','You have no notifications yet. New events created after the notification system was installed will appear here.'));return;}
+  for(const item of items){
+   const card=make('article','notification'+(item.is_read?'':' unread'));
+   card.append(make('span','dot'));
+   const body=make('div');body.append(make('div','ntitle',item.title||niceEvent(item.event_type)));body.append(make('div','nmessage',item.message||''));
+   body.append(make('div','nmeta',`${niceEvent(item.event_type)} · ${dateTime(item.created_at)} · Reference: ${item.reference_id}`));
+   card.append(body);
+   const controls=make('div','nright');controls.append(make('span','tag '+(item.is_read?'':'unreadtag'),item.is_read?'Read':'Unread'));
+   if(!item.is_read){const btn=make('button','secondary','Mark read');btn.type='button';btn.addEventListener('click',()=>markOne(item.notification_id,btn));controls.append(btn);}
+   card.append(controls);host.append(card);
+  }
+ }catch(e){$('notificationList').replaceChildren(make('div','empty','Could not load notifications.'));message('listMessage',e.message||'Unexpected error.','error');}
+ finally{$('notificationList').classList.remove('loading');loading=false;}
+}
+async function markOne(id,button){
+ button.disabled=true;
+ try{const {data,error}=await supabase.rpc('cp_mark_notification_read',{p_notification_id:id});if(error)throw error;if(data!==true)throw new Error('Notification was not updated. Refresh and try again.');await loadNotifications();message('listMessage','Notification marked as read.','success');}
+ catch(e){message('listMessage','Could not mark notification as read: '+(e.message||'Unknown error'),'error');button.disabled=false;}
+}
+async function markAll(){
+ const btn=$('markAllButton');btn.disabled=true;
+ try{const {data,error}=await supabase.rpc('cp_mark_all_notifications_read');if(error)throw error;await loadNotifications();message('listMessage',`${Number(data)||0} notification(s) marked as read.`,'success');}
+ catch(e){message('listMessage','Could not mark notifications as read: '+(e.message||'Unknown error'),'error');}
+ finally{btn.disabled=false;}
+}
+$('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();hideMessage('loginMessage');$('loginButton').disabled=true;
+ try{const {error}=await supabase.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error)throw error;}
+ catch(err){message('loginMessage',err.message||'Sign-in failed.','error');}
+ finally{$('loginButton').disabled=false;}
+});
+$('refreshButton').addEventListener('click',loadNotifications);
+$('markAllButton').addEventListener('click',markAll);
+if(configure()){
+ supabase.auth.onAuthStateChange((_event,session)=>{setSession(session).catch(console.error);});
+ supabase.auth.getSession().then(({data,error})=>{if(error){$('authState').textContent='Session error';$('loginPanel').classList.remove('hidden');message('loginMessage',error.message,'error');return;}return setSession(data.session);}).catch(console.error);
+}
+</script>
+</body>
+</html>
