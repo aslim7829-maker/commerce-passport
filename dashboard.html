@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard | Commerce Passport</title>
+<meta name="description" content="Your Commerce Passport workspace for products, warranties, service history, transfers and product authenticity.">
+<style>
+:root{--ink:#18251e;--muted:#66756c;--line:#e0e8e2;--green:#087f5b;--deep:#075b43;--wash:#f4f8f5;--white:#fff;--soft:#e8f5ec;--shadow:0 14px 34px rgba(26,58,39,.06)}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 8% 0%,#e0f5e8 0,transparent 35%),var(--wash);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh}
+a{color:inherit}.topbar{height:72px;display:flex;align-items:center;background:rgba(255,255,255,.9);border-bottom:1px solid rgba(24,55,36,.08)}.nav{width:min(1180px,calc(100% - 36px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{text-decoration:none;font-size:19px;font-weight:900;letter-spacing:-.055em}.logo span{color:var(--green)}.navright{display:flex;align-items:center;gap:10px}.userpill{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;background:#fff;padding:9px 12px;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.btn{border:0;border-radius:10px;padding:11px 14px;background:var(--green);color:white;text-decoration:none;font:inherit;font-weight:800;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{background:var(--deep)}.btn.secondary{background:#edf4ef;color:#20372a;border:1px solid #dce8df}.btn.secondary:hover{background:#e2eee5}.btn:disabled{opacity:.55;cursor:wait}
+main{width:min(1180px,calc(100% - 32px));margin:38px auto 70px}.hero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,.7fr);gap:24px;align-items:stretch;margin-bottom:26px}.hero-main{padding:30px 30px 28px;background:linear-gradient(120deg,#fff 0%,#f3fbf5 100%);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}.eyebrow{font-weight:900;color:var(--green);font-size:11px;text-transform:uppercase;letter-spacing:.14em}h1{font-size:clamp(34px,5vw,52px);letter-spacing:-.065em;line-height:1.02;margin:12px 0 13px}.lead{color:var(--muted);line-height:1.65;max-width:650px;margin:0}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.hero-side{background:#12392b;color:white;border-radius:22px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;box-shadow:var(--shadow)}.hero-side .small{font-size:11px;color:#b7d5c4;text-transform:uppercase;letter-spacing:.13em;font-weight:800}.hero-side h2{font-size:23px;letter-spacing:-.04em;margin:12px 0}.hero-side p{color:#d0e2d7;font-size:13px;line-height:1.6;margin:0}.shield{height:44px;width:44px;border:1px solid #679984;border-radius:14px;display:grid;place-items:center;font-size:22px;background:#1d4a37}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:28px 0 14px}.sectionhead h2{font-size:22px;letter-spacing:-.04em;margin:0}.sectionhead p{color:var(--muted);font-size:13px;margin:6px 0 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.module{display:flex;gap:14px;padding:19px;background:#fff;border:1px solid var(--line);border-radius:17px;text-decoration:none;min-width:0;box-shadow:0 4px 16px rgba(24,55,36,.025);transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}.module:hover{transform:translateY(-2px);border-color:#a8cdb7;box-shadow:var(--shadow)}.icon{height:42px;width:42px;flex:0 0 42px;border-radius:13px;display:grid;place-items:center;background:var(--soft);color:var(--green);font-size:20px}.module h3{font-size:15px;letter-spacing:-.02em;margin:2px 0 6px}.module p{font-size:12px;line-height:1.55;color:var(--muted);margin:0}.arrow{margin-left:auto;color:#8ca196;align-self:center;font-size:18px;padding-left:4px}.admin .icon{background:#fff0dc;color:#8a5a11}.notice{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--muted);font-size:12px;line-height:1.55;margin-top:18px}.notice.error{background:#fff4f4;border-color:#f0c6c6;color:#8e2f2f}.notice.success{background:#eef9f1;border-color:#bce1c6;color:#17643b}.hidden{display:none!important}
+.authbox{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px 20px;box-shadow:var(--shadow)}.authhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.authhead h2{font-size:16px;margin:0}.authhead p{margin:5px 0 0;color:var(--muted);font-size:12px}.formgrid{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}.field label{display:block;font-size:11px;font-weight:850;margin:0 0 6px}.field input{width:100%;height:43px;border:1px solid #d5e0d8;border-radius:10px;padding:0 11px;font:inherit;font-size:13px;outline:none}.field input:focus{border-color:var(--green);box-shadow:0 0 0 3px #087f5b1a}.formnote{font-size:11px;color:var(--muted);line-height:1.6;margin:10px 0 0}footer{text-align:center;color:#7b8980;font-size:11px;margin-top:30px}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.hero-side{min-height:180px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero-main{padding:24px 20px}.userpill{max-width:140px}.formgrid{grid-template-columns:1fr}.authhead{align-items:start;flex-direction:column}.nav{width:calc(100% - 24px)}main{width:calc(100% - 24px);margin-top:22px}}
+</style>
+</head>
+<body>
+<header class="topbar"><nav class="nav"><a href="./index.html" class="logo">COMMERCE<span>PASSPORT</span></a><div class="navright"><span id="userPill" class="userpill">Checking sign-in…</span><button id="signOutBtn" class="btn secondary hidden" type="button">Sign out</button></div></nav></header>
+<main>
+  <section class="hero">
+    <div class="hero-main"><div class="eyebrow">Your workspace</div><h1>Product trust,<br>in one place.</h1><p class="lead">Manage registered products and businesses, follow ownership transfers, verify product details, review warranties and service records, and keep track of authenticity reports.</p><div class="hero-actions"><a class="btn" href="./products.html">＋ Manage products</a><a class="btn secondary" href="./digital-passport.html">Open digital passport ↗</a></div></div>
+    <aside class="hero-side"><div><div class="shield">✓</div><div class="small" style="margin-top:18px">Commerce Passport</div><h2>A clearer product history.</h2><p>Keep product identity, ownership changes, warranty details and confirmed servicing connected to a single digital record.</p></div></aside>
+  </section>
+
+  <div class="sectionhead"><div><h2>Product operations</h2><p>Everyday tools for owners, customers and businesses.</p></div></div>
+  <section class="grid" aria-label="Product operations">
+    <a class="module" href="./products.html"><div class="icon">▣</div><div><h3>Products</h3><p>View and manage registered product records.</p></div><span class="arrow">↗</span></a>
+    <a class="module" href="./businesses.html"><div class="icon">⌂</div><div><h3>Businesses</h3><p>Manage your registered business profiles.</p></div><span class="arrow">↗</span></a>
+    <a class="module" href="./transfers.html"><div class="icon">⇄</div><div><h3>Ownership transfers</h3><p>Request, accept and track product transfers.</p></div><span class="arrow">↗</span></a>
+    <a class="module" href="./verify.html"><div class="icon">✓</div><div><h3>Verify a product</h3><p>Check a product using its identifiers.</p></div><span class="arrow">↗</span></a>
+    <a class="module" href="./digital-passport.html"><div class="icon">▤</div><div><h3>Digital passport</h3><p>View product details, QR code and history.</p></div><span class="arrow">↗</span></a>
+    <a class="module" href="./warranties.html"><div class="icon">◷</div><div><h3>Warranties</h3><p>Submit warranty requests and track decisions.</p></div><span class="arrow">↗</span></a>
+    <a class="module" href="./service-history.html"><div class="icon">⚒</div><div><h3>Service history</h3><p>Review repair and maintenance records.</p></div><span class="arrow">↗</span></a>
+  </section>
+
+  <div class="sectionhead"><div><h2>Trust & communication</h2><p>Follow activity and handle product concerns.</p></div></div>
+  <section class="grid" aria-label="Trust and communication">
+    <a class="module" href="./reports.html"><div class="icon">⚑</div><div><h3>Authenticity reports</h3><p>Submit a concern and follow your reports.</p></div><span class="arrow">↗</span></a>
+    <a class="module" href="./notifications.html"><div class="icon">♧</div><div><h3>Notifications</h3><p>See request updates and mark alerts as read.</p></div><span class="arrow">↗</span></a>
+    <a class="module admin" href="./admin.html"><div class="icon">⚙</div><div><h3>Admin review</h3><p>Restricted workspace for authorized reviewers.</p></div><span class="arrow">↗</span></a>
+  </section>
+
+  <section id="authBox" class="authbox">
+    <div class="authhead"><div><h2>Sign in to Commerce Passport</h2><p>Use your existing account to access account-based features.</p></div></div>
+    <form id="loginForm" class="formgrid">
+      <div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required></div>
+      <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+      <button id="loginBtn" class="btn" type="submit">Sign in</button>
+    </form>
+    <div id="authMessage" class="notice hidden"></div>
+    <p class="formnote">Use only your Supabase project URL and public/publishable (or legacy anon) key in browser files. Never place a service-role or secret key in this page.</p>
+  </section>
+  <footer>Commerce Passport · Unified workspace</footer>
+</main>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// Replace these with the same safe browser credentials as your working pages.
+const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+const $ = id => document.getElementById(id);
+const userPill = $("userPill");
+const authBox = $("authBox");
+const signOutBtn = $("signOutBtn");
+const authMessage = $("authMessage");
+let supabase = null;
+
+function message(text, kind="") {
+  authMessage.textContent = text;
+  authMessage.className = "notice" + (kind ? " " + kind : "");
+  authMessage.classList.remove("hidden");
+}
+function setSession(session) {
+  const user = session?.user;
+  if (user) {
+    userPill.textContent = user.email || "Signed in";
+    userPill.title = user.email || "Signed in";
+    authBox.classList.add("hidden");
+    signOutBtn.classList.remove("hidden");
+  } else {
+    userPill.textContent = "Not signed in";
+    userPill.title = "Not signed in";
+    authBox.classList.remove("hidden");
+    signOutBtn.classList.add("hidden");
+  }
+}
+
+if (SUPABASE_URL.includes("PASTE_YOUR_") || SUPABASE_PUBLIC_KEY.includes("PASTE_YOUR_")) {
+  userPill.textContent = "Setup required";
+  message("Add your existing Supabase project URL and public/anon key in this file before using sign-in.", "error");
+} else {
+  try {
+    supabase = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+    supabase.auth.onAuthStateChange((_event, session) => setSession(session));
+    const { data, error } = await supabase.auth.getSession();
+    if (error) throw error;
+    setSession(data.session);
+  } catch (error) {
+    userPill.textContent = "Connection error";
+    message("Could not connect to Supabase: " + (error.message || "Check the project URL and public key."), "error");
+  }
+}
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!supabase) return message("Add your Supabase credentials before signing in.", "error");
+  const button = $("loginBtn");
+  button.disabled = true;
+  button.textContent = "Signing in…";
+  authMessage.classList.add("hidden");
+  try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: $("email").value.trim(),
+      password: $("password").value
+    });
+    if (error) throw error;
+    message("Signed in successfully.", "success");
+    $("password").value = "";
+  } catch (error) {
+    message(error.message || "Sign-in failed.", "error");
+  } finally {
+    button.disabled = false;
+    button.textContent = "Sign in";
+  }
+});
+
+signOutBtn.addEventListener("click", async () => {
+  if (!supabase) return;
+  signOutBtn.disabled = true;
+  const { error } = await supabase.auth.signOut();
+  signOutBtn.disabled = false;
+  if (error) message("Could not sign out: " + error.message, "error");
+  else message("You have signed out.", "success");
+});
+</script>
+</body>
+</html>
