@@ -1,0 +1,142 @@
+/*
+  Commerce Passport — Stage 34.2: sign-in page mobile/accessibility polish
+  Additive styling only. Does not change Supabase authentication or form behavior.
+  Add this stylesheet link to login.html after its existing <style> block.
+*/
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: clamp(10px, 3vw, 28px);
+}
+
+.layout,
+.intro,
+.formside,
+.formside form {
+  min-width: 0;
+}
+
+.intro-copy,
+.foot,
+.sub,
+.signup,
+.back {
+  overflow-wrap: anywhere;
+}
+
+/* Comfortable touch targets and predictable mobile form sizing. */
+.formside input {
+  min-height: 48px;
+  font-size: 16px;
+}
+
+.formside button {
+  min-height: 48px;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.formside a {
+  text-underline-offset: 3px;
+}
+
+/* Clear keyboard focus on links, fields and buttons. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #73e0c1;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  body {
+    place-items: start center;
+    padding: 12px;
+  }
+
+  .layout {
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  .intro {
+    padding: clamp(20px, 5vw, 28px);
+  }
+
+  .intro h1 {
+    font-size: clamp(30px, 7.5vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+  }
+
+  /* Keep the benefits visible, but compact, instead of hiding them on phones. */
+  .intro .features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .intro .feature {
+    gap: 8px;
+    align-items: flex-start;
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #2a3d50;
+    border-radius: 12px;
+    background: #0a1725a8;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .intro .check {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+  }
+
+  .formside {
+    padding: clamp(22px, 6vw, 32px);
+  }
+
+  .sub {
+    margin-bottom: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .layout {
+    border-radius: 16px;
+  }
+
+  .intro .features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .intro .feature {
+    font-size: 13px;
+  }
+
+  .formside h2 {
+    font-size: 25px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
