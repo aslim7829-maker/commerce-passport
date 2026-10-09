@@ -1,0 +1,260 @@
+/*
+  Commerce Passport — Stage 34 dashboard UI polish
+  Additive CSS only. Does not change JavaScript, authentication, or database behavior.
+  Link from dashboard.html with:
+  <link rel="stylesheet" href="./stage34-dashboard-mobile-polish.css">
+*/
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Keyboard users get a clear focus indicator without changing normal clicks. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #0b8b64;
+  outline-offset: 3px;
+}
+
+button,
+.btn,
+.module,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+/* Keep navigation available on long dashboard pages. */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* More consistent card height, alignment, and touch-friendly actions. */
+.grid {
+  align-items: stretch;
+}
+
+.module {
+  min-height: 112px;
+  align-items: flex-start;
+  padding: 18px;
+}
+
+.module > div:not(.icon) {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.module h3 {
+  line-height: 1.35;
+}
+
+.module p {
+  overflow-wrap: anywhere;
+}
+
+.module .arrow {
+  flex: 0 0 auto;
+}
+
+.btn {
+  min-height: 44px;
+  line-height: 1.25;
+}
+
+.bizactions .btn,
+.hero-actions .btn {
+  min-height: 44px;
+}
+
+.field input,
+.formgrid .field input {
+  min-height: 44px;
+  max-width: 100%;
+}
+
+/* Keep business status content readable when the status badge wraps. */
+.bizstatus-head > div {
+  min-width: 0;
+  flex: 1 1 360px;
+}
+
+.bizbadge {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Tablet and small laptop layout. */
+@media (max-width: 850px) {
+  main {
+    margin-top: 24px;
+  }
+
+  .hero {
+    gap: 16px;
+  }
+
+  .hero-main,
+  .hero-side {
+    border-radius: 18px;
+  }
+
+  .sectionhead {
+    margin-top: 30px;
+  }
+
+  .module {
+    padding: 16px;
+  }
+}
+
+/* Phone layout: allow header content and controls to wrap without overflow. */
+@media (max-width: 560px) {
+  .topbar {
+    min-height: 64px;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .nav {
+    width: calc(100% - 24px);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .navright {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .userpill {
+    max-width: min(58vw, 240px);
+    padding: 8px 10px;
+  }
+
+  main {
+    width: calc(100% - 24px);
+    margin: 18px auto 44px;
+  }
+
+  .hero {
+    margin-bottom: 20px;
+  }
+
+  .hero-main {
+    padding: 23px 18px;
+  }
+
+  .hero-side {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  h1 {
+    font-size: clamp(32px, 9vw, 43px);
+    line-height: 1.06;
+  }
+
+  .hero-actions,
+  .bizactions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions .btn,
+  .bizactions .btn {
+    width: 100%;
+  }
+
+  .bizstatus {
+    padding: 17px;
+    margin: 18px 0 24px;
+  }
+
+  .bizstatus-head {
+    align-items: flex-start;
+  }
+
+  .bizbadge {
+    align-self: flex-start;
+  }
+
+  .sectionhead {
+    align-items: flex-start;
+    margin: 27px 0 12px;
+  }
+
+  .sectionhead h2 {
+    font-size: 20px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .module {
+    min-height: 96px;
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .authbox {
+    padding: 16px;
+  }
+
+  .formgrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .formgrid .btn {
+    width: 100%;
+  }
+
+  footer {
+    line-height: 1.6;
+    padding: 0 4px;
+  }
+}
+
+/* Respect users who request less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
