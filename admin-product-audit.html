@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Restricted Commerce Passport product audit log for authorized administrators.">
+  <title>Product Audit Log — Commerce Passport</title>
+  <style>
+    :root{color-scheme:dark;--bg:#070c16;--panel:#101a2b;--panel2:#0b1423;--line:#263650;--text:#f1f6ff;--muted:#9caec7;--blue:#8cc8ff;--green:#82e0c0;--gold:#ebd18c;--red:#ff9ca9;--radius:18px}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#153055 0,transparent 34%),var(--bg);color:var(--text);font:14px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}a{color:var(--blue)}button,input,select{font:inherit}.wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:21px 0;border-bottom:1px solid #1c293e}.brand{display:flex;align-items:center;gap:11px;color:var(--text);font-weight:850;letter-spacing:-.035em;text-decoration:none}.logo{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,#a1e3ff,#6e8bff);color:#071326;font-weight:950}.nav{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.nav a{font-size:12px;color:var(--muted);text-decoration:none}.nav a:hover{color:var(--text)}button,.btn{border:0;border-radius:10px;padding:11px 14px;background:linear-gradient(135deg,#9adaff,#688cff);color:#071326;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}button.secondary,.btn.secondary{border:1px solid #344560;background:#111e31;color:var(--text)}button:disabled{opacity:.55;cursor:not-allowed}.hero{padding:36px 0 24px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--blue);font-weight:850}.hero h1{font-size:clamp(32px,5vw,51px);line-height:1.05;letter-spacing:-.055em;margin:10px 0}.hero p{max-width:760px;color:var(--muted);margin:0}.tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.tag{border:1px solid #314664;background:#0d1929;border-radius:999px;padding:6px 10px;color:#cfddf0;font-size:11px}.layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:17px;align-items:start}.panel{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:linear-gradient(155deg,rgba(17,28,47,.98),rgba(9,17,30,.98));box-shadow:0 20px 65px #0002}.panel h2{font-size:17px;letter-spacing:-.025em;margin:0 0 5px}.muted{color:var(--muted);font-size:12px;margin:0 0 16px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:10px;color:#c4d4e9;font-weight:800;text-transform:uppercase;letter-spacing:.09em}.field input,.field select{width:100%;min-width:0;padding:11px 12px;color:var(--text);background:#081220;border:1px solid #354764;border-radius:10px;outline:none}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #8cc8ff1c}.notice{padding:12px 13px;border:1px solid #344560;border-radius:11px;background:#0b1423;color:#c6d7ed;font-size:12px;margin-top:12px;overflow-wrap:anywhere}.notice.error{border-color:#793f4b;background:#26121a;color:#ffd2d9}.notice.success{border-color:#286a5b;background:#0d2421;color:#b9f2df}.notice.hidden,.hidden{display:none!important}.sessionbox{padding:12px;border:1px solid #273c58;background:#0b1423;border-radius:12px;margin:13px 0}.sessionbox strong{display:block;overflow-wrap:anywhere;font-size:12px}.sessionbox small{color:var(--muted)}.toolbar{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;flex-wrap:wrap}.count{padding:6px 10px;background:#0d2c29;border:1px solid #23584d;color:var(--green);border-radius:999px;font-size:11px;font-weight:800;white-space:nowrap}.filtergrid{display:grid;grid-template-columns:minmax(140px,.7fr) minmax(180px,1.3fr) auto;gap:10px;align-items:end;margin:18px 0 14px}.filtergrid .field{margin:0}.empty{padding:25px;border:1px dashed #33425a;border-radius:12px;color:var(--muted);font-size:12px;text-align:center}.event-list{display:grid;gap:10px}.event{border:1px solid #263851;border-radius:13px;padding:14px;background:#0b1423;min-width:0}.eventhead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.eventtitle{font-size:13px;font-weight:850;overflow-wrap:anywhere}.operation{display:inline-flex;align-items:center;border-radius:999px;border:1px solid #354764;padding:4px 8px;font-size:10px;font-weight:900;letter-spacing:.06em;white-space:nowrap}.operation.insert{color:var(--green);border-color:#286a5b;background:#0d2421}.operation.update{color:var(--gold);border-color:#6b5830;background:#241e10}.operation.delete{color:var(--red);border-color:#793f4b;background:#26121a}.eventmeta{display:grid;grid-template-columns:1fr 1fr;gap:7px 12px;margin-top:10px}.metaitem{min-width:0}.metaitem small{display:block;color:#8195b0;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.metaitem span{font-size:11px;overflow-wrap:anywhere;word-break:break-word}.fieldchips{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}.chip{font-size:10px;border:1px solid #2c3d57;background:#101e31;color:#c6d7ed;padding:3px 7px;border-radius:6px;overflow-wrap:anywhere}.subtle{color:var(--muted);font-size:10px}.pager{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:15px}.pager span{color:var(--muted);font-size:11px}.footer{padding:24px 0 32px;margin-top:25px;border-top:1px solid #1c293e;color:var(--muted);font-size:11px;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}.hidden{display:none!important}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}.filtergrid{grid-template-columns:1fr 1fr}.filtergrid button{grid-column:1/-1}.hero{padding-top:24px}}@media(max-width:520px){.wrap{width:calc(100% - 22px)}.panel{padding:15px}.eventmeta{grid-template-columns:1fr}.top{align-items:flex-start}.nav{justify-content:flex-end}}
+  </style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="./dashboard.html"><span class="logo">CP</span><span>Commerce Passport</span></a>
+  <nav class="nav" aria-label="Primary navigation"><a href="./dashboard.html">Dashboard</a><a href="./admin.html">Admin review</a><a href="./admin-business-verification.html">Business verification</a><button id="signOutButton" class="secondary hidden" type="button">Sign out</button></nav>
+</header>
+<main class="wrap">
+  <section class="hero"><div class="eyebrow">Restricted admin tool · Stage 24</div><h1>Product audit log.</h1><p>Review recorded product-row insertions, updates and deletions. The database returns only event metadata: product UUID, actor UUID, changed column names and timestamp—not product field values.</p><div class="tagrow"><span class="tag">Admin allowlist enforced in Supabase</span><span class="tag">Read-only view</span><span class="tag">Latest events first</span></div></section>
+  <div class="layout">
+    <aside class="panel">
+      <section id="loginPanel"><h2>Administrator sign in</h2><p class="muted">Use the account already registered in your <code>cp_admin_users</code> allowlist.</p>
+        <form id="loginForm"><div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><button id="loginButton" type="submit" style="width:100%">Sign in</button></form><div id="loginNotice" class="notice hidden" role="status" aria-live="polite"></div>
+      </section>
+      <section id="sessionPanel" class="hidden"><h2>Current session</h2><p class="muted">Authentication is separate from administrator authorization.</p><div class="sessionbox"><small>Signed in as</small><strong id="signedInEmail"></strong><div id="authStatus" class="subtle" style="margin-top:6px">Checking admin permission…</div></div>
+        <div class="field"><label for="operationFilter">Operation</label><select id="operationFilter"><option value="all">All operations</option><option value="INSERT">Insert</option><option value="UPDATE">Update</option><option value="DELETE">Delete</option></select></div>
+        <div class="field"><label for="searchInput">Search loaded events</label><input id="searchInput" type="search" maxlength="200" placeholder="Product UUID, actor UUID, field name"></div>
+        <button id="refreshButton" type="button" style="width:100%">Refresh audit log</button><p class="subtle" style="margin:12px 0 0">Filters apply to the currently loaded page. Use pagination to inspect older events.</p>
+      </section>
+    </aside>
+    <section class="panel">
+      <div class="toolbar"><div><h2>Product changes</h2><p id="summary" class="muted" style="margin:4px 0 0">Sign in to load the restricted audit log.</p></div><span id="eventCount" class="count">—</span></div>
+      <div id="resultNotice" class="notice hidden" role="status" aria-live="polite"></div>
+      <div id="eventList" class="event-list" style="margin-top:15px"><div class="empty">No audit data loaded.</div></div>
+      <div id="pager" class="pager hidden"><button id="prevButton" class="secondary" type="button">← Newer events</button><span id="pageLabel">Page 1</span><button id="nextButton" class="secondary" type="button">Older events →</button></div>
+    </section>
+  </div>
+  <aside class="notice" style="margin-top:17px"><strong>Important:</strong> The audit log starts recording after Stage 16 was installed; it does not reconstruct earlier changes. A deleted product's event can remain in the log. Actor UUID may be empty for operations that do not carry a Supabase authenticated user context. This page does not permit changes to products or audit entries.</aside>
+</main>
+<footer class="wrap footer"><span>Commerce Passport · Stage 24 · Product audit</span><span>Admin-only data retrieval is enforced by the database RPC.</span></footer>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// Use the same browser-safe settings as your working Commerce Passport pages.
+// Never use a service_role or secret key in frontend code.
+const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+const PAGE_SIZE = 100;
+const $ = id => document.getElementById(id);
+let supabase = null;
+let currentUser = null;
+let authorized = false;
+let offset = 0;
+let currentRows = [];
+let hasMore = false;
+let busy = false;
+
+function notice(id, message, kind = "") {
+  const el = $(id);
+  el.textContent = message;
+  el.className = "notice" + (kind ? " " + kind : "");
+}
+function hide(id) { $(id).classList.add("hidden"); }
+function safeDate(value) {
+  if (!value) return "—";
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? String(value) : d.toLocaleString(undefined, {dateStyle:"medium",timeStyle:"short"});
+}
+function node(tag, className, value) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (value !== undefined) el.textContent = value;
+  return el;
+}
+function setSessionView(session) {
+  currentUser = session?.user || null;
+  $("loginPanel").classList.toggle("hidden", Boolean(currentUser));
+  $("sessionPanel").classList.toggle("hidden", !currentUser);
+  $("signOutButton").classList.toggle("hidden", !currentUser);
+  if (currentUser) $("signedInEmail").textContent = currentUser.email || currentUser.id;
+}
+function renderRows() {
+  const host = $("eventList");
+  host.replaceChildren();
+  const operation = $("operationFilter").value;
+  const query = $("searchInput").value.trim().toLowerCase();
+  const rows = currentRows.filter(row => {
+    if (operation !== "all" && row.operation !== operation) return false;
+    const haystack = [row.product_id, row.actor_user_id, row.operation, ...(row.changed_fields || [])].join(" ").toLowerCase();
+    return !query || haystack.includes(query);
+  });
+  $("eventCount").textContent = rows.length + (rows.length === 1 ? " event" : " events");
+  $("summary").textContent = rows.length
+    ? `Showing ${rows.length} matching event${rows.length === 1 ? "" : "s"} from ${currentRows.length} loaded on this page.`
+    : currentRows.length ? "No events on this page match the current filters." : "No audit events have been recorded yet.";
+  if (!rows.length) {
+    host.append(node("div", "empty", currentRows.length ? "No matching events. Clear or change the filters, or use pagination to inspect another page." : "No audit entries on this page. Changes made before Stage 16 are not included."));
+    return;
+  }
+  for (const row of rows) {
+    const card = node("article", "event");
+    const head = node("div", "eventhead");
+    const title = node("div", "eventtitle", `Product ${row.product_id || "(ID unavailable)"}`);
+    const op = node("span", "operation " + String(row.operation || "").toLowerCase(), String(row.operation || "UNKNOWN"));
+    head.append(title, op); card.append(head);
+    const meta = node("div", "eventmeta");
+    for (const [label, value] of [["Event time", safeDate(row.created_at)], ["Actor user UUID", row.actor_user_id || "Not recorded"], ["Audit event UUID", row.audit_id || "—"]]) {
+      const item = node("div", "metaitem"); item.append(node("small", "", label), node("span", "", value)); meta.append(item);
+    }
+    card.append(meta);
+    const fieldsLabel = node("div", "subtle", "Changed column names"); fieldsLabel.style.marginTop = "10px"; card.append(fieldsLabel);
+    const chips = node("div", "fieldchips");
+    if (Array.isArray(row.changed_fields) && row.changed_fields.length) {
+      for (const field of row.changed_fields) chips.append(node("span", "chip", field));
+    } else chips.append(node("span", "subtle", "No field names recorded"));
+    card.append(chips);
+    host.append(card);
+  }
+}
+async function loadAudit(nextOffset = offset) {
+  if (!supabase || !currentUser || busy) return;
+  busy = true; authorized = false;
+  $("refreshButton").disabled = true;
+  $("summary").textContent = "Loading restricted audit entries…";
+  hide("resultNotice");
+  try {
+    const {data, error} = await supabase.rpc("cp_admin_list_product_audit", {p_limit: PAGE_SIZE + 1, p_offset: nextOffset});
+    if (error) {
+      currentRows = []; authorized = false;
+      $("eventList").replaceChildren(node("div", "empty", "The audit log could not be loaded."));
+      $("eventCount").textContent = "—";
+      $("summary").textContent = "Audit access was not granted.";
+      $("pager").classList.add("hidden");
+      $("authStatus").textContent = "Admin authorization failed";
+      notice("resultNotice", error.message.toLowerCase().includes("not authorized")
+        ? "Your account is signed in but is not authorized to view the product audit log. Confirm that this user UUID is listed in cp_admin_users."
+        : "Could not load audit entries: " + error.message, "error");
+      authorized = false;
+      return;
+    }
+    authorized = true; offset = nextOffset;
+    const fetchedRows = Array.isArray(data) ? data : [];
+    hasMore = fetchedRows.length > PAGE_SIZE;
+    currentRows = fetchedRows.slice(0, PAGE_SIZE);
+    $("authStatus").textContent = "Administrator authorized";
+    renderRows();
+    $("pager").classList.remove("hidden");
+    $("prevButton").disabled = offset <= 0;
+    $("nextButton").disabled = !hasMore;
+    $("pageLabel").textContent = `Page ${Math.floor(offset / PAGE_SIZE) + 1} · offset ${offset}`;
+  } catch (e) {
+    currentRows = [];
+    $("eventList").replaceChildren(node("div", "empty", "Unexpected error while loading audit data."));
+    notice("resultNotice", e?.message || "Unknown error", "error");
+  } finally {
+    busy = false; $("refreshButton").disabled = false;
+  }
+}
+function setup() {
+  if (SUPABASE_URL.includes("PASTE_YOUR_") || SUPABASE_PUBLIC_KEY.includes("PASTE_YOUR_")) {
+    notice("loginNotice", "Setup needed: copy the project URL and public anon/publishable key from a working Commerce Passport page into this file.", "error");
+    return false;
+  }
+  try { supabase = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY); return true; }
+  catch (e) { notice("loginNotice", "Could not initialize Supabase: " + (e?.message || "unknown error"), "error"); return false; }
+}
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault(); hide("loginNotice");
+  if (!supabase) { notice("loginNotice", "Configure the Supabase URL and public key before signing in.", "error"); return; }
+  const button = $("loginButton"); button.disabled = true; button.textContent = "Signing in…";
+  const {data, error} = await supabase.auth.signInWithPassword({email:$("email").value.trim(), password:$("password").value});
+  button.disabled = false; button.textContent = "Sign in";
+  if (error) { notice("loginNotice", error.message, "error"); return; }
+  setSessionView(data.session);
+  await loadAudit(0);
+});
+$("signOutButton").addEventListener("click", async () => {
+  const {error} = await supabase.auth.signOut();
+  if (error) { notice("resultNotice", "Could not sign out: " + error.message, "error"); return; }
+  currentUser = null; authorized = false; currentRows = []; offset = 0;
+  setSessionView(null); $("eventList").replaceChildren(node("div", "empty", "Sign in to load the restricted audit log."));
+  $("eventCount").textContent = "—"; $("summary").textContent = "Signed out."; $("pager").classList.add("hidden");
+});
+$("refreshButton").addEventListener("click", () => loadAudit(offset));
+$("operationFilter").addEventListener("change", renderRows);
+$("searchInput").addEventListener("input", renderRows);
+$("prevButton").addEventListener("click", () => { if (offset > 0) loadAudit(Math.max(0, offset - PAGE_SIZE)); });
+$("nextButton").addEventListener("click", () => { if (hasMore) loadAudit(offset + PAGE_SIZE); });
+if (setup()) {
+  const {data, error} = await supabase.auth.getSession();
+  if (error) notice("loginNotice", "Could not restore session: " + error.message, "error");
+  setSessionView(data?.session || null);
+  if (data?.session?.user) await loadAudit(0);
+}
+</script>
+</body>
+</html>
