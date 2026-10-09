@@ -1,229 +1,296 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | Commerce Passport</title>
+  <meta name="theme-color" content="#101828">
 
-    <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; }
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: #f3f5f9;
+      color: #101828;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+    }
 
-    <title>Create Commerce Passport</title>
+    .card {
+      width: 100%;
+      max-width: 440px;
+      padding: 32px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      box-shadow: 0 16px 45px rgba(16, 24, 40, .08);
+    }
 
-    <style>
+    .brand {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #2563eb;
+      text-transform: uppercase;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    h1 {
+      margin: 18px 0 8px;
+      font-size: 29px;
+      letter-spacing: -1px;
+    }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            padding: 20px;
-            background: #06101c;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
+    .subtitle {
+      margin: 0 0 26px;
+      color: #667085;
+      line-height: 1.6;
+      font-size: 14px;
+    }
 
-        .card {
-            width: min(440px, 100%);
-            padding: 32px;
-            border-radius: 24px;
-            background: #0c1b2b;
-            border: 1px solid #22364c;
-        }
+    label {
+      display: block;
+      margin: 17px 0 7px;
+      font-size: 13px;
+      font-weight: 650;
+    }
 
-        h1 {
-            margin-top: 0;
-        }
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+    }
 
-        p {
-            color: #9ab0c4;
-            line-height: 1.6;
-        }
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px #2563eb20;
+    }
 
-        label {
-            display: block;
-            margin-top: 18px;
-            margin-bottom: 7px;
-            font-size: 14px;
-        }
+    button {
+      width: 100%;
+      margin-top: 24px;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
-        input {
-            width: 100%;
-            height: 48px;
-            padding: 0 14px;
-            border-radius: 10px;
-            border: 1px solid #30465d;
-            background: #071522;
-            color: white;
-        }
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
 
-        button {
-            width: 100%;
-            height: 48px;
-            margin-top: 22px;
-            border: 0;
-            border-radius: 10px;
-            background: #53e0bb;
-            color: #06151e;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    #message {
+      display: none;
+      margin-top: 18px;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
 
-        #message {
-            margin-top: 16px;
-            color: #9ab0c4;
-        }
+    #message.success {
+      display: block;
+      background: #ecfdf3;
+      color: #027a48;
+    }
 
-    </style>
+    #message.error {
+      display: block;
+      background: #fef3f2;
+      color: #b42318;
+    }
 
+    .footer {
+      margin-top: 22px;
+      text-align: center;
+      color: #667085;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    a { color: #2563eb; }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #667085;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
+  <main class="card">
+    <div class="brand">Commerce Passport</div>
+    <h1>Create your account</h1>
+    <p class="subtitle">
+      Keep your purchase records, warranties and product
+      service history connected to your account.
+    </p>
 
-    <div class="card">
+    <form id="signupForm">
+      <label for="fullName">Full name</label>
+      <input
+        id="fullName"
+        name="fullName"
+        type="text"
+        autocomplete="name"
+        minlength="2"
+        maxlength="100"
+        placeholder="Your full name"
+        required
+      >
 
-        <h1>Create your Commerce Passport</h1>
+      <label for="email">Email address</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        maxlength="254"
+        placeholder="you@example.com"
+        required
+      >
 
-        <p>
-            Create a test account for your Commerce Passport MVP.
-        </p>
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        autocomplete="new-password"
+        minlength="8"
+        placeholder="At least 8 characters"
+        required
+      >
 
-        <form id="signupForm">
+      <button id="submitButton" type="submit">
+        Create account
+      </button>
+    </form>
 
-            <label for="name">
-                Full name
-            </label>
+    <div id="message" role="status" aria-live="polite"></div>
 
-            <input
-                id="name"
-                type="text"
-                required
-                placeholder="Your name"
-            >
-
-            <label for="email">
-                Email
-            </label>
-
-            <input
-                id="email"
-                type="email"
-                required
-                placeholder="you@example.com"
-            >
-
-            <label for="password">
-                Password
-            </label>
-
-            <input
-                id="password"
-                type="password"
-                required
-                minlength="6"
-                placeholder="At least 6 characters"
-            >
-
-            <button type="submit">
-                Create account
-            </button>
-
-        </form>
-
-        <div id="message"></div>
-
+    <div class="footer">
+      Your password is handled by Supabase Authentication.
+      Never share your password with anyone.
+      <br>
+      <a class="back" href="./index.html">
+        ← Back to Commerce Passport
+      </a>
     </div>
+  </main>
 
+  <script type="module">
+    import { createClient } from
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    // Replace these two placeholders with your own project values.
+    const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+    const SUPABASE_PUBLISHABLE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
 
-    <script src="supabase.js"></script>
+    const message = document.getElementById("message");
+    const form = document.getElementById("signupForm");
+    const button = document.getElementById("submitButton");
 
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = type;
+    }
 
-    <script>
+    if (
+      SUPABASE_URL === "YOUR_SUPABASE_PROJECT_URL" ||
+      SUPABASE_PUBLISHABLE_KEY === "YOUR_SUPABASE_PUBLISHABLE_KEY"
+    ) {
+      showMessage(
+        "Setup incomplete: add your Supabase project URL and publishable key in signup.html.",
+        "error"
+      );
+      button.disabled = true;
+    } else {
+      const supabase = createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
 
-        const form =
-            document.getElementById("signupForm");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
-        const message =
-            document.getElementById("message");
+        const fullName =
+          document.getElementById("fullName").value.trim();
+        const email =
+          document.getElementById("email").value.trim();
+        const password =
+          document.getElementById("password").value;
 
+        if (fullName.length < 2) {
+          showMessage("Please enter your full name.", "error");
+          return;
+        }
 
-        form.addEventListener(
-            "submit",
-            async function(event) {
+        button.disabled = true;
+        button.textContent = "Creating account...";
+        message.className = "";
+        message.textContent = "";
 
-                event.preventDefault();
-
-                message.textContent =
-                    "Creating account...";
-
-
-                const name =
-                    document
-                        .getElementById("name")
-                        .value
-                        .trim();
-
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
-
-                const password =
-                    document
-                        .getElementById("password")
-                        .value;
-
-
-                const {
-                    data,
-                    error
-                } =
-                    await supabaseClient.auth.signUp({
-
-                        email: email,
-
-                        password: password,
-
-                        options: {
-
-                            data: {
-                                full_name: name
-                            },
-
-                            emailRedirectTo:
-                                window.location.origin +
-                                "/commerce-passport/"
-                        }
-
-                    });
-
-
-                if (error) {
-
-                    message.textContent =
-                        error.message;
-
-                    return;
-                }
-
-
-                message.textContent =
-                    "Account created. Check your email if confirmation is required.";
-
+        try {
+          const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+              data: {
+                full_name: fullName
+              },
+              emailRedirectTo: window.location.origin +
+                window.location.pathname.replace(
+                  /signup\.html$/,
+                  "index.html"
+                )
             }
-        );
+          });
 
-    </script>
+          if (error) throw error;
 
+          if (data.session) {
+            showMessage(
+              "Your account was created and you are signed in. " +
+              "Next, we will verify your customer profile.",
+              "success"
+            );
+          } else {
+            showMessage(
+              "Signup submitted! Check your email for a confirmation link. " +
+              "After confirming, we will verify your customer profile.",
+              "success"
+            );
+          }
+
+          form.reset();
+        } catch (error) {
+          showMessage(
+            error.message || "Signup failed. Please try again.",
+            "error"
+          );
+        } finally {
+          button.disabled = false;
+          button.textContent = "Create account";
+        }
+      });
+    }
+  </script>
 </body>
-
 </html>
