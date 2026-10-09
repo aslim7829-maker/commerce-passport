@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101828">
+  <title>My Products | Commerce Passport</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f4f6fa;
+      color: #101828;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px max(22px, calc((100% - 1000px) / 2));
+      background: #fff;
+      border-bottom: 1px solid #e4e7ec;
+    }
+
+    .brand {
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .header-link {
+      color: #475467;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px 40px;
+    }
+
+    .intro { margin-bottom: 28px; }
+
+    h1 {
+      margin: 0 0 9px;
+      font-size: clamp(27px, 4vw, 36px);
+      letter-spacing: -1px;
+    }
+
+    .muted {
+      color: #667085;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .panel {
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #e4e7ec;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 24px #10182808;
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-size: 19px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px 18px;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 7px;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d0d5dd;
+      border-radius: 9px;
+      background: #fff;
+      color: #101828;
+      font-size: 14px;
+    }
+
+    input:focus {
+      outline: 2px solid #bfdbfe;
+      border-color: #2563eb;
+    }
+
+    button, .primary-link {
+      display: inline-block;
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 17px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: .6;
+    }
+
+    .secondary {
+      background: #eef2f6;
+      color: #344054;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    #message {
+      display: none;
+      margin-bottom: 22px;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    #message.success {
+      display: block;
+      background: #ecfdf3;
+      color: #027a48;
+    }
+
+    #message.error {
+      display: block;
+      background: #fef3f2;
+      color: #b42318;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      border: 1px solid #e4e7ec;
+      border-radius: 12px;
+      padding: 18px;
+      overflow-wrap: anywhere;
+    }
+
+    .product-card h3 {
+      font-size: 17px;
+      margin: 0 0 9px;
+    }
+
+    .product-card p {
+      margin: 6px 0;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #667085;
+    }
+
+    .empty {
+      padding: 24px 10px;
+      color: #667085;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 600px) {
+      main { margin-top: 26px; }
+      .field-grid, .product-list { grid-template-columns: 1fr; }
+      .panel { padding: 19px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">COMMERCE PASSPORT</div>
+    <a class="header-link" href="./index.html">Back to website</a>
+  </header>
+
+  <main>
+    <div class="intro">
+      <h1>My product passport</h1>
+      <p class="muted">
+        Keep your products and their future purchase, warranty
+        and service information connected in one place.
+      </p>
+    </div>
+
+    <div id="message" role="status" aria-live="polite"></div>
+
+    <section id="loginPanel" class="panel">
+      <h2>Sign in to your account</h2>
+      <p class="muted">
+        Use the customer account you already registered.
+      </p>
+
+      <form id="loginForm">
+        <label for="email">Email address</label>
+        <input id="email" type="email"
+               autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input id="password" type="password"
+               autocomplete="current-password" required>
+
+        <div class="actions">
+          <button id="loginButton" type="submit">Sign in</button>
+          <a class="header-link" href="./signup.html">
+            Create an account
+          </a>
+        </div>
+      </form>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="panel">
+        <h2>Register a product</h2>
+        <p class="muted">
+          Enter the details shown on your product or packaging.
+          Do not enter payment-card or other sensitive information.
+        </p>
+
+        <form id="productForm">
+          <div class="field-grid">
+            <div>
+              <label for="brand">Brand *</label>
+              <input id="brand" maxlength="150"
+                     placeholder="e.g. Samsung" required>
+            </div>
+
+            <div>
+              <label for="model">Model</label>
+              <input id="model" maxlength="150"
+                     placeholder="e.g. Galaxy A series">
+            </div>
+
+            <div>
+              <label for="serial">Serial number</label>
+              <input id="serial" maxlength="150"
+                     placeholder="Enter serial number">
+            </div>
+
+            <div>
+              <label for="category">Category</label>
+              <input id="category" maxlength="100"
+                     placeholder="e.g. Electronics">
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="saveButton" type="submit">
+              Save product
+            </button>
+            <button id="logoutButton" class="secondary"
+                    type="button">
+              Sign out
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h2>Your registered products</h2>
+        <p id="accountLabel" class="muted"></p>
+        <div id="productList" class="product-list">
+          <div class="empty">Loading products...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { createClient } from
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+    // Use the SAME existing project values as signup.html.
+    // Never use a secret or service_role key in browser code.
+    const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+    const SUPABASE_PUBLIC_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+    const message = document.getElementById("message");
+    const loginPanel = document.getElementById("loginPanel");
+    const dashboard = document.getElementById("dashboard");
+    const productList = document.getElementById("productList");
+    const accountLabel = document.getElementById("accountLabel");
+    const loginButton = document.getElementById("loginButton");
+    const saveButton = document.getElementById("saveButton");
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = type;
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.className = "";
+    }
+
+    if (
+      SUPABASE_URL.includes("YOUR_SUPABASE") ||
+      SUPABASE_PUBLIC_KEY.includes("YOUR_SUPABASE")
+    ) {
+      showMessage(
+        "Setup required: copy your Project URL and publishable key from signup.html.",
+        "error"
+      );
+      loginButton.disabled = true;
+      saveButton.disabled = true;
+    } else {
+      const supabase = createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLIC_KEY
+      );
+
+      let currentUser = null;
+      let loadSequence = 0;
+
+      function setSession(session) {
+        currentUser = session?.user ?? null;
+
+        loginPanel.hidden = Boolean(currentUser);
+        dashboard.hidden = !currentUser;
+
+        if (currentUser) {
+          accountLabel.textContent =
+            "Signed in as " + currentUser.email;
+          loadProducts();
+        } else {
+          productList.replaceChildren();
+        }
+      }
+
+      function addTextLine(parent, label, value) {
+        const p = document.createElement("p");
+        p.textContent = label + ": " + (value || "Not provided");
+        parent.appendChild(p);
+      }
+
+      async function loadProducts() {
+        if (!currentUser) return;
+
+        const requestedUserId = currentUser.id;
+        const thisLoad = ++loadSequence;
+
+        productList.replaceChildren();
+
+        const loading = document.createElement("div");
+        loading.className = "empty";
+        loading.textContent = "Loading your products...";
+        productList.appendChild(loading);
+
+        const { data, error } = await supabase
+          .from("products")
+          .select("id, brand, model, serial_number, category, created_at")
+          .order("created_at", { ascending: false });
+
+        if (thisLoad !== loadSequence) return;
+        if (!currentUser || currentUser.id !== requestedUserId) return;
+
+        productList.replaceChildren();
+
+        if (error) {
+          const err = document.createElement("div");
+          err.className = "empty";
+          err.textContent = "Could not load products: " + error.message;
+          productList.appendChild(err);
+          return;
+        }
+
+        if (!data || data.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "empty";
+          empty.textContent =
+            "No registered products yet. Add your first product above.";
+          productList.appendChild(empty);
+          return;
+        }
+
+        for (const product of data) {
+          const card = document.createElement("article");
+          card.className = "product-card";
+
+          const title = document.createElement("h3");
+          title.textContent = product.brand;
+          card.appendChild(title);
+
+          addTextLine(card, "Model", product.model);
+          addTextLine(card, "Serial number", product.serial_number);
+          addTextLine(card, "Category", product.category);
+
+          const date = product.created_at
+            ? new Date(product.created_at).toLocaleDateString()
+            : "Unknown";
+
+          addTextLine(card, "Registered", date);
+
+          const idLine = document.createElement("p");
+          idLine.textContent = "Passport ID: " + product.id;
+          card.appendChild(idLine);
+
+          productList.appendChild(card);
+        }
+      }
+
+      document.getElementById("loginForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          clearMessage();
+
+          loginButton.disabled = true;
+          loginButton.textContent = "Signing in...";
+
+          try {
+            const email =
+              document.getElementById("email").value.trim();
+            const password =
+              document.getElementById("password").value;
+
+            const { data, error } =
+              await supabase.auth.signInWithPassword({
+                email,
+                password
+              });
+
+            if (error) throw error;
+
+            setSession(data.session);
+            showMessage("Signed in successfully.", "success");
+            document.getElementById("loginForm").reset();
+
+          } catch (error) {
+            showMessage(
+              "Sign-in failed: " +
+              (error.message || "Unknown error"),
+              "error"
+            );
+          } finally {
+            loginButton.disabled = false;
+            loginButton.textContent = "Sign in";
+          }
+        });
+
+      document.getElementById("productForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          clearMessage();
+
+          if (!currentUser) {
+            showMessage("Please sign in first.", "error");
+            return;
+          }
+
+          const brand =
+            document.getElementById("brand").value.trim();
+
+          if (!brand) {
+            showMessage("Brand is required.", "error");
+            return;
+          }
+
+          const product = {
+            brand,
+            model:
+              document.getElementById("model").value.trim() || null,
+            serial_number:
+              document.getElementById("serial").value.trim() || null,
+            category:
+              document.getElementById("category").value.trim() || null,
+            owner_id: currentUser.id
+          };
+
+          saveButton.disabled = true;
+          saveButton.textContent = "Saving...";
+
+          try {
+            const { error } = await supabase
+              .from("products")
+              .insert(product);
+
+            if (error) throw error;
+
+            document.getElementById("productForm").reset();
+            showMessage("Product saved successfully.", "success");
+            await loadProducts();
+
+          } catch (error) {
+            showMessage(
+              "Could not save product: " +
+              (error.message || "Unknown error"),
+              "error"
+            );
+          } finally {
+            saveButton.disabled = false;
+            saveButton.textContent = "Save product";
+          }
+        });
+
+      document.getElementById("logoutButton")
+        .addEventListener("click", async () => {
+          const { error } = await supabase.auth.signOut();
+
+          if (error) {
+            showMessage("Sign-out failed: " + error.message, "error");
+            return;
+          }
+
+          currentUser = null;
+          loginPanel.hidden = false;
+          dashboard.hidden = true;
+          productList.replaceChildren();
+          showMessage("You have signed out.", "success");
+        });
+
+      supabase.auth.onAuthStateChange((_event, session) => {
+        setSession(session);
+      });
+
+      const { data, error } = await supabase.auth.getSession();
+
+      if (error) {
+        showMessage(
+          "Could not check your session: " + error.message,
+          "error"
+        );
+      } else {
+        setSession(data.session);
+      }
+    }
+  </script>
+</body>
+</html>
