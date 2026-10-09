@@ -20,7 +20,7 @@
     <nav class="nav" aria-label="Main navigation"><a href="./index.html">Home</a><a href="./businesses.html">Businesses</a></nav>
   </header>
   <main class="container">
-    <div class="eyebrow">Product lifecycle · Backend stage 2</div>
+    <div class="eyebrow">Product lifecycle · Backend stage 3</div>
     <h1>Ownership transfers</h1>
     <p class="intro">Request a transfer for a product you own, or review requests sent to you. A transfer changes ownership only after the intended recipient accepts it.</p>
     <div id="message" class="status" role="status" aria-live="polite"></div>
@@ -58,6 +58,11 @@
     <section id="requestsPanel" class="panel hidden">
       <div class="section-head"><div><h2>Transfer requests</h2><p class="muted">Incoming and outgoing requests for your account.</p></div><button id="refreshRequestsButton" class="secondary" type="button">Refresh requests</button></div>
       <div id="requestList"><div class="empty">Sign in to load requests.</div></div>
+    </section>
+
+    <section id="historyPanel" class="panel hidden">
+      <div class="section-head"><div><h2>Ownership audit history</h2><p class="muted">Recorded transfer events involving your account. Events created before the audit trail was installed are not backfilled.</p></div><button id="refreshHistoryButton" class="secondary" type="button">Refresh history</button></div>
+      <div id="historyList"><div class="empty">Sign in to load audit history.</div></div>
     </section>
 
     <section class="panel">
@@ -98,6 +103,7 @@
       $("accountPanel").classList.toggle("hidden", !signedIn);
       $("requestPanel").classList.toggle("hidden", !signedIn);
       $("requestsPanel").classList.toggle("hidden", !signedIn);
+      $("historyPanel").classList.toggle("hidden", !signedIn);
       if (signedIn) {
         $("accountEmail").textContent = currentUser.email || "Signed in";
         $("accountId").textContent = currentUser.id;
@@ -105,6 +111,7 @@
         $("accountEmail").textContent = "";
         $("accountId").textContent = "";
         $("requestList").replaceChildren();
+        $("historyList").replaceChildren();
       }
     }
 
@@ -173,7 +180,42 @@
         return;
       }
       say("Transfer response recorded: " + String(data) + ".");
-      await Promise.all([loadRequests(), loadProducts()]);
+      await Promise.all([loadRequests(), loadProducts(), loadHistory()]);
+    }
+
+    async function loadHistory() {
+      if (!currentUser) return;
+      const list = $("historyList");
+      list.replaceChildren();
+      addText(list, "p", "muted", "Loading audit history…");
+      const { data, error } = await supabase.rpc("cp_list_my_product_transfer_events");
+      list.replaceChildren();
+      if (error) {
+        addText(list, "div", "empty", "Could not load audit history: " + error.message + "\nCheck that the Stage 3 audit-trail SQL completed successfully in Supabase.");
+        return;
+      }
+      if (!data || data.length === 0) {
+        addText(list, "div", "empty", "No audit events recorded yet. New transfer requests and responses will appear here.");
+        return;
+      }
+      for (const item of data) {
+        const card = document.createElement("article");
+        card.className = "request";
+        const top = document.createElement("div");
+        top.className = "request-top";
+        const titleWrap = document.createElement("div");
+        addText(titleWrap, "h3", "", String(item.event_type || "Transfer event").replaceAll("_", " "));
+        addText(titleWrap, "div", "small", "Product ID: " + item.product_id);
+        addText(titleWrap, "div", "small", "Request ID: " + item.request_id);
+        addText(titleWrap, "div", "small", "Recorded: " + formatDate(item.event_at));
+        top.appendChild(titleWrap);
+        addText(top, "span", "pill " + String(item.status || ""), item.status || "unknown");
+        card.appendChild(top);
+        addText(card, "p", "small", "From account: " + item.from_owner_id);
+        addText(card, "p", "small", "To account: " + item.to_owner_id);
+        addText(card, "p", "small", "Actor account: " + (item.actor_id || "Not available"));
+        list.appendChild(card);
+      }
     }
 
     async function loadRequests() {
@@ -240,7 +282,7 @@
       showSignedIn(Boolean(currentUser));
       if (currentUser) {
         say("");
-        await Promise.all([loadProducts(), loadRequests()]);
+        await Promise.all([loadProducts(), loadRequests(), loadHistory()]);
       }
     }
 
@@ -309,19 +351,21 @@
       }
       $("recipientId").value = "";
       say("Transfer request created. Request ID: " + String(data));
-      await loadRequests();
+      await Promise.all([loadRequests(), loadHistory()]);
     });
 
     $("reloadProductsButton").addEventListener("click", loadProducts);
     $("refreshRequestsButton").addEventListener("click", loadRequests);
+    $("refreshHistoryButton").addEventListener("click", loadHistory);
 
     supabase.auth.onAuthStateChange((_event, session) => {
       currentUser = session?.user ?? null;
       showSignedIn(Boolean(currentUser));
-      if (currentUser) setTimeout(() => { loadProducts(); loadRequests(); }, 0);
+      if (currentUser) setTimeout(() => { loadProducts(); loadRequests(); loadHistory(); }, 0);
     });
 
     await syncSession();
   </script>
 </body>
 </html>
+
