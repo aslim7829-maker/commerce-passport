@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify a Product | Commerce Passport</title>
+  <meta name="description" content="Check whether a product is registered in Commerce Passport.">
+  <style>
+    :root{color-scheme:light;--ink:#17211d;--muted:#64716a;--line:#dfe7e1;--green:#087f5b;--green-dark:#066347;--bg:#f4f7f4;--white:#fff}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top left,#e5f5eb 0,transparent 42%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh}
+    header{height:76px;border-bottom:1px solid rgba(20,50,35,.09);background:rgba(255,255,255,.8);display:flex;align-items:center}
+    .nav{width:min(1080px,calc(100% - 40px));margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .brand{font-weight:850;letter-spacing:-.04em;font-size:20px;text-decoration:none;color:var(--ink)}.brand span{color:var(--green)}
+    .back{color:var(--muted);text-decoration:none;font-size:14px;font-weight:650}
+    main{width:min(760px,calc(100% - 32px));margin:62px auto 70px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid #cce8d6;background:#effaf2;border-radius:99px;color:var(--green-dark);font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+    h1{font-size:clamp(34px,6vw,54px);line-height:1.03;letter-spacing:-.055em;margin:20px 0 14px;max-width:650px}
+    .intro{font-size:17px;line-height:1.7;color:var(--muted);max-width:620px;margin:0 0 28px}
+    .panel{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,32px);box-shadow:0 20px 60px rgba(27,56,39,.07)}
+    label{display:block;font-size:13px;font-weight:750;margin:0 0 8px}
+    input{width:100%;height:50px;border:1px solid #d6e0d9;border-radius:12px;padding:0 14px;font:inherit;font-size:15px;outline:none;background:#fff;color:var(--ink)}
+    input:focus{border-color:var(--green);box-shadow:0 0 0 3px #087f5b1a}
+    .field{margin-bottom:19px}.hint{font-size:12px;color:var(--muted);line-height:1.5;margin-top:7px}
+    button{width:100%;border:0;border-radius:12px;background:var(--green);color:white;height:52px;font:inherit;font-weight:800;cursor:pointer;margin-top:4px}
+    button:hover{background:var(--green-dark)}button:disabled{opacity:.6;cursor:wait}
+    #result{margin-top:20px}.result{border-radius:14px;padding:18px;border:1px solid var(--line);background:#fafcfb}
+    .result.success{border-color:#b7e4c7;background:#f0fbf3}.result.failure{border-color:#f0c8c8;background:#fff7f7}.result h2{font-size:19px;margin:0 0 8px;letter-spacing:-.02em}.result p{margin:0;color:#4f5d55;line-height:1.55;font-size:14px}
+    .details{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.detail{padding:12px;border-radius:10px;background:rgba(255,255,255,.8);border:1px solid #e2eae4;min-width:0}.detail small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.07em;font-weight:800;margin-bottom:6px}.detail strong{overflow-wrap:anywhere;font-size:14px}
+    .note{margin-top:20px;color:var(--muted);font-size:12px;line-height:1.6}
+    footer{text-align:center;color:#7a867e;font-size:12px;margin-top:28px}
+    @media(max-width:520px){main{margin-top:38px}.details{grid-template-columns:1fr}.nav{width:calc(100% - 28px)}}
+  </style>
+</head>
+<body>
+<header><nav class="nav"><a class="brand" href="./index.html">COMMERCE<span>PASSPORT</span></a><a class="back" href="./index.html">Back to website ↗</a></nav></header>
+<main>
+  <div class="eyebrow">● Product registration lookup</div>
+  <h1>Know what you're buying.</h1>
+  <p class="intro">Check whether a product is registered in Commerce Passport. Enter the product ID and the serial number printed on the product or its registration label.</p>
+  <section class="panel" aria-label="Verify product form">
+    <form id="verifyForm">
+      <div class="field">
+        <label for="productId">Commerce Passport product ID</label>
+        <input id="productId" name="productId" type="text" placeholder="Paste product UUID" autocomplete="off" required>
+        <div class="hint">This is the product's UUID, not the serial number. The product owner can find the UUID in the product record in Supabase.</div>
+      </div>
+      <div class="field">
+        <label for="serialNumber">Product serial number</label>
+        <input id="serialNumber" name="serialNumber" type="text" placeholder="Enter the serial number" autocomplete="off" required>
+      </div>
+      <button id="verifyButton" type="submit">Verify product</button>
+    </form>
+    <div id="result" aria-live="polite"></div>
+    <p class="note">A successful result confirms that the supplied product ID and serial number match a registered record. It is not, by itself, proof that a physical item has not been copied or tampered with.</p>
+  </section>
+  <footer>Commerce Passport · Product verification</footer>
+</main>
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+  // Copy the same project URL and publishable/anon key from your working pages.
+  // Never put a service_role or secret key in browser code.
+  const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+  const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+
+  const form = document.getElementById("verifyForm");
+  const button = document.getElementById("verifyButton");
+  const result = document.getElementById("result");
+
+  function showResult(kind, title, message, details = null) {
+    result.replaceChildren();
+    const card = document.createElement("div");
+    card.className = `result ${kind}`;
+    const heading = document.createElement("h2");
+    heading.textContent = title;
+    const paragraph = document.createElement("p");
+    paragraph.textContent = message;
+    card.append(heading, paragraph);
+    if (details) {
+      const grid = document.createElement("div");
+      grid.className = "details";
+      for (const [label, value] of Object.entries(details)) {
+        const item = document.createElement("div");
+        item.className = "detail";
+        const small = document.createElement("small");
+        small.textContent = label;
+        const strong = document.createElement("strong");
+        strong.textContent = value || "—";
+        item.append(small, strong);
+        grid.append(item);
+      }
+      card.append(grid);
+    }
+    result.append(card);
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    result.replaceChildren();
+
+    if (SUPABASE_URL.includes("PASTE_YOUR_") || SUPABASE_PUBLIC_KEY.includes("PASTE_YOUR_")) {
+      showResult("failure", "Setup incomplete", "Add your existing Supabase project URL and public/anon key to this file before publishing.");
+      return;
+    }
+
+    const productId = document.getElementById("productId").value.trim();
+    const serialNumber = document.getElementById("serialNumber").value.trim();
+    if (!productId || !serialNumber) {
+      showResult("failure", "Details required", "Enter both the product ID and serial number.");
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Checking registration…";
+    try {
+      const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+      const { data, error } = await supabase.rpc("cp_verify_product", {
+        p_product_id: productId,
+        p_serial_number: serialNumber
+      });
+      if (error) throw error;
+      const row = Array.isArray(data) ? data[0] : data;
+      if (row && row.verification_status === "verified") {
+        const date = row.registered_at ? new Date(row.registered_at).toLocaleDateString(undefined, {year:"numeric",month:"short",day:"numeric"}) : "—";
+        showResult("success", "Product registered", "The product ID and serial number match a Commerce Passport registration.", {
+          "Brand": row.brand,
+          "Model": row.model,
+          "Category": row.category,
+          "Registration date": date
+        });
+      } else {
+        showResult("failure", "No matching registration found", "These details did not match a registered product. Check the product ID and serial number and try again.");
+      }
+    } catch (error) {
+      console.error("Product verification failed:", error);
+      showResult("failure", "Verification unavailable", "The verification service could not complete the check. Confirm the Supabase settings and that the Stage 4 function is installed, then try again.");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Verify product";
+    }
+  });
+</script>
+</body>
+</html>
