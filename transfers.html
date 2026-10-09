@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071018">
+  <meta name="description" content="Commerce Passport product ownership transfer requests.">
+  <title>Ownership Transfers — Commerce Passport</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#071018;--panel:#0d1d29;--panel2:#102636;--text:#f5f9fc;--muted:#9fb2c1;--line:rgba(255,255,255,.12);--accent:#8af0b8;--blue:#79b9ff;--red:#ff8c9e;--gold:#ffd277;--shadow:0 18px 50px rgba(0,0,0,.25)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% -10%,rgba(138,240,184,.12),transparent 32%),linear-gradient(180deg,#071018,#091722 60%,#071018);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;line-height:1.55}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button,input,select{font:inherit}button{cursor:pointer}.container{width:min(100% - 32px,980px);margin:0 auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}.brand{font:700 1.15rem "Space Grotesk",sans-serif;letter-spacing:-.03em}.brand span{color:var(--accent)}.nav{display:flex;gap:16px;flex-wrap:wrap;font-size:.92rem;color:var(--muted)}main{padding:42px 0 72px}.eyebrow{font-weight:700;text-transform:uppercase;letter-spacing:.13em;font-size:.75rem;color:var(--accent)}h1,h2,h3{font-family:"Space Grotesk",sans-serif;line-height:1.15;letter-spacing:-.035em}h1{font-size:clamp(2rem,5vw,3.2rem);margin:.45rem 0 .8rem}h2{font-size:1.35rem;margin:0 0 12px}h3{font-size:1.05rem;margin:0 0 6px}.intro{max-width:720px;color:var(--muted);margin-bottom:26px}.panel{background:linear-gradient(145deg,rgba(16,38,54,.95),rgba(13,29,41,.96));border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);margin:18px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.field{display:flex;flex-direction:column;gap:7px;margin:14px 0}.field label{font-size:.9rem;color:#dce8ef;font-weight:600}input,select{width:100%;background:#07131c;border:1px solid rgba(255,255,255,.17);border-radius:11px;padding:12px 13px;color:var(--text);min-height:46px}input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.help,.muted{color:var(--muted);font-size:.9rem}.idbox{word-break:break-all;font: .82rem ui-monospace,SFMono-Regular,Consolas,monospace;color:#d4e3ed;background:#07131c;padding:10px 12px;border-radius:10px;border:1px solid var(--line);margin:9px 0}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}button{border:0;border-radius:11px;background:var(--accent);color:#071018;font-weight:700;padding:12px 16px;min-height:44px}button:hover{filter:brightness(1.04)}button:disabled{opacity:.55;cursor:wait}.secondary{background:#1a3546;color:var(--text);border:1px solid var(--line)}.danger{background:rgba(255,140,158,.13);color:#ffdce2;border:1px solid rgba(255,140,158,.36)}.hidden{display:none!important}.status{padding:13px 15px;border-radius:12px;background:rgba(121,185,255,.1);border:1px solid rgba(121,185,255,.25);color:#dceeff;white-space:pre-wrap;overflow-wrap:anywhere}.status:empty{display:none}.request{border:1px solid var(--line);border-radius:15px;padding:16px;margin:12px 0;background:rgba(7,19,28,.52)}.request-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.pill{font-size:.75rem;border:1px solid var(--line);border-radius:999px;padding:4px 9px;text-transform:capitalize;color:var(--muted);white-space:nowrap}.pill.pending{color:var(--gold);border-color:rgba(255,210,119,.4)}.pill.accepted{color:var(--accent);border-color:rgba(138,240,184,.35)}.pill.rejected,.pill.cancelled{color:var(--red);border-color:rgba(255,140,158,.35)}.empty{padding:18px;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.small{font-size:.8rem;color:var(--muted)}footer{padding:24px 0 34px;color:var(--muted);font-size:.83rem;border-top:1px solid var(--line)}@media(max-width:700px){.grid{grid-template-columns:1fr}.panel{padding:18px}.topbar{align-items:flex-start;flex-direction:column}.request-top{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header class="container topbar">
+    <a class="brand" href="./index.html">COMMERCE <span>PASSPORT</span></a>
+    <nav class="nav" aria-label="Main navigation"><a href="./index.html">Home</a><a href="./businesses.html">Businesses</a></nav>
+  </header>
+  <main class="container">
+    <div class="eyebrow">Product lifecycle · Backend stage 2</div>
+    <h1>Ownership transfers</h1>
+    <p class="intro">Request a transfer for a product you own, or review requests sent to you. A transfer changes ownership only after the intended recipient accepts it.</p>
+    <div id="message" class="status" role="status" aria-live="polite"></div>
+
+    <section id="loginPanel" class="panel">
+      <h2>Sign in to Commerce Passport</h2>
+      <p class="muted">Use your existing Commerce Passport account. This page uses your project's Supabase authentication.</p>
+      <form id="loginForm">
+        <div class="grid">
+          <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div>
+          <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+        </div>
+        <div class="actions"><button id="loginButton" type="submit">Sign in</button></div>
+      </form>
+    </section>
+
+    <section id="accountPanel" class="panel hidden">
+      <div class="section-head"><div><h2>Your account</h2><div id="accountEmail" class="muted"></div></div><button id="logoutButton" class="secondary" type="button">Sign out</button></div>
+      <p class="help">Share your account ID with the person who will receive a product. It is an account identifier, not a password.</p>
+      <div id="accountId" class="idbox"></div>
+      <div class="actions"><button id="copyIdButton" class="secondary" type="button">Copy my account ID</button></div>
+    </section>
+
+    <section id="requestPanel" class="panel hidden">
+      <h2>Request a transfer</h2>
+      <p class="muted">Choose one of your products and enter the recipient's Commerce Passport account ID.</p>
+      <form id="transferForm">
+        <div class="field"><label for="productSelect">Product you own</label><select id="productSelect" required><option value="">Loading your products…</option></select></div>
+        <div class="field"><label for="recipientId">Recipient account ID</label><input id="recipientId" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="Paste the recipient's account UUID" required></div>
+        <div class="actions"><button id="requestButton" type="submit">Send transfer request</button><button id="reloadProductsButton" class="secondary" type="button">Refresh products</button></div>
+      </form>
+      <p class="small">Only choose a recipient you trust. The current owner remains the owner until the recipient accepts.</p>
+    </section>
+
+    <section id="requestsPanel" class="panel hidden">
+      <div class="section-head"><div><h2>Transfer requests</h2><p class="muted">Incoming and outgoing requests for your account.</p></div><button id="refreshRequestsButton" class="secondary" type="button">Refresh requests</button></div>
+      <div id="requestList"><div class="empty">Sign in to load requests.</div></div>
+    </section>
+
+    <section class="panel">
+      <h2>How the flow works</h2>
+      <div class="grid">
+        <div><h3>1. Current owner requests</h3><p class="muted">The backend verifies that the signed-in user owns the selected product.</p></div>
+        <div><h3>2. Recipient reviews</h3><p class="muted">Only the account named as recipient can accept or reject the request.</p></div>
+        <div><h3>3. Ownership is updated</h3><p class="muted">On acceptance, the server rechecks the existing owner and updates the product in one transaction.</p></div>
+        <div><h3>4. Both users can see history</h3><p class="muted">Requests remain visible with their status, subject to the backend function's access checks.</p></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container">Commerce Passport · Keep your sign-in password private. This page does not use a Supabase service-role key.</div></footer>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+    // This is the public/publishable key already used by the existing businesses page.
+    // Never replace it with a service_role or secret key.
+    const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+    const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+    const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+
+    const $ = (id) => document.getElementById(id);
+    const message = $("message");
+    let currentUser = null;
+    let busy = false;
+
+    function say(text, isError = false) {
+      message.textContent = text || "";
+      message.style.borderColor = isError ? "rgba(255,140,158,.45)" : "rgba(121,185,255,.25)";
+      message.style.background = isError ? "rgba(255,140,158,.09)" : "rgba(121,185,255,.1)";
+      message.style.color = isError ? "#ffdce2" : "#dceeff";
+    }
+
+    function showSignedIn(signedIn) {
+      $("loginPanel").classList.toggle("hidden", signedIn);
+      $("accountPanel").classList.toggle("hidden", !signedIn);
+      $("requestPanel").classList.toggle("hidden", !signedIn);
+      $("requestsPanel").classList.toggle("hidden", !signedIn);
+      if (signedIn) {
+        $("accountEmail").textContent = currentUser.email || "Signed in";
+        $("accountId").textContent = currentUser.id;
+      } else {
+        $("accountEmail").textContent = "";
+        $("accountId").textContent = "";
+        $("requestList").replaceChildren();
+      }
+    }
+
+    function addText(parent, tag, className, value) {
+      const el = document.createElement(tag);
+      if (className) el.className = className;
+      el.textContent = value ?? "";
+      parent.appendChild(el);
+      return el;
+    }
+
+    function describeProduct(row) {
+      const name = [row.brand, row.model].filter(Boolean).join(" ") || "Unlabelled product";
+      const serial = row.serial_number ? ` · Serial: ${row.serial_number}` : "";
+      return `${name}${serial}`;
+    }
+
+    async function loadProducts() {
+      if (!currentUser) return;
+      const select = $("productSelect");
+      select.replaceChildren(new Option("Loading your products…", ""));
+      const { data, error } = await supabase
+        .from("products")
+        .select("id, brand, model, serial_number, category, created_at, owner_id")
+        .eq("owner_id", currentUser.id)
+        .order("created_at", { ascending: false });
+      select.replaceChildren();
+      if (error) {
+        select.appendChild(new Option("Could not load products", ""));
+        say("Could not load products: " + error.message, true);
+        return;
+      }
+      if (!data || data.length === 0) {
+        select.appendChild(new Option("No products owned by this account", ""));
+        say("No transferable products were found for this account. Register a product first, then refresh.");
+        return;
+      }
+      select.appendChild(new Option("Choose a product…", ""));
+      for (const row of data) {
+        const option = new Option(describeProduct(row), row.id);
+        select.appendChild(option);
+      }
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const d = new Date(value);
+      return Number.isNaN(d.getTime()) ? value : d.toLocaleString();
+    }
+
+    async function respond(requestId, accept, button) {
+      if (!currentUser || busy) return;
+      const choice = accept ? "accept this transfer and change product ownership" : "reject this transfer";
+      if (!window.confirm(`Are you sure you want to ${choice}?`)) return;
+      busy = true;
+      button.disabled = true;
+      say(accept ? "Accepting transfer…" : "Rejecting transfer…");
+      const { data, error } = await supabase.rpc("cp_respond_to_product_transfer", {
+        p_request_id: requestId,
+        p_accept: accept
+      });
+      busy = false;
+      button.disabled = false;
+      if (error) {
+        say("Could not respond to transfer: " + error.message, true);
+        return;
+      }
+      say("Transfer response recorded: " + String(data) + ".");
+      await Promise.all([loadRequests(), loadProducts()]);
+    }
+
+    async function loadRequests() {
+      if (!currentUser) return;
+      const list = $("requestList");
+      list.replaceChildren();
+      addText(list, "p", "muted", "Loading transfer requests…");
+      const { data, error } = await supabase.rpc("cp_list_my_product_transfer_requests");
+      list.replaceChildren();
+      if (error) {
+        addText(list, "div", "empty", "Could not load transfer requests: " + error.message + "\nIf this function is missing, run the ownership-transfer SQL setup successfully in Supabase first.");
+        return;
+      }
+      if (!data || data.length === 0) {
+        addText(list, "div", "empty", "No transfer requests yet.");
+        return;
+      }
+      for (const item of data) {
+        const card = document.createElement("article");
+        card.className = "request";
+        const top = document.createElement("div");
+        top.className = "request-top";
+        const titleWrap = document.createElement("div");
+        const title = [item.product_brand, item.product_model].filter(Boolean).join(" ") || "Product transfer";
+        addText(titleWrap, "h3", "", title);
+        addText(titleWrap, "div", "small", "Product ID: " + item.product_id);
+        addText(titleWrap, "div", "small", "Requested: " + formatDate(item.requested_at));
+        top.appendChild(titleWrap);
+        addText(top, "span", "pill " + String(item.status || ""), item.status || "unknown");
+        card.appendChild(top);
+        const direction = item.to_owner_id === currentUser.id ? "Incoming request" : "Outgoing request";
+        addText(card, "p", "muted", direction);
+        addText(card, "p", "small", "From account: " + item.from_owner_id);
+        addText(card, "p", "small", "To account: " + item.to_owner_id);
+        if (item.responded_at) addText(card, "p", "small", "Responded: " + formatDate(item.responded_at));
+        if (item.status === "pending" && item.to_owner_id === currentUser.id) {
+          const actions = document.createElement("div");
+          actions.className = "actions";
+          const accept = document.createElement("button");
+          accept.type = "button";
+          accept.textContent = "Accept transfer";
+          accept.addEventListener("click", () => respond(item.request_id, true, accept));
+          const reject = document.createElement("button");
+          reject.type = "button";
+          reject.className = "danger";
+          reject.textContent = "Reject";
+          reject.addEventListener("click", () => respond(item.request_id, false, reject));
+          actions.append(accept, reject);
+          card.appendChild(actions);
+        } else if (item.status === "pending") {
+          addText(card, "p", "small", "Waiting for the recipient to respond.");
+        }
+        list.appendChild(card);
+      }
+    }
+
+    async function syncSession() {
+      const { data, error } = await supabase.auth.getSession();
+      if (error) {
+        say("Could not check sign-in status: " + error.message, true);
+        return;
+      }
+      currentUser = data.session?.user ?? null;
+      showSignedIn(Boolean(currentUser));
+      if (currentUser) {
+        say("");
+        await Promise.all([loadProducts(), loadRequests()]);
+      }
+    }
+
+    $("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = $("loginButton");
+      button.disabled = true;
+      say("Signing in…");
+      const { error } = await supabase.auth.signInWithPassword({
+        email: $("email").value.trim(),
+        password: $("password").value
+      });
+      button.disabled = false;
+      if (error) {
+        say("Sign-in failed: " + error.message, true);
+      } else {
+        $("password").value = "";
+        await syncSession();
+        say("Signed in successfully.");
+      }
+    });
+
+    $("logoutButton").addEventListener("click", async () => {
+      const { error } = await supabase.auth.signOut();
+      if (error) say("Sign-out failed: " + error.message, true);
+      else {
+        currentUser = null;
+        showSignedIn(false);
+        $("productSelect").replaceChildren(new Option("Sign in to load products", ""));
+        say("You have signed out.");
+      }
+    });
+
+    $("copyIdButton").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(currentUser.id);
+        say("Your account ID was copied.");
+      } catch {
+        say("Copy was blocked by this browser. Select the account ID shown above and copy it manually.", true);
+      }
+    });
+
+    $("transferForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!currentUser || busy) return;
+      const productId = $("productSelect").value;
+      const recipientId = $("recipientId").value.trim();
+      const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+      if (!productId) return say("Choose a product first.", true);
+      if (!uuidPattern.test(recipientId)) return say("Enter a valid recipient account UUID. Ask the recipient to copy it from this page.", true);
+      if (recipientId === currentUser.id) return say("Choose a different recipient account.", true);
+      if (!window.confirm("Send a transfer request for the selected product to this account?")) return;
+      busy = true;
+      const button = $("requestButton");
+      button.disabled = true;
+      say("Sending transfer request…");
+      const { data, error } = await supabase.rpc("cp_request_product_transfer", {
+        p_product_id: productId,
+        p_to_owner_id: recipientId
+      });
+      busy = false;
+      button.disabled = false;
+      if (error) {
+        say("Transfer request failed: " + error.message, true);
+        return;
+      }
+      $("recipientId").value = "";
+      say("Transfer request created. Request ID: " + String(data));
+      await loadRequests();
+    });
+
+    $("reloadProductsButton").addEventListener("click", loadProducts);
+    $("refreshRequestsButton").addEventListener("click", loadRequests);
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      currentUser = session?.user ?? null;
+      showSignedIn(Boolean(currentUser));
+      if (currentUser) setTimeout(() => { loadProducts(); loadRequests(); }, 0);
+    });
+
+    await syncSession();
+  </script>
+</body>
+</html>
