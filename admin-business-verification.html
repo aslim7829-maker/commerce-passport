@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Verification Admin · Commerce Passport</title>
+<style>
+:root{color-scheme:dark;--bg:#0a1020;--panel:#111a2d;--panel2:#0d1526;--line:#26344d;--text:#f3f6ff;--muted:#9eacc4;--accent:#77e2c0;--blue:#88aaff;--red:#ff8e9a;--yellow:#ffd98a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#142746 0,transparent 42%),var(--bg);color:var(--text);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}a{color:var(--accent)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #3a506e;background:linear-gradient(135deg,#223958,#182941);color:var(--text);padding:10px 14px;border-radius:11px;font-weight:650}button:hover{border-color:var(--accent)}button:disabled{opacity:.55;cursor:wait}.primary{background:linear-gradient(135deg,#9bf0d0,#58c9af);color:#08231f;border:0}.danger{border-color:#6c3548;color:#ffc2ca;background:#321b2b}.secondary{background:#101a2b}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:23px 0;border-bottom:1px solid var(--line)}.brand{font-weight:850;letter-spacing:-.04em;font-size:21px}.brand span{color:var(--accent)}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);font-weight:800}.hero{padding:30px 0 24px}.hero h1{margin:7px 0 8px;font-size:clamp(27px,4vw,40px);letter-spacing:-.045em;line-height:1.1}.hero p,.muted{color:var(--muted)}.hero p{margin:0;max-width:760px}.layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:18px;align-items:start;padding-bottom:36px}.panel{background:linear-gradient(180deg,rgba(20,31,52,.97),rgba(13,21,38,.98));border:1px solid var(--line);border-radius:19px;padding:20px;box-shadow:0 18px 50px #0002}.panel h2{font-size:18px;margin:0 0 6px;letter-spacing:-.02em}.panel p{margin:0 0 15px}.formrow{display:grid;gap:6px;margin:12px 0}.formrow label{font-size:12px;color:#c3cee0;font-weight:700}.formrow input,.formrow select,.formrow textarea,.filter{width:100%;color:var(--text);background:#091121;border:1px solid #2c3e59;border-radius:10px;padding:10px 11px;outline:none}.formrow input:focus,.formrow select:focus,.formrow textarea:focus,.filter:focus{border-color:var(--accent)}.formrow textarea{min-height:76px;resize:vertical}.hidden{display:none!important}.notice{border:1px solid var(--line);background:#0b1424;padding:11px 12px;border-radius:11px;margin-top:12px;white-space:pre-wrap;overflow-wrap:anywhere}.notice.error{border-color:#673747;color:#ffc0c8}.notice.success{border-color:#286754;color:#a8f1d5}.notice.info{color:#c8d6f1}.mini{font-size:12px;color:var(--muted)}.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}.toolbar h2{margin:0}.filter{width:auto;min-width:175px}.cards{display:grid;gap:14px}.request{border:1px solid #2a3b56;border-radius:15px;background:#0c1526;padding:16px}.request-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.request h3{font-size:18px;margin:0 0 4px;letter-spacing:-.02em}.pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:11px;font-weight:800;white-space:nowrap}.pill.pending{color:var(--yellow);border-color:#66502b}.pill.under_review{color:var(--blue);border-color:#344b77}.pill.approved{color:var(--accent);border-color:#286754}.pill.rejected{color:var(--red);border-color:#673747}.details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0}.detail{background:#111e32;border-radius:10px;padding:10px;min-width:0}.detail small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}.detail div{overflow-wrap:anywhere}.wide{grid-column:1/-1}.review{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}.reviewgrid{display:grid;grid-template-columns:180px minmax(0,1fr);gap:10px}.reviewgrid .formrow{margin:5px 0 10px}.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}.empty{border:1px dashed #354663;padding:28px 15px;text-align:center;border-radius:13px;color:var(--muted)}.history{margin-top:11px;border-top:1px solid var(--line);padding-top:12px}.event{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #233149;font-size:13px}.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:7px;flex:none}.footer{color:var(--muted);border-top:1px solid var(--line);padding:18px 0 28px;font-size:12px}@media(max-width:850px){.layout{grid-template-columns:1fr}.reviewgrid{grid-template-columns:1fr}}@media(max-width:520px){.wrap{width:min(100% - 20px,1180px)}.panel{padding:15px}.details{grid-template-columns:1fr}.request-head{align-items:flex-start}.topbar{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header class="wrap topbar"><div><div class="brand">Commerce <span>Passport</span></div><div class="mini">Administration · Business verification</div></div><div class="actions"><a href="dashboard.html">Back to dashboard</a><button id="signOutButton" class="secondary hidden" type="button">Sign out</button></div></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">Stage 19 · Admin tools</div><h1>Business verification queue</h1><p>Review business applications, record internal notes, send a decision message, and inspect the status-change history. Admin access is enforced by the Supabase RPCs and your existing <code>cp_admin_users</code> allowlist.</p></section>
+<div class="layout">
+<aside class="panel">
+  <div id="loginPanel"><h2>Administrator sign in</h2><p class="muted">Use your existing Commerce Passport administrator account.</p>
+    <form id="loginForm"><div class="formrow"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required></div><div class="formrow"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><button id="loginButton" class="primary" type="submit" style="width:100%">Sign in</button></form>
+    <div id="loginNotice" class="notice hidden" role="status"></div>
+  </div>
+  <div id="sessionPanel" class="hidden"><h2>Signed in</h2><p id="signedInEmail" class="muted"></p><div id="adminNotice" class="notice info">Checking administrator permission…</div><div class="formrow"><label for="statusFilter">Filter applications</label><select id="statusFilter" class="filter"><option value="all">All statuses</option><option value="pending">Pending</option><option value="under_review">Under review</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select></div><button id="refreshButton" type="button" style="width:100%">Refresh queue</button><p class="mini" style="margin-top:13px">Only accounts in the existing admin allowlist can load or review applications. A successful login alone does not grant admin access.</p></div>
+</aside>
+<section class="panel">
+  <div class="toolbar"><div><h2>Applications</h2><div id="queueSummary" class="mini">Sign in to load the review queue.</div></div><span id="queueCount" class="pill">—</span></div>
+  <div id="queueNotice" class="notice hidden" role="status"></div>
+  <div id="queue" class="cards"><div class="empty">Sign in with an administrator account to view applications.</div></div>
+</section>
+</div>
+</main>
+<footer class="wrap footer">Commerce Passport · Stage 19 · Protect applicant information. Internal notes are for administrators; decision messages are shown to applicants.</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Replace only with your existing Supabase Project URL and PUBLIC anon/publishable key.
+// Never put a service_role key or secret key in a public HTML file.
+const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+const $ = (id) => document.getElementById(id);
+let supabaseClient = null;
+let currentUser = null;
+let isAdmin = false;
+let latestRows = [];
+const STATUSES = ["pending", "under_review", "approved", "rejected"];
+const LABELS = {pending:"Pending", under_review:"Under review", approved:"Approved", rejected:"Rejected"};
+function notice(el, message, kind="info") { el.textContent = message; el.className = "notice " + kind; el.classList.remove("hidden"); }
+function hideNotice(el) { el.textContent = ""; el.className = "notice hidden"; }
+function safeText(value, fallback="—") { return value === null || value === undefined || String(value).trim() === "" ? fallback : String(value); }
+function make(tag, cls, text) { const el = document.createElement(tag); if (cls) el.className = cls; if (text !== undefined) el.textContent = text; return el; }
+function detail(label, value, wide=false) { const box=make("div", "detail"+(wide?" wide":"")); box.append(make("small", "", label), make("div", "", safeText(value))); return box; }
+function fmtDate(value) { if (!value) return "—"; const d=new Date(value); return Number.isNaN(d.getTime())?"—":d.toLocaleString(); }
+function friendlyError(error) {
+  const msg = error?.message || "Unknown error";
+  if (/not authorized/i.test(msg)) return "This account is not in the Commerce Passport admin allowlist. Use your authorized admin account, or add the correct auth user UUID to public.cp_admin_users in Supabase.";
+  if (/authentication required/i.test(msg)) return "Your session has expired. Sign in again.";
+  return msg;
+}
+function resetQueue(message="Sign in with an administrator account to view applications.") {
+  latestRows=[]; $("queue").replaceChildren(make("div","empty",message)); $("queueCount").textContent="—"; $("queueSummary").textContent=message;
+}
+async function refreshQueue() {
+  if (!supabaseClient || !currentUser) return;
+  hideNotice($("queueNotice"));
+  $("queue").replaceChildren(make("div","empty","Loading applications…"));
+  const filter = $("statusFilter").value;
+  const {data,error} = await supabaseClient.rpc("cp_admin_list_business_verification_requests", {p_status: filter === "all" ? null : filter, p_limit: 100, p_offset: 0});
+  if (error) {
+    isAdmin = false;
+    notice($("adminNotice"), friendlyError(error), "error");
+    resetQueue("The review queue is unavailable for this account.");
+    return;
+  }
+  isAdmin = true;
+  notice($("adminNotice"), "Administrator permission confirmed. You can review applications below.", "success");
+  latestRows = Array.isArray(data) ? data : (data ? [data] : []);
+  $("queueCount").textContent = String(latestRows.length);
+  $("queueSummary").textContent = latestRows.length ? `${latestRows.length} application${latestRows.length===1?"":"s"} shown · first 100 results` : "No applications match this filter.";
+  renderQueue(latestRows);
+}
+function renderQueue(rows) {
+  const host=$("queue"); host.replaceChildren();
+  if (!rows.length) { host.append(make("div","empty","No business verification applications found.")); return; }
+  rows.forEach(row => {
+    const card=make("article","request");
+    const head=make("div","request-head");
+    const titleBox=make("div",""); titleBox.append(make("h3","",safeText(row.business_name,"Unnamed business")), make("div","mini",`${safeText(row.business_category)} · Submitted ${fmtDate(row.submitted_at)}`));
+    const status=make("span",`pill ${STATUSES.includes(row.status)?row.status:"pending"}`,LABELS[row.status]||safeText(row.status));
+    head.append(titleBox,status); card.append(head);
+    const details=make("div","details");
+    details.append(detail("Applicant user ID",row.user_id),detail("Request ID",row.request_id),detail("Registration number",row.registration_number),detail("Contact phone",row.contact_phone),detail("Business address",row.business_address,true),detail("Website",row.website_url,true),detail("Business description",row.description,true),detail("Last reviewed",fmtDate(row.reviewed_at)),detail("Reviewed by user ID",row.reviewed_by));
+    card.append(details);
+    const review=make("div","review"); review.append(make("h3","","Review decision"),make("p","mini","Internal notes are visible to admins only. Decision messages are returned to the applicant in their application portal."));
+    const grid=make("div","reviewgrid");
+    const statusField=make("div","formrow"); statusField.append(make("label","","Set status")); const select=make("select","");
+    [ ["under_review","Under review"],["approved","Approve"],["rejected","Reject"] ].forEach(([value,label])=>{const o=make("option","",label);o.value=value;select.append(o);});
+    select.value = ["pending","under_review","approved","rejected"].includes(row.status) && row.status!=="pending" ? row.status : "under_review";
+    statusField.append(select);
+    const notesField=make("div","formrow"); notesField.append(make("label","","Internal admin notes")); const notes=make("textarea",""); notes.maxLength=2000; notes.placeholder="Internal review notes (up to 2000 characters)"; notes.value=row.admin_notes||""; notesField.append(notes);
+    grid.append(statusField,notesField); review.append(grid);
+    const decisionField=make("div","formrow"); decisionField.append(make("label","","Message to applicant")); const decision=make("textarea",""); decision.maxLength=1000; decision.placeholder="Optional message visible to the applicant (up to 1000 characters)"; decision.value=row.decision_message||""; decisionField.append(decision); review.append(decisionField);
+    const actions=make("div","actions"); const save=make("button","primary","Save review"); const history=make("button","secondary","View status history"); actions.append(save,history); review.append(actions);
+    const feedback=make("div","notice hidden"); feedback.setAttribute("role","status"); review.append(feedback);
+    const historyHost=make("div","history hidden"); review.append(historyHost);
+    save.addEventListener("click",async()=>{
+      if (!isAdmin) {notice(feedback,"Admin permission is not confirmed.","error");return;}
+      if (select.value==="rejected" && !decision.value.trim()) {notice(feedback,"Add a short decision message before rejecting, so the applicant knows the outcome.","error");return;}
+      save.disabled=true; save.textContent="Saving…"; hideNotice(feedback);
+      try {
+        const {data,error}=await supabaseClient.rpc("cp_admin_review_business_verification_request",{p_request_id:row.request_id,p_status:select.value,p_admin_notes:notes.value.trim()||null,p_decision_message:decision.value.trim()||null});
+        if (error) throw error;
+        if (data!==true) throw new Error("The database did not confirm this review update.");
+        notice(feedback,"Review saved successfully.","success");
+        await refreshQueue();
+      } catch (e) { notice(feedback,friendlyError(e),"error"); }
+      finally {save.disabled=false; save.textContent="Save review";}
+    });
+    history.addEventListener("click",async()=>{
+      history.disabled=true; history.textContent="Loading…"; historyHost.classList.remove("hidden"); historyHost.replaceChildren(make("div","mini","Loading status history…"));
+      try {
+        const {data,error}=await supabaseClient.rpc("cp_admin_list_business_verification_events",{p_request_id:row.request_id,p_limit:100,p_offset:0});
+        if (error) throw error;
+        const events=Array.isArray(data)?data:(data?[data]:[]); historyHost.replaceChildren(make("h4","","Status history"));
+        if (!events.length) {historyHost.append(make("div","mini","No events found for this application."));}
+        events.forEach(ev=>{const line=make("div","event");line.append(make("span","dot"),make("div","",`${ev.event_type==="submitted"?"Application submitted":"Status changed"}: ${ev.old_status?LABELS[ev.old_status]||ev.old_status+" → ":""}${LABELS[ev.new_status]||ev.new_status} · ${fmtDate(ev.created_at)} · Actor ${safeText(ev.actor_user_id)}`));historyHost.append(line);});
+      } catch(e) {historyHost.replaceChildren(make("div","notice error",friendlyError(e)));}
+      finally {history.disabled=false;history.textContent="View status history";}
+    });
+    card.append(review); host.append(card);
+  });
+}
+async function setSession(user) {
+  currentUser=user||null;
+  const signed=Boolean(currentUser);
+  $("loginPanel").classList.toggle("hidden",signed);
+  $("sessionPanel").classList.toggle("hidden",!signed);
+  $("signOutButton").classList.toggle("hidden",!signed);
+  if (!signed) {isAdmin=false;resetQueue();return;}
+  $("signedInEmail").textContent=currentUser.email||"Signed-in user";
+  notice($("adminNotice"),"Checking administrator permission…","info");
+  await refreshQueue();
+}
+const configured=SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("PASTE_")&&SUPABASE_PUBLIC_KEY.length>10&&!SUPABASE_PUBLIC_KEY.includes("PASTE_");
+if (!configured) {
+  $("loginButton").disabled=true;
+  notice($("loginNotice"),"Setup required: copy the real project URL and public anon/publishable key into this file before publishing.","error");
+} else {
+  supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  supabaseClient.auth.getSession().then(({data,error})=>{if(error)notice($("loginNotice"),friendlyError(error),"error");setSession(data?.session?.user||null);});
+  supabaseClient.auth.onAuthStateChange((_event,session)=>{queueMicrotask(()=>setSession(session?.user||null));});
+}
+$("loginForm").addEventListener("submit",async(event)=>{
+  event.preventDefault(); hideNotice($("loginNotice")); if(!supabaseClient)return;
+  const button=$("loginButton");button.disabled=true;button.textContent="Signing in…";
+  try {const {data,error}=await supabaseClient.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});if(error)throw error;await setSession(data.user);}
+  catch(e){notice($("loginNotice"),friendlyError(e),"error");}
+  finally{button.disabled=false;button.textContent="Sign in";}
+});
+$("signOutButton").addEventListener("click",async()=>{if(!supabaseClient)return;const {error}=await supabaseClient.auth.signOut();if(error)notice($("loginNotice"),friendlyError(error),"error");else{hideNotice($("loginNotice"));await setSession(null);notice($("loginNotice"),"You have signed out.","success");}});
+$("refreshButton").addEventListener("click",refreshQueue);
+$("statusFilter").addEventListener("change",refreshQueue);
+</script>
+</body>
+</html>
