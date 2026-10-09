@@ -1,558 +1,187 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101828">
-  <title>My Products | Commerce Passport</title>
-
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #f4f6fa;
-      color: #101828;
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 18px max(22px, calc((100% - 1000px) / 2));
-      background: #fff;
-      border-bottom: 1px solid #e4e7ec;
-    }
-
-    .brand {
-      color: #2563eb;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .header-link {
-      color: #475467;
-      text-decoration: none;
-      font-size: 13px;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px 40px;
-    }
-
-    .intro { margin-bottom: 28px; }
-
-    h1 {
-      margin: 0 0 9px;
-      font-size: clamp(27px, 4vw, 36px);
-      letter-spacing: -1px;
-    }
-
-    .muted {
-      color: #667085;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .panel {
-      padding: 24px;
-      background: #fff;
-      border: 1px solid #e4e7ec;
-      border-radius: 16px;
-      margin-bottom: 24px;
-      box-shadow: 0 6px 24px #10182808;
-    }
-
-    .panel h2 {
-      margin-top: 0;
-      font-size: 19px;
-    }
-
-    .field-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 4px 18px;
-    }
-
-    label {
-      display: block;
-      margin: 14px 0 7px;
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #d0d5dd;
-      border-radius: 9px;
-      background: #fff;
-      color: #101828;
-      font-size: 14px;
-    }
-
-    input:focus {
-      outline: 2px solid #bfdbfe;
-      border-color: #2563eb;
-    }
-
-    button, .primary-link {
-      display: inline-block;
-      border: 0;
-      border-radius: 9px;
-      padding: 12px 17px;
-      background: #2563eb;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      cursor: wait;
-      opacity: .6;
-    }
-
-    .secondary {
-      background: #eef2f6;
-      color: #344054;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 22px;
-    }
-
-    #message {
-      display: none;
-      margin-bottom: 22px;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 14px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-
-    #message.success {
-      display: block;
-      background: #ecfdf3;
-      color: #027a48;
-    }
-
-    #message.error {
-      display: block;
-      background: #fef3f2;
-      color: #b42318;
-    }
-
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .product-card {
-      border: 1px solid #e4e7ec;
-      border-radius: 12px;
-      padding: 18px;
-      overflow-wrap: anywhere;
-    }
-
-    .product-card h3 {
-      font-size: 17px;
-      margin: 0 0 9px;
-    }
-
-    .product-card p {
-      margin: 6px 0;
-      font-size: 13px;
-      line-height: 1.5;
-      color: #667085;
-    }
-
-    .empty {
-      padding: 24px 10px;
-      color: #667085;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    [hidden] { display: none !important; }
-
-    @media (max-width: 600px) {
-      main { margin-top: 26px; }
-      .field-grid, .product-list { grid-template-columns: 1fr; }
-      .panel { padding: 19px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071018">
+<meta name="description" content="Commerce Passport — a persistent digital identity layer for products, purchases, warranties, repairs and ownership in Sri Lanka.">
+<title>Commerce Passport — Your products. Their history. One passport.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#071018;--bg2:#0a151e;--panel:#0d1d29;--panel2:#102636;--text:#f5f9fc;--muted:#9fb2c1;--muted2:#6f8392;--line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.15);--accent:#8af0b8;--accent2:#56ddb2;--blue:#79b9ff;--gold:#ffd277;--red:#ff7f96;--max:1180px;--shadow:0 30px 90px rgba(0,0,0,.35)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -10%,rgba(138,240,184,.13),transparent 28%),linear-gradient(180deg,#071018 0%,#08131d 55%,#071018 100%);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer}.container{width:min(calc(100% - 36px),var(--max));margin:auto}
+.topbar{border-bottom:1px solid var(--line);background:rgba(138,240,184,.04);font-size:12px;color:var(--muted)}.topbar .container{min-height:36px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}.live-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px rgba(138,240,184,.8)}
+header{position:sticky;top:0;z-index:50;background:rgba(7,16,24,.76);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.045)}.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.03em}.logo{width:35px;height:35px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#c7ffe0);color:#061a13;box-shadow:0 10px 30px rgba(138,240,184,.16)}.brand small{display:block;font:600 9px "DM Sans";color:var(--muted2);letter-spacing:.12em;text-transform:uppercase}.navlinks{display:flex;align-items:center;gap:5px}.navlinks a{padding:9px 12px;border-radius:10px;color:var(--muted);font-size:13px;font-weight:600}.navlinks a:hover{background:rgba(255,255,255,.05);color:var(--text)}.navlinks .cta{color:#061710;background:var(--accent);margin-left:5px}.menu{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);color:var(--text)}.mobile{display:none}
+.hero{padding:92px 0 56px}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:rgba(138,240,184,.06);border:1px solid rgba(138,240,184,.15);color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.05em}.hero h1{margin:19px 0 0;font:700 clamp(48px,6vw,78px)/.98 "Space Grotesk",sans-serif;letter-spacing:-.055em}.hero h1 span{color:transparent;background:linear-gradient(110deg,#fff 25%,var(--accent) 68%,var(--blue));-webkit-background-clip:text;background-clip:text}.hero p{max-width:660px;margin:22px 0 0;color:var(--muted);font-size:18px;line-height:1.72}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:29px}.btn{min-height:47px;padding:0 16px;border:1px solid transparent;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:13px;font-weight:800;transition:.18s ease}.btn:hover{transform:translateY(-2px)}.primary{background:var(--accent);color:#061710;box-shadow:0 16px 34px rgba(138,240,184,.14)}.primary:hover{background:#b8ffd3}.secondary{background:rgba(255,255,255,.03);border-color:var(--line2);color:var(--text)}.secondary:hover{background:rgba(255,255,255,.06)}.subnote{margin-top:16px;color:var(--muted2);font-size:11px}
+.passport-shell{position:relative;min-height:470px;border-radius:31px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(17,39,55,.95),rgba(7,19,28,.92));box-shadow:var(--shadow);overflow:hidden}.glow{position:absolute;width:360px;height:360px;right:-90px;top:-100px;background:radial-gradient(circle,rgba(138,240,184,.15),transparent 66%)}.gridbg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:36px 36px;mask-image:radial-gradient(circle at 50% 45%,black 35%,transparent 80%)}.passport{position:absolute;inset:42px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,255,255,.11);border-radius:23px;padding:25px;background:linear-gradient(145deg,rgba(19,48,61,.86),rgba(10,27,39,.82));box-shadow:0 20px 55px rgba(0,0,0,.22);transform:rotate(-2deg)}.phead{display:flex;align-items:center;justify-content:space-between;gap:15px}.pbrand{font:700 18px "Space Grotesk"}.chip{padding:6px 9px;border-radius:8px;background:rgba(138,240,184,.08);color:var(--accent);font:800 9px "DM Sans";letter-spacing:.12em}.identity{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:16px;margin-top:28px}.avatar{width:72px;height:72px;border-radius:19px;background:linear-gradient(135deg,#9feec9,#5f87aa);display:grid;place-items:center;color:#062018;font:800 23px "Space Grotesk"}.identity small{display:block;color:var(--muted2);font-size:9px;text-transform:uppercase;letter-spacing:.12em}.identity strong{display:block;margin-top:5px;font-size:16px}.verified{color:var(--accent);font-size:20px}.object{margin-top:24px;padding:18px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.025)}.object-top{display:flex;justify-content:space-between;gap:12px}.object-title{font-size:13px;font-weight:800}.object-top span{color:var(--blue);font-size:10px;font-weight:800}.object-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:13px}.meta{padding:11px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid var(--line)}.meta small{display:block;color:var(--muted2);font-size:9px}.meta strong{display:block;margin-top:4px;font-size:11px}.timeline{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.tick{position:relative;height:5px;border-radius:9px;background:#183041}.tick.on{background:var(--accent)}.tick:before{content:"";position:absolute;width:9px;height:9px;left:0;top:-2px;border-radius:50%;background:inherit}.pfoot{display:flex;align-items:end;justify-content:space-between;margin-top:20px}.pfoot small{color:var(--muted2);font-size:9px;line-height:1.5}.qr{width:58px;height:58px;border-radius:11px;background:repeating-linear-gradient(45deg,#f3fbf7 0 3px,#0b1f2d 3px 6px)}
+section{padding:92px 0}.head{max-width:760px}.kicker{color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.head h2{margin:10px 0 0;font:700 clamp(34px,4.2vw,52px)/1.05 "Space Grotesk";letter-spacing:-.05em}.head p{margin:15px 0 0;color:var(--muted);line-height:1.7;font-size:15px}
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:38px}.proof-card{padding:21px;border:1px solid var(--line);border-radius:19px;background:rgba(255,255,255,.022)}.proof-card .num{font:700 28px "Space Grotesk"}.proof-card p{margin:5px 0 0;color:var(--muted2);font-size:11px;line-height:1.55}
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:40px}.flow-card{min-height:180px;padding:17px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(16,38,54,.8),rgba(9,23,34,.78));position:relative}.flow-card b{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;background:rgba(138,240,184,.08);color:var(--accent);font-size:11px}.flow-card h3{margin-top:23px;font:700 18px "Space Grotesk";letter-spacing:-.03em}.flow-card p{margin:7px 0 0;color:var(--muted);font-size:11px;line-height:1.55}.arrow{position:absolute;right:-12px;top:48px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#0a1824;border:1px solid var(--line2);color:var(--muted);z-index:2}
+.dual{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}.card{border:1px solid var(--line);border-radius:24px;padding:26px;background:linear-gradient(160deg,rgba(18,41,58,.82),rgba(8,21,31,.85));overflow:hidden;position:relative}.card h3{font:700 27px "Space Grotesk";letter-spacing:-.04em}.card>p{color:var(--muted);line-height:1.68;font-size:13px}.list{display:grid;gap:9px;margin-top:20px}.item{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:#d9e6ee}.item i{width:20px;height:20px;border-radius:6px;display:grid;place-items:center;background:rgba(138,240,184,.08);color:var(--accent);font-style:normal;flex:0 0 auto}.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:21px}.product{padding:13px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.02)}.product strong{display:block;font-size:12px}.product span{display:block;color:var(--muted2);font-size:10px;margin-top:4px}
+.passport-detail{margin-top:40px;border:1px solid var(--line);border-radius:27px;background:#081724;overflow:hidden;box-shadow:var(--shadow)}.detail-top{padding:19px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:15px}.detail-top strong{font-size:13px}.badge{padding:6px 9px;border-radius:8px;background:rgba(138,240,184,.08);color:var(--accent);font-size:9px;font-weight:800}.detail-body{display:grid;grid-template-columns:.95fr 1.05fr}.leftpane{padding:24px;border-right:1px solid var(--line)}.rightpane{padding:24px}.dl-title{font:700 24px "Space Grotesk"}.muted{color:var(--muted)}.specs{margin-top:18px;display:grid;gap:10px}.spec{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid var(--line);font-size:11px}.spec span:first-child{color:var(--muted2)}.spec strong{font-weight:700}.events{display:grid;gap:8px;margin-top:17px}.event{display:grid;grid-template-columns:11px 1fr auto;gap:10px;align-items:start;padding:12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}.event-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:4px;box-shadow:0 0 10px rgba(138,240,184,.4)}.event strong{font-size:11px}.event p{margin:3px 0 0;color:var(--muted2);font-size:10px;line-height:1.5}.event time{color:var(--muted2);font-size:9px}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:40px}.feature{padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02)}.icon{width:37px;height:37px;border-radius:10px;display:grid;place-items:center;background:rgba(138,240,184,.07);border:1px solid rgba(138,240,184,.12);color:var(--accent);font-weight:800}.feature h3{font:700 17px "Space Grotesk";margin-top:15px}.feature p{margin:5px 0 0;color:var(--muted2);font-size:11px;line-height:1.55}
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:40px}.phase{padding:19px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.021)}.phase span{font-size:10px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.1em}.phase h3{margin-top:11px;font:700 19px "Space Grotesk"}.phase p{color:var(--muted);font-size:11px;line-height:1.55}.phase ul{margin:13px 0 0;padding-left:16px;color:#cfdee7;font-size:10px;line-height:1.75}
+.faq{max-width:850px;margin-top:39px;display:grid;gap:8px}.faq-item{border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.02);overflow:hidden}.faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:15px;padding:17px 19px;border:0;background:transparent;color:var(--text);text-align:left;font-size:13px;font-weight:800}.plus{color:var(--accent);font-size:18px;transition:.2s}.answer{max-height:0;overflow:hidden;transition:max-height .24s ease}.answer p{margin:0;padding:0 19px 17px;color:var(--muted);font-size:12px;line-height:1.65}.faq-item.open .answer{max-height:170px}.faq-item.open .plus{transform:rotate(45deg)}
+.cta{margin-top:55px;border:1px solid rgba(138,240,184,.16);border-radius:26px;padding:29px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:radial-gradient(circle at 95% 10%,rgba(121,185,255,.14),transparent 31%),radial-gradient(circle at 8% 90%,rgba(138,240,184,.12),transparent 30%),linear-gradient(135deg,rgba(16,43,55,.94),rgba(9,24,34,.96))}.cta h3{font:700 31px "Space Grotesk";letter-spacing:-.04em}.cta p{margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
+footer{border-top:1px solid var(--line);padding:28px 0 38px;color:var(--muted2);font-size:11px}.foot{display:flex;justify-content:space-between;gap:15px}.footlinks{display:flex;gap:16px}.footlinks a:hover{color:var(--text)}
+.modal-bg{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:18px;background:rgba(0,0,0,.62);backdrop-filter:blur(12px)}.modal-bg.show{display:grid}.modal{width:min(590px,100%);position:relative;border:1px solid var(--line2);border-radius:24px;background:linear-gradient(180deg,#0f2534,#081722);box-shadow:var(--shadow);padding:24px}.close{position:absolute;top:15px;right:15px;width:34px;height:34px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03);color:var(--text)}.modal h2{margin:0;font:700 29px "Space Grotesk"}.modal p{color:var(--muted);font-size:12px;line-height:1.6}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:10px;color:#c0d0db;font-weight:800}.field input,.field select{height:43px;width:100%;border:1px solid var(--line2);border-radius:11px;background:#071621;color:var(--text);padding:0 11px;outline:none}.field input:focus,.field select:focus{border-color:rgba(138,240,184,.45);box-shadow:0 0 0 3px rgba(138,240,184,.06)}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.toast{position:fixed;right:17px;bottom:17px;z-index:120;max-width:360px;padding:13px 15px;border-radius:12px;border:1px solid var(--line2);background:#10283a;color:var(--text);font-size:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(18px);pointer-events:none;transition:.23s ease}.toast.show{opacity:1;transform:none}
+@media(max-width:1020px){.navlinks{display:none}.menu{display:block}.mobile{position:absolute;top:74px;left:0;right:0;padding:10px 18px 17px;background:rgba(7,16,24,.98);border-bottom:1px solid var(--line)}.mobile.show{display:grid}.mobile a{padding:12px;border-radius:10px;color:var(--muted);font-size:13px}.mobile a:hover{background:rgba(255,255,255,.04);color:var(--text)}.hero-grid,.dual,.detail-body{grid-template-columns:1fr}.hero{padding-top:65px}.passport-shell{min-height:430px}.leftpane{border-right:0;border-bottom:1px solid var(--line)}.flow{grid-template-columns:repeat(3,1fr)}.arrow{display:none}.feature-grid{grid-template-columns:1fr 1fr}.roadmap{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.container{width:min(calc(100% - 28px),var(--max))}.topbar .container{padding:7px 0}.nav{height:68px}.mobile{top:68px}.brand small{display:none}.hero h1{font-size:clamp(43px,13vw,60px)}.hero p{font-size:16px}.passport{inset:20px;padding:19px}.passport-shell{min-height:350px;border-radius:23px}.identity{grid-template-columns:55px 1fr auto;margin-top:20px}.avatar{width:55px;height:55px;border-radius:15px;font-size:18px}.identity strong{font-size:13px}.object{margin-top:17px;padding:13px}.object-meta{grid-template-columns:1fr 1fr}.timeline{margin-top:13px}.pfoot{margin-top:13px}.qr{width:45px;height:45px}.proof{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.flow-card{min-height:165px}.product-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr 1fr}.roadmap{grid-template-columns:1fr 1fr}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.cta{flex-direction:column;align-items:flex-start}.cta h3{font-size:27px}.foot{flex-direction:column;align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+button:disabled{opacity:.65;cursor:wait;transform:none}
+</style>
 </head>
-
 <body>
-  <header>
-    <div class="brand">COMMERCE PASSPORT</div>
-    <a class="header-link" href="./index.html">Back to website</a>
-  </header>
+<div class="topbar"><div class="container"><span class="live-dot"></span><span><b style="color:var(--accent)">Commerce Passport</b> — a concept for a permanent digital layer around what people own, buy and service.</span></div></div>
+<header><div class="container nav">
+<a href="#top" class="brand"><span class="logo">CP</span><span>Commerce Passport<small>Ownership intelligence layer</small></span></a>
+<nav class="navlinks"><a href="#vision">Vision</a><a href="#passport">Passport</a><a href="#business">For businesses</a><a href="#roadmap">Roadmap</a><a href="#faq">FAQ</a><a href="#join" class="cta">Join the pilot</a></nav>
+<button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button></div>
+<nav class="mobile" id="mobileNav"><a href="#vision">Vision</a><a href="#passport">Passport</a><a href="#business">For businesses</a><a href="#roadmap">Roadmap</a><a href="#faq">FAQ</a><a href="#join">Join the pilot</a></nav></header>
+<main id="top">
+<section class="hero"><div class="container hero-grid">
+<div><div class="eyebrow">🇱🇰 A digital layer for Sri Lankan commerce</div><h1>Your products.<br><span>Their history.</span><br>One passport.</h1><p>Commerce Passport turns every purchase into a persistent digital object — carrying its receipt, warranty, service history, ownership proof and future lifecycle with it.</p><div class="actions"><button class="btn primary" data-modal="citizen">Create a demo passport →</button><button class="btn secondary" data-modal="business">For businesses</button></div><div class="subnote">No bank account. No government ID replacement. Just a portable commerce record you control.</div></div>
+<div class="passport-shell"><div class="glow"></div><div class="gridbg"></div><div class="passport">
+<div class="phead"><div class="pbrand">Commerce Passport</div><div class="chip">VERIFIED OBJECT</div></div>
+<div class="identity"><div class="avatar">AA</div><div><small>Passport owner</small><strong>Commerce ID · CP–10492</strong><div style="color:var(--muted2);font-size:10px;margin-top:3px">Privacy-controlled · customer owned</div></div><div class="verified">✓</div></div>
+<div class="object"><div class="object-top"><div class="object-title">Samsung Refrigerator</div><span>ACTIVE WARRANTY</span></div><div style="color:var(--muted2);font-size:10px;margin-top:4px">ABC Electronics · Purchased 08 Oct 2026</div><div class="object-meta"><div class="meta"><small>Price</small><strong>Rs. 185,000</strong></div><div class="meta"><small>Warranty</small><strong>Until 08 Oct 2028</strong></div><div class="meta"><small>Services</small><strong>0 visits</strong></div></div><div class="timeline"><div class="tick on"></div><div class="tick on"></div><div class="tick"></div><div class="tick"></div></div></div>
+<div class="pfoot"><small>Product ID · SN-XXXXXXX<br>Scan to verify ownership & service history</small><div class="qr" aria-hidden="true"></div></div>
+</div></div></div></section>
 
-  <main>
-    <div class="intro">
-      <h1>My product passport</h1>
-      <p class="muted">
-        Keep your products and their future purchase, warranty
-        and service information connected in one place.
-      </p>
-    </div>
+<section id="vision"><div class="container"><div class="head"><div class="kicker">The core idea</div><h2>A purchase shouldn't disappear after the receipt is printed.</h2><p>Today, a product's commercial identity is scattered across paper receipts, WhatsApp chats, seller systems, warranty cards and service centres. Commerce Passport connects those events into one permissioned object.</p></div><div class="proof"><div class="proof-card"><div class="num">01</div><p><b style="color:var(--text)">Receipt → identity</b><br>Every verified purchase becomes a durable record instead of a disposable transaction.</p></div><div class="proof-card"><div class="num">02</div><p><b style="color:var(--text)">Identity → service</b><br>The product can carry warranty, repair and installation context into future interactions.</p></div><div class="proof-card"><div class="num">03</div><p><b style="color:var(--text)">Service → resale</b><br>Ownership and service history can become portable proof for a future buyer, insurer or trade-in provider.</p></div></div></div></section>
 
-    <div id="message" role="status" aria-live="polite"></div>
+<section id="passport"><div class="container"><div class="head"><div class="kicker">One object, many events</div><h2>The passport follows the product through its lifecycle.</h2><p>The first MVP should focus on durable goods where warranty and service friction is high: electronics, appliances, vehicles, equipment and other ownership-heavy purchases.</p></div><div class="flow">
+<div class="flow-card"><b>01</b><h3>Buy</h3><p>Merchant scans product QR/serial and creates the purchase record.</p><div class="arrow">→</div></div>
+<div class="flow-card"><b>02</b><h3>Verify</h3><p>Customer claims the record and controls who can access which fields.</p><div class="arrow">→</div></div>
+<div class="flow-card"><b>03</b><h3>Warranty</h3><p>Expiry, terms and seller/manufacturer details stay attached.</p><div class="arrow">→</div></div>
+<div class="flow-card"><b>04</b><h3>Service</h3><p>Installations, diagnostics, repairs and parts become a history.</p><div class="arrow">→</div></div>
+<div class="flow-card"><b>05</b><h3>Transfer</h3><p>Ownership can be transferred without handing over the owner's account.</p><div class="arrow">→</div></div>
+<div class="flow-card"><b>06</b><h3>Resell</h3><p>A buyer can verify provenance and service history before purchase.</p></div>
+</div>
+<div class="passport-detail"><div class="detail-top"><strong>Product passport · Samsung Refrigerator</strong><span class="badge">Verified record</span></div><div class="detail-body"><div class="leftpane"><div class="dl-title">What the owner sees</div><div class="specs"><div class="spec"><span>Purchase date</span><strong>08 Oct 2026</strong></div><div class="spec"><span>Seller</span><strong>ABC Electronics</strong></div><div class="spec"><span>Serial number</span><strong>SN-XXXXXXX</strong></div><div class="spec"><span>Warranty</span><strong style="color:var(--accent)">Active · 2 years</strong></div><div class="spec"><span>Ownership</span><strong>Verified</strong></div></div><div style="margin-top:17px"><button class="btn primary" data-modal="service">Open service action →</button></div></div><div class="rightpane"><div class="dl-title">Lifecycle timeline</div><div class="events"><div class="event"><span class="event-dot"></span><div><strong>Purchase registered</strong><p>Seller created product record and attached digital invoice.</p></div><time>08 Oct</time></div><div class="event"><span class="event-dot"></span><div><strong>Installation completed</strong><p>Installation confirmation attached to product identity.</p></div><time>10 Oct</time></div><div class="event" style="opacity:.68"><span class="event-dot" style="background:var(--blue)"></span><div><strong>Repair event</strong><p>Will appear here automatically when a service centre checks the passport.</p></div><time>Future</time></div><div class="event" style="opacity:.68"><span class="event-dot" style="background:var(--gold)"></span><div><strong>Ownership transfer</strong><p>Future owner receives the verified lifecycle record.</p></div><time>Future</time></div></div></div></div></div>
+</div></section>
 
-    <section id="loginPanel" class="panel">
-      <h2>Sign in to your account</h2>
-      <p class="muted">
-        Use the customer account you already registered.
-      </p>
+<section id="business"><div class="container"><div class="head"><div class="kicker">For businesses</div><h2>Don't replace the POS. Add a commerce identity layer above it.</h2><p>The merchant integration can start with a QR/receipt API and grow into CRM, warranty, service and customer reactivation tools.</p></div><div class="dual"><div class="card"><h3>For merchants</h3><p>Turn the receipt into the beginning of a customer relationship instead of the end of a transaction.</p><div class="list"><div class="item"><i>✓</i><span>Digital receipts and purchase records</span></div><div class="item"><i>✓</i><span>Warranty registration without paper forms</span></div><div class="item"><i>✓</i><span>Customer reactivation and service reminders</span></div><div class="item"><i>✓</i><span>Returns, repair and replacement workflows</span></div><div class="item"><i>✓</i><span>Analytics without abandoning existing POS software</span></div></div></div><div class="card"><h3>One API</h3><p>A simple event layer can sit between your POS, ecommerce platform, service centre and the customer's passport.</p><div class="product-grid"><div class="product"><strong>purchase.created</strong><span>Creates or updates a product record.</span></div><div class="product"><strong>warranty.updated</strong><span>Attaches coverage and expiry data.</span></div><div class="product"><strong>service.completed</strong><span>Adds verified service history.</span></div><div class="product"><strong>ownership.transferred</strong><span>Moves ownership permission.</span></div><div class="product"><strong>return.accepted</strong><span>Links reverse logistics to the object.</span></div><div class="product"><strong>recall.matched</strong><span>Flags affected product identities.</span></div></div><div style="margin-top:22px"><button class="btn primary" data-modal="business">Request a merchant pilot →</button></div></div></div></div></section>
 
-      <form id="loginForm">
-        <label for="email">Email address</label>
-        <input id="email" type="email"
-               autocomplete="email" required>
+<section><div class="container"><div class="head"><div class="kicker">Why people keep it</div><h2>The first useful features are surprisingly simple.</h2><p>Start with problems consumers already hate. Build trust first; intelligence comes later.</p></div><div class="feature-grid"><div class="feature"><div class="icon">✓</div><h3>No lost receipts</h3><p>Purchases remain accessible long after email, paper or chat history disappears.</p></div><div class="feature"><div class="icon">W</div><h3>Instant warranty</h3><p>Surface warranty status and the seller/manufacturer record at the point of need.</p></div><div class="feature"><div class="icon">↻</div><h3>Repair history</h3><p>Keep service events attached to the product, not trapped inside one technician's system.</p></div><div class="feature"><div class="icon">↗</div><h3>Proof for resale</h3><p>Offer a verified history that can increase confidence in a second-hand purchase.</p></div><div class="feature"><div class="icon">$</div><h3>Insurance-ready</h3><p>Give customers a structured record they can use when documenting valuable possessions.</p></div><div class="feature"><div class="icon">!</div><h3>Recall alerts</h3><p>Let brands reach verified owners of affected product serials more efficiently.</p></div><div class="feature"><div class="icon">⇄</div><h3>Ownership transfer</h3><p>Move the product record to the next owner without exposing private account data.</p></div><div class="feature"><div class="icon">♻</div><h3>End-of-life</h3><p>Eventually route trade-in, refurbishment and recycling from the same product identity.</p></div></div></div></section>
 
-        <label for="password">Password</label>
-        <input id="password" type="password"
-               autocomplete="current-password" required>
+<section id="roadmap"><div class="container"><div class="head"><div class="kicker">Build sequence</div><h2>Don't build a nationwide commerce graph on day one.</h2><p>Win one narrow workflow, prove merchant adoption, then expand the object's lifecycle.</p></div><div class="roadmap"><div class="phase"><span>Phase 01</span><h3>Digital receipt</h3><p>The smallest useful product.</p><ul><li>Merchant QR</li><li>Customer Commerce ID</li><li>Purchase record</li><li>Warranty status</li></ul></div><div class="phase"><span>Phase 02</span><h3>Service passport</h3><p>Make the object useful after purchase.</p><ul><li>Repair events</li><li>Installation</li><li>Warranty claims</li><li>Verified technicians</li></ul></div><div class="phase"><span>Phase 03</span><h3>Ownership layer</h3><p>Make history portable.</p><ul><li>Transfer</li><li>Resale proof</li><li>Trade-in</li><li>Insurance exports</li></ul></div><div class="phase"><span>Phase 04</span><h3>Commerce graph</h3><p>Build the network effects.</p><ul><li>Recall matching</li><li>Financing signals</li><li>Lifecycle analytics</li><li>Cross-business services</li></ul></div></div></div></section>
 
-        <div class="actions">
-          <button id="loginButton" type="submit">Sign in</button>
-          <a class="header-link" href="./signup.html">
-            Create an account
-          </a>
-        </div>
-      </form>
-    </section>
+<section id="faq"><div class="container"><div class="head"><div class="kicker">FAQ</div><h2>What this is — and what it isn't.</h2></div><div class="faq"><div class="faq-item"><button class="faq-btn">Is this a replacement for a national ID?<span class="plus">+</span></button><div class="answer"><p>No. The concept is a commerce identity layer for purchases, assets and services. It should not become a government identity document and should collect the minimum information required for commerce use cases.</p></div></div><div class="faq-item"><button class="faq-btn">Who owns the data?<span class="plus">+</span></button><div class="answer"><p>The product should be designed around customer-controlled permissions. A seller can verify a purchase, while a technician might receive only the information needed to perform a service.</p></div></div><div class="faq-item"><button class="faq-btn">How would small shops use it?<span class="plus">+</span></button><div class="answer"><p>The first version can be extremely lightweight: scan a product/serial, enter the customer Commerce ID, and issue a digital receipt link. A deep POS integration can come later.</p></div></div><div class="faq-item"><button class="faq-btn">What's the strongest initial market?<span class="plus">+</span></button><div class="answer"><p>Durable goods with meaningful warranties and service costs are a strong wedge: electronics, appliances, phones, laptops, vehicle-related equipment and business machinery.</p></div></div></div><div class="cta" id="join"><div><h3>Build the first commerce passport.</h3><p>Join the prototype pilot as a merchant, service provider or early customer. Merchant and pilot-interest submissions are saved to the Supabase pilot inbox when the project connection is configured.</p></div><button class="btn primary" data-modal="join">Join the pilot →</button></div></div></section>
+</main>
+<footer><div class="container foot"><div>© <span id="year"></span> Commerce Passport · Product concept MVP</div><div class="footlinks"><a href="#top">Home</a><a href="#passport">Passport</a><a href="#business">Business</a></div></div></footer>
 
-    <section id="dashboard" hidden>
-      <div class="panel">
-        <h2>Register a product</h2>
-        <p class="muted">
-          Enter the details shown on your product or packaging.
-          Do not enter payment-card or other sensitive information.
-        </p>
+<div class="modal-bg" id="modalBg" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true"><button class="close" id="close">×</button><h2 id="modalTitle">Create a demo passport</h2><p id="modalText">Preview how a citizen would claim a purchase record.</p><form id="form"><div class="fields" id="fields"></div><div class="modal-actions"><button type="button" class="btn secondary" id="cancel">Cancel</button><button type="submit" class="btn primary" id="submit">Continue →</button></div></form></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// 1) Replace these two placeholders with your Supabase Project URL and Publishable key.
+// Never put a Supabase secret/service-role key in this public HTML file.
+const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+let supabaseClient = null;
 
-        <form id="productForm">
-          <div class="field-grid">
-            <div>
-              <label for="brand">Brand *</label>
-              <input id="brand" maxlength="150"
-                     placeholder="e.g. Samsung" required>
-            </div>
+// Do not initialize the client until the real URL and key have been added.
+// This keeps the landing page usable while you are completing setup.
+const supabaseConfigured =
+  SUPABASE_URL.startsWith("https://") &&
+  !SUPABASE_URL.includes("PASTE_") &&
+  SUPABASE_PUBLISHABLE_KEY.length > 10 &&
+  !SUPABASE_PUBLISHABLE_KEY.includes("PASTE_");
 
-            <div>
-              <label for="model">Model</label>
-              <input id="model" maxlength="150"
-                     placeholder="e.g. Galaxy A series">
-            </div>
+if (supabaseConfigured) {
+  supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+}
+</script>
+<script>
+const bg=document.getElementById('modalBg'), title=document.getElementById('modalTitle'), text=document.getElementById('modalText'), fields=document.getElementById('fields'), form=document.getElementById('form'), submit=document.getElementById('submit'), toast=document.getElementById('toast');
+const modes={
+ citizen:{title:'Create a demo Commerce Passport',text:'Prototype flow only — no real identity is created. In production, this would connect a verified customer account.',button:'Create demo',html:`<div class="field"><label>FULL NAME</label><input required placeholder="Your name"></div><div class="field"><label>PHONE</label><input required placeholder="+94 …"></div><div class="field full"><label>PURCHASE</label><input required placeholder="e.g. Samsung Refrigerator"></div><div class="field"><label>SELLER</label><input placeholder="ABC Electronics"></div><div class="field"><label>PURCHASE DATE</label><input type="date"></div>`},
+ business:{title:'Request a merchant pilot',text:'Tell us where the commerce identity layer would fit. After Supabase is configured, this request will be saved to the pilot inbox.',button:'Request pilot',html:`<div class="field"><label>CONTACT NAME</label><input required placeholder="Full name"></div><div class="field"><label>EMAIL</label><input required type="email" placeholder="you@company.com"></div><div class="field full"><label>BUSINESS / STORE</label><input required placeholder="Your business"></div><div class="field"><label>CATEGORY</label><select><option>Electronics</option><option>Appliances</option><option>Vehicle / Auto</option><option>Furniture</option><option>Other</option></select></div><div class="field"><label>MONTHLY SALES</label><select><option>Under Rs. 1M</option><option>Rs. 1M–5M</option><option>Rs. 5M–20M</option><option>Rs. 20M+</option></select></div>`},
+ service:{title:'Open service action',text:'Choose the next action in the product lifecycle. This is a demo interaction.',button:'Continue',html:`<div class="field full"><label>PRODUCT</label><input value="Samsung Refrigerator" readonly></div><div class="field full"><label>ACTION</label><select><option>Find a verified technician</option><option>Check warranty</option><option>Start a warranty claim</option><option>View service history</option></select></div>`},
+ join:{title:'Join the Commerce Passport pilot',text:'Pick the role you would like to test. Your pilot request will be saved to the project database after Supabase is configured.',button:'Join pilot',html:`<div class="field"><label>NAME</label><input required placeholder="Full name"></div><div class="field"><label>EMAIL</label><input required type="email" placeholder="you@example.com"></div><div class="field full"><label>ROLE</label><select><option>Merchant</option><option>Service centre</option><option>Technician</option><option>Early customer</option><option>Potential partner</option></select></div>`}
+};
+function openModal(type){const m=modes[type]||modes.join;title.textContent=m.title;text.textContent=m.text;submit.textContent=m.button+' →';fields.innerHTML=m.html;form.dataset.mode=type;bg.classList.add('show');bg.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';setTimeout(()=>fields.querySelector('input,select')?.focus(),20)}
+function closeModal(){bg.classList.remove('show');bg.setAttribute('aria-hidden','true');document.body.style.overflow='';form.reset()}
+document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.modal)));document.getElementById('close').onclick=closeModal;document.getElementById('cancel').onclick=closeModal;bg.addEventListener('click',e=>{if(e.target===bg)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&bg.classList.contains('show'))closeModal()});
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const mode = form.dataset.mode;
 
-            <div>
-              <label for="serial">Serial number</label>
-              <input id="serial" maxlength="150"
-                     placeholder="Enter serial number">
-            </div>
+  // Only the pilot / merchant-interest forms are connected in this first step.
+  // Citizen passport creation and service actions remain demo-only for now.
+  if (mode !== 'business' && mode !== 'join') {
+    const messages = {
+      citizen: 'Demo passport created locally. Account and product registration will be connected in a later step.',
+      service: 'Service workflow is still a demo. Technician and warranty workflows are not connected yet.'
+    };
+    closeModal();
+    showToast(messages[mode] || 'Done.');
+    return;
+  }
 
-            <div>
-              <label for="category">Category</label>
-              <input id="category" maxlength="100"
-                     placeholder="e.g. Electronics">
-            </div>
-          </div>
+  if (!supabaseClient) {
+    showToast('Setup needed: add your Supabase Project URL and Publishable key in index.html.');
+    return;
+  }
 
-          <div class="actions">
-            <button id="saveButton" type="submit">
-              Save product
-            </button>
-            <button id="logoutButton" class="secondary"
-                    type="button">
-              Sign out
-            </button>
-          </div>
-        </form>
-      </div>
+  const fieldValue = labelText => {
+    const field = [...fields.querySelectorAll('.field')].find(item =>
+      item.querySelector('label')?.textContent.trim().toLowerCase() === labelText.toLowerCase()
+    );
+    const control = field?.querySelector('input, select, textarea');
+    return control ? control.value.trim() : '';
+  };
 
-      <div class="panel">
-        <h2>Your registered products</h2>
-        <p id="accountLabel" class="muted"></p>
-        <div id="productList" class="product-list">
-          <div class="empty">Loading products...</div>
-        </div>
-      </div>
-    </section>
-  </main>
+  const payload = mode === 'business'
+    ? {
+        request_type: 'merchant',
+        full_name: fieldValue('CONTACT NAME'),
+        email: fieldValue('EMAIL'),
+        business_name: fieldValue('BUSINESS / STORE'),
+        category: fieldValue('CATEGORY'),
+        monthly_sales: fieldValue('MONTHLY SALES')
+      }
+    : {
+        request_type: 'pilot',
+        full_name: fieldValue('NAME'),
+        email: fieldValue('EMAIL'),
+        role: fieldValue('ROLE')
+      };
 
-  <script type="module">
-    import { createClient } from
-      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+  submit.disabled = true;
+  const originalText = submit.textContent;
+  submit.textContent = 'Submitting...';
 
-    // Use the SAME existing project values as signup.html.
-    // Never use a secret or service_role key in browser code.
-    const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
-    const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+  try {
+    const { error } = await supabaseClient
+      .from('pilot_requests')
+      .insert(payload);
 
-    const message = document.getElementById("message");
-    const loginPanel = document.getElementById("loginPanel");
-    const dashboard = document.getElementById("dashboard");
-    const productList = document.getElementById("productList");
-    const accountLabel = document.getElementById("accountLabel");
-    const loginButton = document.getElementById("loginButton");
-    const saveButton = document.getElementById("saveButton");
-
-    function showMessage(text, type) {
-      message.textContent = text;
-      message.className = type;
+    if (error) {
+      console.error('Supabase pilot submission error:', error);
+      showToast('Submission failed: ' + error.message);
+      return;
     }
 
-    function clearMessage() {
-      message.textContent = "";
-      message.className = "";
-    }
-
-    if (
-      SUPABASE_URL.includes("YOUR_SUPABASE") ||
-      SUPABASE_PUBLIC_KEY.includes("YOUR_SUPABASE")
-    ) {
-      showMessage(
-        "Setup required: copy your Project URL and publishable key from signup.html.",
-        "error"
-      );
-      loginButton.disabled = true;
-      saveButton.disabled = true;
-    } else {
-      const supabase = createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLIC_KEY
-      );
-
-      let currentUser = null;
-      let loadSequence = 0;
-
-      function setSession(session) {
-        currentUser = session?.user ?? null;
-
-        loginPanel.hidden = Boolean(currentUser);
-        dashboard.hidden = !currentUser;
-
-        if (currentUser) {
-          accountLabel.textContent =
-            "Signed in as " + currentUser.email;
-          loadProducts();
-        } else {
-          productList.replaceChildren();
-        }
-      }
-
-      function addTextLine(parent, label, value) {
-        const p = document.createElement("p");
-        p.textContent = label + ": " + (value || "Not provided");
-        parent.appendChild(p);
-      }
-
-      async function loadProducts() {
-        if (!currentUser) return;
-
-        const requestedUserId = currentUser.id;
-        const thisLoad = ++loadSequence;
-
-        productList.replaceChildren();
-
-        const loading = document.createElement("div");
-        loading.className = "empty";
-        loading.textContent = "Loading your products...";
-        productList.appendChild(loading);
-
-        const { data, error } = await supabase
-          .from("products")
-          .select("id, brand, model, serial_number, category, created_at")
-          .order("created_at", { ascending: false });
-
-        if (thisLoad !== loadSequence) return;
-        if (!currentUser || currentUser.id !== requestedUserId) return;
-
-        productList.replaceChildren();
-
-        if (error) {
-          const err = document.createElement("div");
-          err.className = "empty";
-          err.textContent = "Could not load products: " + error.message;
-          productList.appendChild(err);
-          return;
-        }
-
-        if (!data || data.length === 0) {
-          const empty = document.createElement("div");
-          empty.className = "empty";
-          empty.textContent =
-            "No registered products yet. Add your first product above.";
-          productList.appendChild(empty);
-          return;
-        }
-
-        for (const product of data) {
-          const card = document.createElement("article");
-          card.className = "product-card";
-
-          const title = document.createElement("h3");
-          title.textContent = product.brand;
-          card.appendChild(title);
-
-          addTextLine(card, "Model", product.model);
-          addTextLine(card, "Serial number", product.serial_number);
-          addTextLine(card, "Category", product.category);
-
-          const date = product.created_at
-            ? new Date(product.created_at).toLocaleDateString()
-            : "Unknown";
-
-          addTextLine(card, "Registered", date);
-
-          const idLine = document.createElement("p");
-          idLine.textContent = "Passport ID: " + product.id;
-          card.appendChild(idLine);
-
-          productList.appendChild(card);
-        }
-      }
-
-      document.getElementById("loginForm")
-        .addEventListener("submit", async (event) => {
-          event.preventDefault();
-          clearMessage();
-
-          loginButton.disabled = true;
-          loginButton.textContent = "Signing in...";
-
-          try {
-            const email =
-              document.getElementById("email").value.trim();
-            const password =
-              document.getElementById("password").value;
-
-            const { data, error } =
-              await supabase.auth.signInWithPassword({
-                email,
-                password
-              });
-
-            if (error) throw error;
-
-            setSession(data.session);
-            showMessage("Signed in successfully.", "success");
-            document.getElementById("loginForm").reset();
-
-          } catch (error) {
-            showMessage(
-              "Sign-in failed: " +
-              (error.message || "Unknown error"),
-              "error"
-            );
-          } finally {
-            loginButton.disabled = false;
-            loginButton.textContent = "Sign in";
-          }
-        });
-
-      document.getElementById("productForm")
-        .addEventListener("submit", async (event) => {
-          event.preventDefault();
-          clearMessage();
-
-          if (!currentUser) {
-            showMessage("Please sign in first.", "error");
-            return;
-          }
-
-          const brand =
-            document.getElementById("brand").value.trim();
-
-          if (!brand) {
-            showMessage("Brand is required.", "error");
-            return;
-          }
-
-          const product = {
-            brand,
-            model:
-              document.getElementById("model").value.trim() || null,
-            serial_number:
-              document.getElementById("serial").value.trim() || null,
-            category:
-              document.getElementById("category").value.trim() || null,
-            owner_id: currentUser.id
-          };
-
-          saveButton.disabled = true;
-          saveButton.textContent = "Saving...";
-
-          try {
-            const { error } = await supabase
-              .from("products")
-              .insert(product);
-
-            if (error) throw error;
-
-            document.getElementById("productForm").reset();
-            showMessage("Product saved successfully.", "success");
-            await loadProducts();
-
-          } catch (error) {
-            showMessage(
-              "Could not save product: " +
-              (error.message || "Unknown error"),
-              "error"
-            );
-          } finally {
-            saveButton.disabled = false;
-            saveButton.textContent = "Save product";
-          }
-        });
-
-      document.getElementById("logoutButton")
-        .addEventListener("click", async () => {
-          const { error } = await supabase.auth.signOut();
-
-          if (error) {
-            showMessage("Sign-out failed: " + error.message, "error");
-            return;
-          }
-
-          currentUser = null;
-          loginPanel.hidden = false;
-          dashboard.hidden = true;
-          productList.replaceChildren();
-          showMessage("You have signed out.", "success");
-        });
-
-      supabase.auth.onAuthStateChange((_event, session) => {
-        setSession(session);
-      });
-
-      const { data, error } = await supabase.auth.getSession();
-
-      if (error) {
-        showMessage(
-          "Could not check your session: " + error.message,
-          "error"
-        );
-      } else {
-        setSession(data.session);
-      }
-    }
-  </script>
+    closeModal();
+    showToast('Success — your pilot request was saved.');
+  } catch (error) {
+    console.error('Unexpected pilot submission error:', error);
+    showToast('Could not reach Supabase. Check your connection and try again.');
+  } finally {
+    submit.disabled = false;
+    submit.textContent = originalText;
+  }
+});
+const menuBtn=document.getElementById('menuBtn'),mobile=document.getElementById('mobileNav');menuBtn.onclick=()=>{const show=mobile.classList.toggle('show');menuBtn.setAttribute('aria-expanded',String(show))};mobile.querySelectorAll('a').forEach(a=>a.onclick=()=>{mobile.classList.remove('show');menuBtn.setAttribute('aria-expanded','false')});
+document.querySelectorAll('.faq-btn').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+let timer;function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),3300)}document.getElementById('year').textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
