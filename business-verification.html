@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Business Verification — Commerce Passport</title>
+  <meta name="description" content="Apply to verify a business on Commerce Passport and track your application status.">
+  <style>
+    :root{color-scheme:dark;--bg:#080d18;--panel:#111a2b;--panel2:#0d1524;--line:#243149;--text:#eff5ff;--muted:#9aabc4;--blue:#7cb8ff;--blue2:#397fe8;--green:#7be0bd;--red:#ff9b9b;--amber:#f3cc7a;--radius:18px}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 18% 0%,#163056 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}a{color:var(--blue)}.wrap{width:min(1060px,calc(100% - 32px));margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em}.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#75c7ff,#5583fc);color:#071226;font-weight:900}.topnav{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:13px}.topnav a{text-decoration:none;color:var(--muted)}.topnav a:hover{color:var(--text)}.hero{padding:36px 0 22px}.eyebrow{text-transform:uppercase;letter-spacing:.15em;color:var(--blue);font-size:11px;font-weight:800}.hero h1{font-size:clamp(30px,5vw,47px);letter-spacing:-.045em;line-height:1.08;margin:10px 0 12px}.hero p{color:var(--muted);max-width:680px;margin:0}.layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(275px,.7fr);gap:18px;padding:20px 0 52px}.panel{border:1px solid var(--line);background:linear-gradient(180deg,rgba(20,31,51,.97),rgba(12,19,33,.97));border-radius:var(--radius);padding:24px;box-shadow:0 20px 60px #0002}.panel h2{font-size:20px;letter-spacing:-.025em;margin:0 0 6px}.sub{color:var(--muted);font-size:13px;margin:0 0 20px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#c3d3e9;font-weight:750}input,select,textarea{width:100%;border:1px solid #34445f;background:#091221;color:var(--text);border-radius:10px;padding:12px 13px;font:inherit;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #7cb8ff1c}textarea{min-height:104px;resize:vertical}.hint{font-size:11px;color:var(--muted)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}button,.button{border:0;border-radius:10px;padding:11px 16px;background:linear-gradient(135deg,#8dcaff,#5489ff);color:#071326;font-weight:800;cursor:pointer;text-decoration:none;font:inherit;font-weight:800}button:disabled{opacity:.55;cursor:not-allowed}.secondary{border:1px solid #35445d;background:#121f32;color:var(--text)}.notice{margin-top:14px;border:1px solid var(--line);border-radius:11px;padding:11px 13px;font-size:13px;white-space:pre-wrap}.notice.hidden{display:none}.notice.success{border-color:#286a5b;background:#0b2a27;color:#a9f1da}.notice.error{border-color:#793f4b;background:#301923;color:#ffc2c2}.side-list{padding:0;margin:14px 0 0;list-style:none;display:grid;gap:15px}.side-list li{display:flex;gap:10px;color:var(--muted);font-size:13px}.num{height:25px;width:25px;flex:0 0 25px;display:grid;place-items:center;border:1px solid #3d5270;border-radius:8px;color:var(--blue);font-weight:800}.notice-mini{background:#0c1525;border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--muted);font-size:12px;margin-top:18px}.hidden{display:none!important}.userbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin:14px 0}.userbar strong{color:var(--text);overflow-wrap:anywhere}.request-list{display:grid;gap:12px;margin-top:16px}.request{border:1px solid var(--line);background:#0b1423;border-radius:13px;padding:15px}.request-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.request h3{margin:0;font-size:16px}.meta{font-size:12px;color:var(--muted);margin-top:4px}.pill{display:inline-block;border-radius:999px;border:1px solid #35445d;padding:3px 9px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}.pill.pending{color:var(--amber);border-color:#6b5830}.pill.under_review{color:var(--blue);border-color:#365b91}.pill.approved{color:var(--green);border-color:#286a5b}.pill.rejected{color:var(--red);border-color:#793f4b}.decision{font-size:13px;margin-top:9px;color:#c8d7ea}.empty{color:var(--muted);border:1px dashed #33425a;border-radius:12px;padding:18px;font-size:13px}.footer{border-top:1px solid #1c293e;color:var(--muted);font-size:12px;padding:20px 0 30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    @media(max-width:800px){.layout{grid-template-columns:1fr}.hero{padding-top:23px}.top{align-items:flex-start}.panel{padding:19px}}@media(max-width:520px){.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.topnav{gap:10px}.request-head{flex-direction:column}}
+  </style>
+</head>
+<body>
+<header class="wrap top">
+  <div class="brand"><div class="logo">CP</div><span>Commerce Passport</span></div>
+  <nav class="topnav" aria-label="Primary navigation"><a href="dashboard.html">Dashboard</a><a href="index.html">Home</a><a href="login.html">Sign in</a></nav>
+</header>
+<main class="wrap">
+  <section class="hero"><div class="eyebrow">Business network · Application portal</div><h1>Verify your business.</h1><p>Submit your business details for review and track the decision in one place. Approval is completed by a Commerce Passport administrator; submitting a request does not itself certify a business.</p></section>
+  <div class="layout">
+    <section class="panel" aria-labelledby="formTitle">
+      <div id="loginPanel">
+        <h2 id="formTitle">Sign in to continue</h2><p class="sub">Use your existing Commerce Passport account to submit and track your application.</p>
+        <form id="loginForm">
+          <div class="fields">
+            <div class="field full"><label for="loginEmail">Email address</label><input id="loginEmail" type="email" autocomplete="email" required></div>
+            <div class="field full"><label for="loginPassword">Password</label><input id="loginPassword" type="password" autocomplete="current-password" required></div>
+          </div>
+          <div class="actions"><button id="loginButton" type="submit">Sign in</button><a class="button secondary" href="signup.html">Create account</a></div>
+          <div id="loginNotice" class="notice hidden" role="status"></div>
+        </form>
+      </div>
+      <div id="applicationPanel" class="hidden">
+        <h2>Business verification request</h2><p class="sub">Complete the business details below. Fields marked required must be completed.</p>
+        <div class="userbar"><span>Signed in as</span><strong id="signedInEmail"></strong><button id="signOutButton" class="secondary" type="button">Sign out</button></div>
+        <form id="requestForm">
+          <div class="fields">
+            <div class="field"><label for="businessName">Business name *</label><input id="businessName" maxlength="200" minlength="2" required placeholder="Registered or trading name"></div>
+            <div class="field"><label for="businessCategory">Business category *</label><select id="businessCategory" required><option value="">Choose category</option><option>Electronics</option><option>Home appliances</option><option>Mobile phones</option><option>Grocery / retail</option><option>Fashion</option><option>Furniture</option><option>Automotive</option><option>Repair / service provider</option><option>Distributor / wholesaler</option><option>Other</option></select></div>
+            <div class="field"><label for="registrationNumber">Business registration number</label><input id="registrationNumber" maxlength="100" placeholder="Optional"></div>
+            <div class="field"><label for="contactPhone">Business contact phone</label><input id="contactPhone" type="tel" maxlength="40" placeholder="e.g. +94 11 234 5678"></div>
+            <div class="field full"><label for="businessAddress">Business address</label><input id="businessAddress" maxlength="500" placeholder="Street, town/city, district"></div>
+            <div class="field full"><label for="websiteUrl">Website or public business page</label><input id="websiteUrl" type="url" maxlength="500" placeholder="https://example.com"><span class="hint">Use a full address starting with https:// or http://.</span></div>
+            <div class="field full"><label for="description">About the business</label><textarea id="description" maxlength="2000" placeholder="What does the business sell or service? How long has it operated?"></textarea><span class="hint">Do not enter passwords, bank details, or sensitive personal identification numbers.</span></div>
+          </div>
+          <div class="actions"><button id="submitButton" type="submit">Submit for review</button><button id="refreshButton" class="secondary" type="button">Refresh my requests</button></div>
+          <div id="requestNotice" class="notice hidden" role="status"></div>
+        </form>
+        <div style="height:1px;background:var(--line);margin:24px 0"></div>
+        <h2>My applications</h2><p class="sub">Only requests submitted by your signed-in account appear here.</p>
+        <div id="requestList" class="request-list"><div class="empty">Loading your requests…</div></div>
+      </div>
+    </section>
+    <aside class="panel">
+      <div class="eyebrow">How it works</div><h2 style="margin-top:8px">A clear, reviewable process.</h2>
+      <ol class="side-list">
+        <li><span class="num">1</span><span><strong style="color:var(--text)">Submit details</strong><br>Enter the business name, category, and relevant public contact information.</span></li>
+        <li><span class="num">2</span><span><strong style="color:var(--text)">Administrator review</strong><br>Your request may be marked under review while details are checked.</span></li>
+        <li><span class="num">3</span><span><strong style="color:var(--text)">Receive a decision</strong><br>Your request list shows approved or rejected status and any message shared with you.</span></li>
+      </ol>
+      <div class="notice-mini"><strong style="color:var(--text)">Please note</strong><br>This MVP records an application and an administrator's decision. It does not automatically create a business account, assign permissions, or independently validate registration documents.</div>
+    </aside>
+  </div>
+</main>
+<footer class="wrap footer"><span>Commerce Passport · Business Verification</span><span>Protect your account credentials. Never share your password with an applicant or reviewer.</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Copy the same project URL and PUBLIC anon/publishable key from a working Commerce Passport page.
+  // Never put a service_role key or secret key in this public HTML file.
+  const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+  const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+  const $ = (id) => document.getElementById(id);
+  const loginPanel = $("loginPanel"), applicationPanel = $("applicationPanel");
+  const loginNotice = $("loginNotice"), requestNotice = $("requestNotice");
+  let supabaseClient = null;
+  let activeUser = null;
+
+  function showNotice(el, message, kind = "") {
+    el.textContent = message;
+    el.className = "notice" + (kind ? " " + kind : "");
+    el.classList.remove("hidden");
+  }
+  function hideNotice(el) { el.textContent = ""; el.className = "notice hidden"; }
+  function setupMessage(error) {
+    if (error?.message?.toLowerCase().includes("email not confirmed")) return "Please confirm your email address from the message in your inbox, then sign in again.";
+    if (error?.message?.toLowerCase().includes("invalid login credentials")) return "The email or password doesn't match. Check both and try again.";
+    if (error?.message?.toLowerCase().includes("already have a business verification request pending")) return "You already have a request waiting for review. Check My applications below.";
+    return error?.message || "Something went wrong. Please try again.";
+  }
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>\"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+  }
+  function statusLabel(status) {
+    return ({pending:"Pending",under_review:"Under review",approved:"Approved",rejected:"Rejected"})[status] || status;
+  }
+  async function loadMyRequests() {
+    const host = $("requestList");
+    host.innerHTML = '<div class="empty">Loading your requests…</div>';
+    const { data, error } = await supabaseClient.rpc("cp_list_my_business_verification_requests");
+    if (error) {
+      host.innerHTML = '<div class="empty">Could not load your requests: ' + escapeHtml(error.message) + '</div>';
+      return;
+    }
+    const rows = Array.isArray(data) ? data : (data ? [data] : []);
+    if (!rows.length) {
+      host.innerHTML = '<div class="empty">You have not submitted a business verification request yet.</div>';
+      return;
+    }
+    host.innerHTML = rows.map(row => {
+      const date = row.submitted_at ? new Date(row.submitted_at).toLocaleString() : "Date unavailable";
+      const safeStatus = ["pending","under_review","approved","rejected"].includes(row.status) ? row.status : "pending";
+      const details = [row.business_category, row.registration_number ? "Registration: " + row.registration_number : "", "Submitted " + date].filter(Boolean).join(" · ");
+      return '<article class="request"><div class="request-head"><div><h3>' + escapeHtml(row.business_name) + '</h3><div class="meta">' + escapeHtml(details) + '</div></div><span class="pill ' + safeStatus + '">' + escapeHtml(statusLabel(safeStatus)) + '</span></div>' + (row.decision_message ? '<div class="decision"><strong>Message:</strong> ' + escapeHtml(row.decision_message) + '</div>' : '') + '</article>';
+    }).join("");
+  }
+  async function setUser(user) {
+    activeUser = user || null;
+    const signedIn = Boolean(activeUser);
+    loginPanel.classList.toggle("hidden", signedIn);
+    applicationPanel.classList.toggle("hidden", !signedIn);
+    if (signedIn) {
+      $("signedInEmail").textContent = activeUser.email || "Signed-in account";
+      await loadMyRequests();
+    }
+  }
+
+  const configured = SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && SUPABASE_PUBLIC_KEY.length > 10 && !SUPABASE_PUBLIC_KEY.includes("PASTE_");
+  if (!configured) {
+    showNotice(loginNotice, "Setup required: copy the existing Supabase project URL and public anon/publishable key into this file before using it.", "error");
+    $("loginButton").disabled = true;
+    $("submitButton").disabled = true;
+  } else {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+    });
+    supabaseClient.auth.getSession().then(async ({ data, error }) => {
+      if (error) showNotice(loginNotice, setupMessage(error), "error");
+      await setUser(data?.session?.user || null);
+    });
+    supabaseClient.auth.onAuthStateChange((_event, session) => {
+      queueMicrotask(() => setUser(session?.user || null));
+    });
+  }
+
+  $("loginForm").addEventListener("submit", async (event) => {
+    event.preventDefault(); hideNotice(loginNotice);
+    if (!supabaseClient) return;
+    const button = $("loginButton"); button.disabled = true; button.textContent = "Signing in…";
+    try {
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email: $("loginEmail").value.trim(), password: $("loginPassword").value });
+      if (error) throw error;
+      await setUser(data.user);
+    } catch (error) { showNotice(loginNotice, setupMessage(error), "error"); }
+    finally { button.disabled = false; button.textContent = "Sign in"; }
+  });
+
+  $("signOutButton").addEventListener("click", async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    if (error) showNotice(requestNotice, error.message, "error");
+    else { await setUser(null); showNotice(loginNotice, "You have signed out.", "success"); }
+  });
+
+  $("requestForm").addEventListener("submit", async (event) => {
+    event.preventDefault(); hideNotice(requestNotice);
+    if (!supabaseClient || !activeUser) { showNotice(requestNotice, "Please sign in before submitting a request.", "error"); return; }
+    const button = $("submitButton"); button.disabled = true; button.textContent = "Submitting…";
+    const value = id => $(id).value.trim();
+    try {
+      const { data, error } = await supabaseClient.rpc("cp_submit_business_verification_request", {
+        p_business_name: value("businessName"),
+        p_business_category: value("businessCategory"),
+        p_registration_number: value("registrationNumber") || null,
+        p_contact_phone: value("contactPhone") || null,
+        p_business_address: value("businessAddress") || null,
+        p_website_url: value("websiteUrl") || null,
+        p_description: value("description") || null
+      });
+      if (error) throw error;
+      $("requestForm").reset();
+      showNotice(requestNotice, "Your business verification request was submitted successfully. Save this page to track the status of your application.", "success");
+      await loadMyRequests();
+    } catch (error) { showNotice(requestNotice, setupMessage(error), "error"); }
+    finally { button.disabled = false; button.textContent = "Submit for review"; }
+  });
+  $("refreshButton").addEventListener("click", loadMyRequests);
+</script>
+</body>
+</html>
