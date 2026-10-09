@@ -68,8 +68,8 @@
     </section>
   </main>
 
-  <!-- IMPORTANT: Copy the same project URL and PUBLIC anon/publishable key used in signup.html.
-       Do NOT use a Supabase service_role or secret key in a browser page. -->
+  <!-- IMPORTANT: Keep this connected to the same Supabase project as signup.html.
+       Use only the public anon/publishable key, never a service_role or secret key. -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     // Replace only these two placeholder values with the matching values from signup.html.
@@ -79,18 +79,31 @@
     const form = document.getElementById("login-form");
     const messageBox = document.getElementById("message");
     const button = document.getElementById("submit-button");
+    let client = null;
 
     function showMessage(text, type) {
       messageBox.textContent = text;
       messageBox.className = "message " + type;
     }
 
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
-      messageBox.className = "message";
+    function hasValidConfig() {
+      return !SUPABASE_URL.includes("PASTE_YOUR_") &&
+             !SUPABASE_ANON_KEY.includes("PASTE_YOUR_") &&
+             SUPABASE_URL.startsWith("https://");
+    }
 
-      if (SUPABASE_URL.includes("PASTE_YOUR_") || SUPABASE_ANON_KEY.includes("PASTE_YOUR_")) {
-        showMessage("Setup needed: copy the Supabase project URL and public anon key from signup.html into this login.html file, save, and upload it again.", "error");
+    // Initialize Supabase when this page opens, not only after the Sign In button
+    // is pressed. That lets Supabase process the confirmation link's URL tokens/code.
+    async function initializeAuthPage() {
+      const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+      const searchParams = new URLSearchParams(window.location.search);
+      const authError = searchParams.get("error_description") ||
+                        searchParams.get("error") ||
+                        hashParams.get("error_description") ||
+                        hashParams.get("error");
+
+      if (!hasValidConfig()) {
+        showMessage("Setup needed: copy the same Supabase project URL and public anon/publishable key used by signup.html into this file, then commit it.", "error");
         return;
       }
       if (!window.supabase || typeof window.supabase.createClient !== "function") {
@@ -98,10 +111,50 @@
         return;
       }
 
+      try {
+        client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        if (authError) {
+          showMessage("Email confirmation could not finish: " + decodeURIComponent(String(authError).replace(/\+/g, " ")) + ". Please try the newest confirmation email, or sign in if your email is already confirmed.", "error");
+          return;
+        }
+
+        // getSession waits for Supabase URL/session initialization to complete.
+        const { data, error } = await client.auth.getSession();
+        if (error) throw error;
+        if (data?.session) {
+          showMessage("You're signed in. Opening your dashboard…", "success");
+          window.location.replace("dashboard.html");
+          return;
+        }
+
+        // These parameters may be present after the email link verifies the address.
+        const confirmed = searchParams.get("confirmed") === "1" ||
+                          searchParams.get("type") === "signup" ||
+                          hashParams.get("type") === "signup";
+        if (confirmed) {
+          showMessage("Your email confirmation link has returned successfully. Sign in below with the same email and password to open your dashboard.", "success");
+        } else if (searchParams.has("code") || hashParams.has("access_token")) {
+          showMessage("Checking your confirmation… If you are not redirected, sign in below.", "success");
+        }
+      } catch (error) {
+        showMessage("We couldn't finish checking your sign-in session. You can still try signing in below. " + (error?.message || ""), "error");
+      }
+    }
+
+    initializeAuthPage();
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      messageBox.className = "message";
+
+      if (!client) {
+        showMessage("The sign-in page is not connected yet. Check the Supabase settings near the bottom of this file and reload.", "error");
+        return;
+      }
+
       button.disabled = true;
       button.textContent = "Signing in…";
       try {
-        const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
         const { error } = await client.auth.signInWithPassword({ email, password });
@@ -126,3 +179,4 @@
   </script>
 </body>
 </html>
+
