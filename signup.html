@@ -131,7 +131,7 @@
       purchases, product warranties and service history.
     </p>
 
-    <form id="signupForm">
+    <form id="signupForm">    
       <label for="fullName">Full name</label>
       <input
         id="fullName"
@@ -167,7 +167,7 @@
         Create account
       </button>
     </form>
-
+<p>Already confirmed your email? <a href="login.html">Sign in</a></p>
     <div id="message" role="status" aria-live="polite"></div>
 
     <a class="back" href="./index.html">
@@ -237,7 +237,7 @@
                 full_name: fullName
               },
               emailRedirectTo:
-                new URL("./index.html", window.location.href).href
+                new URL("./login.html", window.location.href).href
             }
           });
 
