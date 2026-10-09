@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Restricted Commerce Passport administrator audit center.">
+  <title>Security & Audit Center — Commerce Passport</title>
+  <style>
+    :root{color-scheme:dark;--bg:#070c16;--panel:#101a2b;--panel2:#0b1423;--line:#263650;--text:#f1f6ff;--muted:#9caec7;--blue:#8cc8ff;--blue2:#5489ff;--green:#82e0c0;--gold:#ebd18c;--red:#ff9aa8;--radius:18px}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#153055 0,transparent 35%),radial-gradient(ellipse at 93% 22%,#11253a 0,transparent 28%),var(--bg);color:var(--text);font:14px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}a{color:var(--blue)}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.wrap{width:min(1200px,calc(100% - 36px));margin:0 auto}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:20px 0}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:900;letter-spacing:-.035em}.logo{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,#a1e3ff,#6e8bff);color:#071326;font-weight:950}.nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.nav a{font-size:12px;color:var(--muted);text-decoration:none}.nav a:hover{color:var(--text)}button,.btn{border:1px solid #344866;border-radius:10px;padding:10px 13px;background:#13223a;color:var(--text);font-weight:750;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}button.primary{background:linear-gradient(135deg,#9adaff,#688cff);border:0;color:#071326}button.secondary{background:#101a2b}.hero{padding:36px 0 23px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.17em;color:var(--blue);font-weight:900}h1{font-size:clamp(33px,5vw,56px);line-height:1.03;letter-spacing:-.06em;margin:11px 0 14px}.hero p{max-width:780px;color:var(--muted);margin:0;font-size:14px}.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.tag{border:1px solid #314664;background:#0d1929;border-radius:999px;padding:6px 10px;font-size:11px;color:#cfddf0}.layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:16px;align-items:start}.panel{background:linear-gradient(155deg,rgba(18,30,50,.97),rgba(10,18,32,.97));border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-width:0;box-shadow:0 20px 60px #0002}.panel h2{font-size:18px;letter-spacing:-.03em;margin:0 0 5px}.muted{color:var(--muted);font-size:12px;margin:0 0 15px}.field{display:grid;gap:6px;margin:13px 0}label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#c4d4e9;font-weight:850}input{width:100%;min-width:0;padding:11px 12px;border:1px solid #354764;border-radius:10px;background:#081220;color:var(--text);outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #8cc8ff1c}.form button{width:100%;margin-top:5px}.notice{padding:11px 12px;border-radius:10px;margin-top:12px;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}.notice.error{border:1px solid #7a3f4b;background:#26121a;color:#ffc0c8}.notice.success{border:1px solid #286a5b;background:#0d2c29;color:#9af0d5}.notice.info{border:1px solid #2c4e7d;background:#0d1d34;color:#b9d9ff}.hidden{display:none!important}.account{font-size:12px;color:var(--muted);overflow-wrap:anywhere;margin:12px 0}.account strong{color:var(--text)}.session-actions{display:flex;gap:8px;flex-wrap:wrap}.sectionbar{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}.sectionbar p{color:var(--muted);font-size:12px;margin:4px 0 0}.count{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 9px;white-space:nowrap}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 15px;padding-bottom:13px;border-bottom:1px solid var(--line)}.tab{border-radius:10px;background:#0a1424;border:1px solid #2b3c56;color:var(--muted);font-size:12px}.tab[aria-selected="true"]{background:#163052;color:#d9edff;border-color:#5280ba}.filters{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;margin-bottom:14px}.filters button{min-width:90px}.events{display:grid;gap:10px}.empty{padding:22px;border:1px dashed #33445e;border-radius:12px;color:var(--muted);font-size:12px}.event{border:1px solid #283a55;border-radius:13px;background:linear-gradient(155deg,#111d30,#0a1322);padding:14px;min-width:0}.event-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.event-title{font-size:13px;font-weight:850;overflow-wrap:anywhere}.pill{border-radius:999px;border:1px solid #365b91;color:#b8d9ff;background:#0d1e35;padding:4px 8px;font-size:9px;letter-spacing:.06em;font-weight:900;text-transform:uppercase;white-space:nowrap}.pill.insert,.pill.activated,.pill.active{border-color:#286a5b;color:#9af0d5;background:#0d2c29}.pill.delete,.pill.revoked,.pill.rejected{border-color:#793f4b;color:#ffc0c8;background:#26121a}.pill.update,.pill.replaced,.pill.status_changed{border-color:#776333;color:#f1dd9f;background:#2a2414}.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;margin-top:11px}.meta-item{min-width:0}.meta-item small{display:block;color:#8195b0;font-size:9px;text-transform:uppercase;letter-spacing:.08em}.meta-item span{font-size:11px;overflow-wrap:anywhere;word-break:break-word}.sectionline{font-size:10px;color:var(--muted);font-weight:850;text-transform:uppercase;letter-spacing:.09em;margin:12px 0 6px}.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}.chip{font-size:10px;border:1px solid #2c3d57;background:#101e31;color:#c6d7ed;padding:3px 7px;border-radius:6px;overflow-wrap:anywhere}.reason{margin-top:10px;padding:9px 10px;border-left:2px solid #47658a;background:#0a1525;color:#cbd9ea;font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere}.pager{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px}.pager span{color:var(--muted);font-size:11px}.footer{padding:24px 0 32px;margin-top:25px;border-top:1px solid #1c293e;color:var(--muted);font-size:11px;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap}.disclaimer{color:var(--muted);font-size:11px;margin:16px 0 0}@media(max-width:900px){.layout{grid-template-columns:1fr}.hero{padding-top:24px}}@media(max-width:560px){.wrap{width:calc(100% - 22px)}.panel{padding:15px}.top{align-items:flex-start}.nav{justify-content:flex-end}.meta{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.filters button{width:100%}.event-head{align-items:flex-start}}
+  </style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="./dashboard.html"><span class="logo">CP</span><span>Commerce Passport</span></a>
+  <nav class="nav" aria-label="Primary navigation"><a href="./dashboard.html">Dashboard</a><a href="./admin.html">Admin review</a><a href="./admin-business-verification.html">Business verification</a><button id="signOutButton" class="secondary hidden" type="button">Sign out</button></nav>
+</header>
+<main class="wrap">
+  <section class="hero"><div class="eyebrow">Stage 28 · Restricted admin workspace</div><h1>Security & audit center.</h1><p>Inspect the audit history already collected by Commerce Passport. Each tab reads from a separate administrator-only database function. This page is read-only and does not change audit entries or application data.</p><div class="tags"><span class="tag">Supabase admin allowlist enforced</span><span class="tag">Read-only records</span><span class="tag">Newest events first</span></div></section>
+  <div class="layout">
+    <aside class="panel">
+      <section id="loginPanel"><h2>Administrator sign in</h2><p class="muted">Use the account already registered in your <code>cp_admin_users</code> allowlist.</p>
+        <form id="loginForm" class="form"><div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div><button id="loginButton" class="primary" type="submit">Sign in</button></form>
+        <div id="loginNotice" class="notice hidden" role="status" aria-live="polite"></div>
+      </section>
+      <section id="sessionPanel" class="hidden"><h2>Signed in</h2><div id="signedInEmail" class="account"></div><div id="authStatus" class="notice info">Checking admin access through the selected audit RPC…</div><div class="session-actions"><button id="refreshButton" type="button">Refresh current audit</button><button id="signOutSideButton" class="secondary" type="button">Sign out</button></div><p class="muted" style="margin-top:14px">A successful login is not enough by itself. The database must authorize the account for every audit request.</p></section>
+    </aside>
+    <section class="panel">
+      <div class="sectionbar"><div><h2 id="auditTitle">Audit streams</h2><p id="auditDescription">Choose an audit type to inspect recorded events.</p></div><span id="eventCount" class="count">— events</span></div>
+      <div class="tabs" role="tablist" aria-label="Audit category">
+        <button class="tab" role="tab" id="tabProduct" aria-selected="true" data-kind="product">Product changes</button>
+        <button class="tab" role="tab" id="tabRole" aria-selected="false" data-kind="role">Profile role changes</button>
+        <button class="tab" role="tab" id="tabBusiness" aria-selected="false" data-kind="business">Business access</button>
+      </div>
+      <form id="filterForm" class="filters"><input id="searchInput" type="search" maxlength="150" placeholder="Filter loaded entries by ID, name, role, or field…" aria-label="Filter loaded entries"><button type="submit">Apply filter</button></form>
+      <div id="resultNotice" class="notice hidden" role="status" aria-live="polite"></div>
+      <div id="eventList" class="events"><div class="empty">Sign in using an authorized administrator account to load audit events.</div></div>
+      <div id="pager" class="pager hidden"><button id="prevButton" class="secondary" type="button">← Previous</button><span id="pageLabel">Page 1</span><button id="nextButton" class="secondary" type="button">Next →</button></div>
+      <p class="disclaimer">Audit availability depends on when each stage was installed. Historical changes from before a trigger was enabled may not appear. User UUIDs identify accounts and should be shared only when needed for administrative troubleshooting.</p>
+    </section>
+  </div>
+  <footer class="footer"><span>Commerce Passport · Security & Audit Center</span><span>Administrator-only reads · no edit/delete controls</span></footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  // Replace these with the same safe browser credentials as your working Commerce Passport pages.
+  // Do not use a service_role or secret key in a public HTML page.
+  const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+  const SUPABASE_PUBLIC_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+  const PAGE_SIZE = 30;
+  const $ = id => document.getElementById(id);
+  let supabase = null, currentUser = null, currentKind = "product", busy = false;
+  const state = {
+    product: {offset:0, rows:[], hasMore:false, authorized:false},
+    role: {offset:0, rows:[], hasMore:false, authorized:false},
+    business: {offset:0, rows:[], hasMore:false, authorized:false}
+  };
+  const configs = {
+    product: {title:"Product change audit", description:"Product insert, update and delete events recorded after Stage 16 was installed.", rpc:"cp_admin_list_product_audit", params:(offset)=>({p_limit:PAGE_SIZE+1,p_offset:offset})},
+    role: {title:"Profile role audit", description:"Role changes recorded by the profile-role guard added in Stage 25.", rpc:"cp_admin_list_profile_role_audit", params:(offset)=>({p_limit:PAGE_SIZE+1,p_offset:offset})},
+    business: {title:"Verified-business access audit", description:"Activation, replacement and revocation events from the Stage 20 entitlement ledger.", rpc:"cp_admin_list_business_access_events", params:(offset)=>({p_limit:PAGE_SIZE+1,p_offset:offset})}
+  };
+  function node(tag, className, text) { const el=document.createElement(tag); if(className)el.className=className; if(text!==undefined && text!==null)el.textContent=String(text); return el; }
+  function showNotice(id, text, kind="info") { const el=$(id); el.textContent=text; el.className="notice "+kind; }
+  function hideNotice(id) { $(id).classList.add("hidden"); }
+  function safeDate(value) { if(!value)return "—"; const d=new Date(value); return Number.isNaN(d.getTime())?String(value):d.toLocaleString(); }
+  function setSession(session) {
+    currentUser=session?.user || null;
+    $("loginPanel").classList.toggle("hidden",!!currentUser);
+    $("sessionPanel").classList.toggle("hidden",!currentUser);
+    $("signOutButton").classList.toggle("hidden",!currentUser);
+    $("signedInEmail").textContent=currentUser ? "Account: "+(currentUser.email||currentUser.id) : "";
+    if(!currentUser) {
+      for(const s of Object.values(state)){s.offset=0;s.rows=[];s.hasMore=false;s.authorized=false;}
+      $("eventList").replaceChildren(node("div","empty","Sign in using an authorized administrator account to load audit events."));
+      $("eventCount").textContent="— events"; $("pager").classList.add("hidden");
+      $("authStatus").textContent="Signed out";
+    }
+  }
+  function metaGrid(row, entries) {
+    const meta=node("div","meta");
+    for(const [label,value] of entries){const item=node("div","meta-item");item.append(node("small","",label),node("span","",value??"—"));meta.append(item);}
+    return meta;
+  }
+  function addChips(card, title, values) {
+    card.append(node("div","sectionline",title));const chips=node("div","chips");
+    if(Array.isArray(values)&&values.length){for(const v of values)chips.append(node("span","chip",v));}
+    else chips.append(node("span","chip","No field names recorded")); card.append(chips);
+  }
+  function eventCard(kind,row) {
+    const card=node("article","event"), head=node("div","event-head");
+    let title="", verb="", entries=[];
+    if(kind==="product") {
+      title="Product "+(row.product_id||"(ID unavailable)");verb=row.operation||"UNKNOWN";
+      entries=[["Event time",safeDate(row.created_at)],["Actor user UUID",row.actor_user_id||"Not recorded"],["Audit event UUID",row.audit_id||"—"]];
+    } else if(kind==="role") {
+      title="Profile role change";verb=String(row.old_role||"?")+" → "+String(row.new_role||"?");
+      entries=[["Changed at",safeDate(row.changed_at)],["Profile user UUID",row.profile_user_id||"User unavailable"],["Actor user UUID",row.actor_user_id||"Not recorded"],["Audit event UUID",row.audit_id||"—"]];
+    } else {
+      title=row.business_name||"Verified business access";verb=row.event_type||"UNKNOWN";
+      entries=[["Event time",safeDate(row.created_at)],["Access status",String(row.old_status||"—")+" → "+String(row.new_status||"—")],["Account user UUID",row.user_id||"User unavailable"],["Actor user UUID",row.actor_user_id||"Not recorded"],["Verification request UUID",row.verification_request_id||"—"],["Audit event UUID",row.event_id||"—"]];
+    }
+    head.append(node("div","event-title",title),node("span","pill "+String(verb).toLowerCase().replace(/[^a-z_]/g,"_"),verb));card.append(head,metaGrid(row,entries));
+    if(kind==="product") addChips(card,"Changed column names",row.changed_fields);
+    if(kind==="business"&&row.reason) card.append(node("div","reason",row.reason));
+    return card;
+  }
+  function rowHaystack(kind,row) {
+    const fields = kind==="product" ? [row.product_id,row.actor_user_id,row.operation,row.audit_id,...(row.changed_fields||[])]
+      : kind==="role" ? [row.profile_user_id,row.actor_user_id,row.old_role,row.new_role,row.audit_id]
+      : [row.user_id,row.actor_user_id,row.verification_request_id,row.business_name,row.event_type,row.old_status,row.new_status,row.reason,row.event_id];
+    return fields.filter(v=>v!==null&&v!==undefined).join(" ").toLowerCase();
+  }
+  function renderRows() {
+    const s=state[currentKind], host=$("eventList"), q=$("searchInput").value.trim().toLowerCase();host.replaceChildren();
+    const filtered=s.rows.filter(row=>!q||rowHaystack(currentKind,row).includes(q));
+    $("eventCount").textContent=filtered.length+(s.hasMore?"+":"")+" events";
+    $("auditTitle").textContent=configs[currentKind].title;$("auditDescription").textContent=configs[currentKind].description;
+    if(!filtered.length) {
+      host.append(node("div","empty",s.rows.length ? "No loaded entries match this filter. Clear the search or navigate to another page." : "No audit entries on this page. Changes made before the relevant audit trigger was enabled may not appear."));
+    } else for(const row of filtered)host.append(eventCard(currentKind,row));
+    $("pager").classList.toggle("hidden",!s.authorized);
+    $("prevButton").disabled=s.offset<=0;$("nextButton").disabled=!s.hasMore;
+    $("pageLabel").textContent="Page "+(Math.floor(s.offset/PAGE_SIZE)+1)+" · offset "+s.offset;
+  }
+  async function loadAudit(offset=state[currentKind].offset) {
+    if(!supabase||!currentUser||busy)return;
+    busy=true;const kind=currentKind,cfg=configs[kind],s=state[kind];
+    $("refreshButton").disabled=true;$("prevButton").disabled=true;$("nextButton").disabled=true;
+    $("eventList").replaceChildren(node("div","empty","Loading restricted audit entries…"));hideNotice("resultNotice");
+    try {
+      const {data,error}=await supabase.rpc(cfg.rpc,cfg.params(offset));
+      if(error) {
+        s.rows=[];s.hasMore=false;s.authorized=false;
+        $("eventCount").textContent="— events";$("pager").classList.add("hidden");
+        $("eventList").replaceChildren(node("div","empty","The selected audit stream could not be loaded."));
+        $("authStatus").textContent="Administrator authorization failed";
+        showNotice("resultNotice",error.message.toLowerCase().includes("not authorized")
+          ? "Your account is signed in but the database did not authorize this audit stream. Confirm your account is listed in cp_admin_users and that this stage's RPC exists."
+          : "Could not load this audit stream: "+error.message,"error");
+        return;
+      }
+      if(currentKind!==kind)return;
+      const records=Array.isArray(data)?data:[];s.offset=offset;s.hasMore=records.length>PAGE_SIZE;s.rows=records.slice(0,PAGE_SIZE);s.authorized=true;
+      $("authStatus").textContent="Administrator authorized for "+cfg.title.toLowerCase();renderRows();
+    } catch(err) {
+      s.rows=[];s.hasMore=false;s.authorized=false;$("eventList").replaceChildren(node("div","empty","Unexpected error while loading audit data."));showNotice("resultNotice",err?.message||"Unknown error","error");
+    } finally {
+      busy=false;
+      $("refreshButton").disabled=false;
+      if(currentUser && currentKind !== kind) {
+        // If the administrator switched tabs while a request was in flight, load the newly selected stream now.
+        loadAudit(state[currentKind].offset);
+      } else if(currentUser && state[currentKind].authorized) {
+        $("prevButton").disabled=state[currentKind].offset<=0;
+        $("nextButton").disabled=!state[currentKind].hasMore;
+      }
+    }
+  }
+  async function signOut() {
+    if(!supabase)return;const {error}=await supabase.auth.signOut();if(error){showNotice("resultNotice","Could not sign out: "+error.message,"error");return;}setSession(null);showNotice("loginNotice","You have signed out.","success");
+  }
+  function chooseKind(kind) {
+    if(!configs[kind])return;currentKind=kind;
+    document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.kind===kind)));
+    $("searchInput").value="";const s=state[kind];
+    $("auditTitle").textContent=configs[kind].title;$("auditDescription").textContent=configs[kind].description;
+    if(currentUser)loadAudit(s.offset);else renderRows();
+  }
+  $("loginForm").addEventListener("submit",async e=>{
+    e.preventDefault();hideNotice("loginNotice");
+    if(!supabase){showNotice("loginNotice","Set the Supabase project URL and public anon/publishable key in this file first.","error");return;}
+    const button=$("loginButton");button.disabled=true;button.textContent="Signing in…";
+    try {
+      const {data,error}=await supabase.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
+      if(error)throw error;setSession(data.session);await loadAudit(0);
+    } catch(err) {showNotice("loginNotice",err?.message||"Sign in failed","error");}
+    finally {button.disabled=false;button.textContent="Sign in";}
+  });
+  $("signOutButton").addEventListener("click",signOut);$("signOutSideButton").addEventListener("click",signOut);
+  $("refreshButton").addEventListener("click",()=>loadAudit(state[currentKind].offset));
+  $("filterForm").addEventListener("submit",e=>{e.preventDefault();renderRows();});
+  $("searchInput").addEventListener("input",renderRows);
+  $("prevButton").addEventListener("click",()=>{const s=state[currentKind];if(s.offset>0)loadAudit(Math.max(0,s.offset-PAGE_SIZE));});
+  $("nextButton").addEventListener("click",()=>{const s=state[currentKind];if(s.hasMore)loadAudit(s.offset+PAGE_SIZE);});
+  document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>chooseKind(b.dataset.kind)));
+  const configured=SUPABASE_URL.startsWith("https://")&&!SUPABASE_URL.includes("PASTE_")&&SUPABASE_PUBLIC_KEY.length>10&&!SUPABASE_PUBLIC_KEY.includes("PASTE_");
+  if(!configured)showNotice("loginNotice","Setup required: copy the project URL and public anon/publishable key from a working Commerce Passport page into this file. Never use a service-role or secret key.","error");
+  else {
+    try {
+      supabase=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY);
+      supabase.auth.getSession().then(({data,error})=>{
+        if(error)showNotice("loginNotice","Could not restore session: "+error.message,"error");
+        setSession(data?.session||null);if(data?.session?.user)loadAudit(0);
+      }).catch(err=>showNotice("loginNotice",err?.message||"Could not restore session","error"));
+    } catch(err) {showNotice("loginNotice","Could not initialize Supabase: "+(err?.message||"unknown error"),"error");}
+  }
+})();
+</script>
+</body>
+</html>
