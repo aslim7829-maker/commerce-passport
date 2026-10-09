@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>Sign In | Commerce Passport</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08111f;--panel:#101c2e;--panel2:#14233a;--line:#2a3b55;--text:#edf4ff;--muted:#a9b8cc;--accent:#73e0c1;--accent2:#4fc8a8;--danger:#ffb5b5}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 12% 8%,#15314b 0,transparent 42%),radial-gradient(ellipse at 88% 95%,#103b39 0,transparent 36%),var(--bg);color:var(--text);display:grid;place-items:center;padding:28px}
+    .layout{width:min(100%,980px);display:grid;grid-template-columns:1.05fr .95fr;border:1px solid #283951;border-radius:26px;overflow:hidden;background:rgba(13,24,41,.84);box-shadow:0 24px 80px #0006}
+    .intro{padding:48px;background:linear-gradient(145deg,#142b42,#0d1829 74%);display:flex;flex-direction:column;justify-content:space-between;min-height:560px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:.2px}
+    .mark{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:var(--accent);color:#071a1a;font-size:23px;font-weight:900}
+    .eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin:0 0 14px}
+    h1{font-size:clamp(32px,4vw,46px);line-height:1.09;letter-spacing:-1.5px;margin:0 0 18px}
+    .intro-copy{max-width:390px;color:var(--muted);line-height:1.75;font-size:15px}
+    .feature{display:flex;align-items:flex-start;gap:12px;margin-top:24px;color:#d8e6f6;font-size:14px;line-height:1.55}
+    .check{flex:none;width:25px;height:25px;border-radius:9px;display:grid;place-items:center;background:#21463f;color:var(--accent)}
+    .formside{padding:48px 42px;display:flex;flex-direction:column;justify-content:center}
+    .formside h2{font-size:28px;letter-spacing:-.7px;margin:0 0 8px}
+    .sub{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 28px}
+    label{display:block;font-size:13px;font-weight:650;margin:0 0 8px;color:#dbe7f6}
+    input{width:100%;border:1px solid var(--line);border-radius:12px;padding:14px 15px;background:#091322;color:var(--text);font:inherit;outline:none;margin-bottom:18px}
+    input:focus{border-color:var(--accent);box-shadow:0 0 0 3px #73e0c11b}
+    button{width:100%;border:0;border-radius:12px;padding:14px 18px;background:var(--accent);color:#071b19;font-size:15px;font-weight:800;cursor:pointer;transition:background .15s,transform .15s}
+    button:hover{background:#8aebd1;transform:translateY(-1px)}
+    button:disabled{opacity:.6;cursor:wait;transform:none}
+    .message{display:none;border-radius:11px;padding:12px 14px;font-size:13px;line-height:1.55;margin:0 0 16px;overflow-wrap:anywhere}
+    .message.error{display:block;background:#3b1f2a;border:1px solid #75404a;color:var(--danger)}
+    .message.success{display:block;background:#14352f;border:1px solid #28695b;color:#a9f3d9}
+    .signup{color:var(--muted);font-size:14px;text-align:center;margin:20px 0 0;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    .back{display:inline-block;margin-top:26px;font-size:13px;color:var(--muted);text-align:center}
+    .foot{font-size:12px;line-height:1.6;color:#869ab2;margin-top:28px}
+    @media(max-width:760px){body{padding:14px}.layout{grid-template-columns:1fr}.intro{min-height:auto;padding:28px}.intro h1{font-size:32px}.intro .features{display:none}.formside{padding:32px 25px}.intro-copy{margin-bottom:18px}.brand{margin-bottom:28px}}
+  </style>
+</head>
+<body>
+  <main class="layout">
+    <section class="intro">
+      <div>
+        <div class="brand"><span class="mark">C</span><span>Commerce Passport</span></div>
+        <p class="eyebrow">Your product, its history</p>
+        <h1>Welcome back<br>to your passport.</h1>
+        <p class="intro-copy">Sign in to manage your products, ownership transfers, warranties, service records and authenticity reports.</p>
+        <div class="features">
+          <div class="feature"><span class="check">✓</span><span>See the products connected to your account.</span></div>
+          <div class="feature"><span class="check">✓</span><span>Keep product history and requests in one place.</span></div>
+        </div>
+      </div>
+      <div class="foot">Secure sign-in powered by your Commerce Passport account.</div>
+    </section>
+    <section class="formside">
+      <h2>Sign in</h2>
+      <p class="sub">Use the same email address and password you registered with. If you just confirmed your email, sign in here.</p>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+      <form id="login-form">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+        <button id="submit-button" type="submit">Sign in to Commerce Passport</button>
+      </form>
+      <p class="signup">Don't have an account? <a href="signup.html">Create an account</a></p>
+      <a class="back" href="index.html">← Back to Commerce Passport home</a>
+    </section>
+  </main>
+
+  <!-- IMPORTANT: Copy the same project URL and PUBLIC anon/publishable key used in signup.html.
+       Do NOT use a Supabase service_role or secret key in a browser page. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Replace only these two placeholder values with the matching values from signup.html.
+    const SUPABASE_URL = "https://glzpkrgchzbayztsnkwu.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_BKCqlwyiaQMaDMEf_bdKCA_jh6EX0v7";
+
+    const form = document.getElementById("login-form");
+    const messageBox = document.getElementById("message");
+    const button = document.getElementById("submit-button");
+
+    function showMessage(text, type) {
+      messageBox.textContent = text;
+      messageBox.className = "message " + type;
+    }
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      messageBox.className = "message";
+
+      if (SUPABASE_URL.includes("PASTE_YOUR_") || SUPABASE_ANON_KEY.includes("PASTE_YOUR_")) {
+        showMessage("Setup needed: copy the Supabase project URL and public anon key from signup.html into this login.html file, save, and upload it again.", "error");
+        return;
+      }
+      if (!window.supabase || typeof window.supabase.createClient !== "function") {
+        showMessage("The sign-in library did not load. Check your internet connection and reload this page.", "error");
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Signing in…";
+      try {
+        const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const { error } = await client.auth.signInWithPassword({ email, password });
+        if (error) {
+          const msg = /email not confirmed/i.test(error.message)
+            ? "Your email is not confirmed yet. Open the latest confirmation email, click Confirm email address, then try signing in again."
+            : /invalid login credentials/i.test(error.message)
+              ? "Email or password is incorrect. Use the same email and password you registered with. If you forgot your password, do not create another account."
+              : error.message;
+          showMessage(msg, "error");
+          return;
+        }
+        showMessage("Signed in successfully. Opening your dashboard…", "success");
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        showMessage("Could not sign in. Please check your connection and try again. Details: " + (error?.message || "Unknown error"), "error");
+      } finally {
+        button.disabled = false;
+        button.textContent = "Sign in to Commerce Passport";
+      }
+    });
+  </script>
+</body>
+</html>
