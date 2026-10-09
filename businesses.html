@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commerce Passport — Business Registration</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px;
+      font-family: Arial, sans-serif;
+      background: #f4f6fa; color: #172033;
+    }
+    main { max-width: 760px; margin: 35px auto; }
+    .card {
+      background: white; padding: 24px; margin-bottom: 20px;
+      border-radius: 16px; border: 1px solid #e2e6ef;
+      box-shadow: 0 5px 20px #15213a0a;
+    }
+    h1, h2 { margin-top: 0; }
+    p { color: #667085; line-height: 1.5; }
+    label { display: block; margin: 15px 0 6px; font-weight: 600; }
+    input, button {
+      width: 100%; padding: 12px; border-radius: 8px;
+      font: inherit;
+    }
+    input { border: 1px solid #ccd2df; background: white; }
+    button {
+      margin-top: 16px; border: 0; cursor: pointer;
+      background: #2458e6; color: white; font-weight: 700;
+    }
+    button:disabled { opacity: .6; cursor: wait; }
+    .secondary { background: #e9edfa; color: #20325f; }
+    .status { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .business {
+      border: 1px solid #e2e6ef; border-radius: 10px;
+      padding: 14px; margin-top: 12px;
+    }
+    .hidden { display: none; }
+    a { color: #2458e6; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1>Commerce Passport</h1>
+    <p>Register and manage businesses linked to your account.</p>
+    <p><a href="./index.html">Home</a> ·
+       <a href="./products.html">Product registration</a></p>
+    <p id="sessionStatus">Checking sign-in status…</p>
+    <button id="logout" class="secondary hidden" type="button">
+      Sign out
+    </button>
+  </div>
+
+  <section id="loginCard" class="card hidden">
+    <h2>Sign in</h2>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="email" required>
+      <label for="password">Password</label>
+      <input id="password" type="password"
+             autocomplete="current-password" required>
+      <button id="loginButton" type="submit">Sign in</button>
+    </form>
+  </section>
+
+  <section id="businessCard" class="card hidden">
+    <h2>Register a business</h2>
+    <form id="businessForm">
+      <label for="name">Business name *</label>
+      <input id="name" maxlength="150" required>
+
+      <label for="business_type">Business type</label>
+      <input id="business_type" maxlength="100"
+             placeholder="e.g. Grocery, electronics, salon">
+
+      <label for="address">Address</label>
+      <input id="address" maxlength="300">
+
+      <label for="city">City</label>
+      <input id="city" maxlength="100">
+
+      <label for="phone">Phone</label>
+      <input id="phone" type="tel" maxlength="30">
+
+      <button id="saveButton" type="submit">
+        Register business
+      </button>
+    </form>
+  </section>
+
+  <section id="businessListCard" class="card hidden">
+    <h2>Your businesses</h2>
+    <button id="refreshButton" class="secondary" type="button">
+      Refresh list
+    </button>
+    <div id="businessList"></div>
+  </section>
+
+  <div id="message" class="card status" role="status" aria-live="polite">
+  </div>
+</main>
+
+<script type="module">
+  import { createClient } from
+    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+  // Use the same Project URL and publishable/anon key as products.html.
+  const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
+  const SUPABASE_PUBLIC_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+  const message = document.getElementById("message");
+  const sessionStatus = document.getElementById("sessionStatus");
+  const loginCard = document.getElementById("loginCard");
+  const businessCard = document.getElementById("businessCard");
+  const listCard = document.getElementById("businessListCard");
+  const logoutButton = document.getElementById("logout");
+
+  const configMissing =
+    SUPABASE_URL.startsWith("YOUR_") ||
+    SUPABASE_PUBLIC_KEY.startsWith("YOUR_");
+
+  let supabase = null;
+  let currentUser = null;
+  let busy = false;
+
+  function showMessage(text) {
+    message.textContent = text;
+  }
+
+  function showSignedInUI(signedIn) {
+    loginCard.classList.toggle("hidden", signedIn);
+    businessCard.classList.toggle("hidden", !signedIn);
+    listCard.classList.toggle("hidden", !signedIn);
+    logoutButton.classList.toggle("hidden", !signedIn);
+    sessionStatus.textContent = signedIn
+      ? "Signed in: " + currentUser.email
+      : "Please sign in to continue.";
+  }
+
+  async function loadBusinesses() {
+    if (!currentUser) return;
+
+    const list = document.getElementById("businessList");
+    list.textContent = "Loading businesses…";
+
+    // RLS limits returned rows to businesses this user may read.
+    const { data, error } = await supabase
+      .from("businesses")
+      .select("id, name, business_type, address, city, phone, created_at")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      list.textContent = "Could not load businesses: " + error.message;
+      return;
+    }
+
+    list.replaceChildren();
+
+    if (!data || data.length === 0) {
+      list.textContent = "No businesses registered yet.";
+      return;
+    }
+
+    for (const business of data) {
+      const card = document.createElement("div");
+      card.className = "business";
+
+      const title = document.createElement("strong");
+      title.textContent = business.name;
+      card.appendChild(title);
+
+      const details = document.createElement("p");
+      details.textContent = [
+        business.business_type,
+        business.address,
+        business.city,
+        business.phone
+      ].filter(Boolean).join(" · ") || "No additional details";
+
+      card.appendChild(details);
+      list.appendChild(card);
+    }
+  }
+
+  async function syncSession() {
+    const { data, error } = await supabase.auth.getSession();
+
+    if (error) {
+      showMessage("Could not check sign-in status: " + error.message);
+      return;
+    }
+
+    currentUser = data.session?.user ?? null;
+    showSignedInUI(Boolean(currentUser));
+
+    if (currentUser) await loadBusinesses();
+  }
+
+  if (configMissing) {
+    showMessage(
+      "Setup required: replace the two Supabase placeholders with " +
+      "the Project URL and publishable/anon key used by products.html."
+    );
+  } else {
+    supabase = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+    message.textContent = "";
+    await syncSession();
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      currentUser = session?.user ?? null;
+      showSignedInUI(Boolean(currentUser));
+      if (currentUser) {
+        // Avoid awaiting network work inside the auth callback.
+        setTimeout(() => loadBusinesses(), 0);
+      } else {
+        document.getElementById("businessList").replaceChildren();
+      }
+    });
+  }
+
+  document.getElementById("loginForm").addEventListener("submit",
+    async (event) => {
+      event.preventDefault();
+      if (!supabase) return;
+
+      const button = document.getElementById("loginButton");
+      button.disabled = true;
+      showMessage("Signing in…");
+
+      const { error } = await supabase.auth.signInWithPassword({
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value
+      });
+
+      button.disabled = false;
+
+      if (error) showMessage("Sign-in failed: " + error.message);
+      else {
+        document.getElementById("password").value = "";
+        showMessage("Signed in successfully.");
+        await syncSession();
+      }
+    });
+
+  document.getElementById("businessForm").addEventListener("submit",
+    async (event) => {
+      event.preventDefault();
+      if (!supabase || !currentUser || busy) return;
+
+      const name = document.getElementById("name").value.trim();
+      if (!name) {
+        showMessage("Please enter a business name.");
+        return;
+      }
+
+      busy = true;
+      const button = document.getElementById("saveButton");
+      button.disabled = true;
+      showMessage("Registering business…");
+
+      const business = {
+        owner_id: currentUser.id,
+        name,
+        business_type:
+          document.getElementById("business_type").value.trim() || null,
+        address: document.getElementById("address").value.trim() || null,
+        city: document.getElementById("city").value.trim() || null,
+        phone: document.getElementById("phone").value.trim() || null
+      };
+
+      const { data, error } = await supabase
+        .from("businesses")
+        .insert(business)
+        .select("id, name")
+        .single();
+
+      busy = false;
+      button.disabled = false;
+
+      if (error) {
+        showMessage(
+          "Business registration failed: " + error.message +
+          "\nNo database changes were made by this failed insert."
+        );
+        return;
+      }
+
+      showMessage("Business registered successfully: " + data.name);
+      document.getElementById("businessForm").reset();
+      await loadBusinesses();
+    });
+
+  document.getElementById("refreshButton").addEventListener("click",
+    loadBusinesses);
+
+  logoutButton.addEventListener("click", async () => {
+    if (!supabase) return;
+    const { error } = await supabase.auth.signOut();
+    if (error) showMessage("Sign-out failed: " + error.message);
+    else {
+      currentUser = null;
+      showSignedInUI(false);
+      showMessage("You have signed out.");
+    }
+  });
+</script>
+</body>
+</html>
