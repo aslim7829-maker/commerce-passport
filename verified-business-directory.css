@@ -1,0 +1,54 @@
+/* Commerce Passport — Stage 34.5a: verified business directory mobile polish
+   Additive visual layer. No JavaScript, database, or business-verification behavior changes. */
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { overflow-wrap: anywhere; }
+.wrap, .top, .hero, .search-panel, .filters, .cards, .business-card, .footer { min-width: 0; }
+.nav { row-gap: 10px; }
+.nav a, .brand { text-underline-offset: 3px; }
+input, select, button { min-height: 46px; max-width: 100%; }
+input, select { min-width: 0; }
+button { white-space: normal; line-height: 1.35; }
+.business-card { overflow-wrap: anywhere; }
+.business-card h3, .business-card p, .card-bottom, .disclaimer { overflow-wrap: anywhere; }
+.card-bottom { align-items: flex-start; }
+.date { overflow-wrap: anywhere; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--blue, #8cc8ff); outline-offset: 3px; }
+#statusMessage { overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .wrap { width: min(100% - 28px, 1120px); }
+  .top { align-items: flex-start; gap: 14px; padding: 16px 0; }
+  .brand { flex: 1 1 180px; }
+  .nav { flex: 1 1 100%; justify-content: flex-start; gap: 12px 16px; }
+  .nav a { font-size: 13px; padding: 5px 0; }
+  .hero { padding-top: 28px; }
+  .hero h1 { font-size: clamp(32px, 8vw, 48px); line-height: 1.06; }
+  .hero p { font-size: 15px; line-height: 1.65; }
+  .hero-meta { gap: 8px; }
+  .tag { white-space: normal; line-height: 1.4; }
+  .search-panel { padding: clamp(15px, 4vw, 22px); border-radius: 16px; }
+  .filters { gap: 13px; }
+  .filters .field { min-width: 0; }
+  .filters button { width: 100%; min-height: 48px; }
+  .results-head { gap: 12px; flex-wrap: wrap; }
+  .cards { gap: 12px; }
+  .business-card { padding: 16px; border-radius: 15px; }
+  .card-bottom { flex-wrap: wrap; gap: 9px; }
+  .date { text-align: left; }
+  .pagination { padding: 18px 0 30px; }
+  #loadMoreButton { width: 100%; min-height: 48px; }
+  .disclaimer { padding: 14px; line-height: 1.65; }
+  .footer { flex-direction: column; gap: 8px; }
+}
+@media (max-width: 420px) {
+  .wrap { width: min(100% - 22px, 1120px); }
+  .top { flex-direction: column; }
+  .nav { width: 100%; }
+  .hero h1 { font-size: clamp(30px, 9vw, 38px); }
+  .hero-meta { align-items: stretch; }
+  .tag { border-radius: 12px; }
+  .results-head h2 { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
